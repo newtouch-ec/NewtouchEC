@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:2:{s:36:"pointprofessional_extension_settings";s:36:"pointprofessional_extension_settings";s:33:"logisticstrack_extension_settings";s:33:"logisticstrack_extension_settings";}}s:8:"dateline";s:10:"1386729387";s:3:"ttl";s:1:"0";}

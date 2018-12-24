@@ -1,0 +1,83 @@
+
+<{lang_script src="lang.js" app="site"}>
+<{css src="framework.css" app="site" pdir="css_mini"}>
+<{css src="b2c.css" app="b2c" pdir="css_mini"}>
+<{css src="passport.css" app="b2c" pdir="css_mini"}>
+<{if defined("DEBUG_JS") && DEBUG_JS}>
+  <{script src="mootools.js" app="site"}>
+  <{script src="formplus.js" app="site"}>
+  <{script src="jstools.js" app="site"}>
+  <{script src="coms/popup.js" app="site"}>
+<{else}>
+  <{script src="moo_min.js" app="site" pdir="js_mini"}>
+  <{script src="tools_min.js" app="site" pdir="js_mini"}>
+  <{script src="ui_min.js" app="site" pdir="js_mini"}>
+<{/if}>
+<{lang_script src="lang.js" app="b2c"}>
+<{lang_css src="lang.css" app="b2c"}>
+<!-- right-->
+<div class="member-main member-main2">
+<form action="<{link app=business ctl='site_order' act='extend_confirm'}>" method="post"  id="extend_confirm" class="section" extra="subOrder">
+         <input type="hidden" name="order_id" value="<{$order_id}>" />
+         <p style=" font-family:simsun;background:#fff4e8;border: 1px solid #ffeeda;clear: both;font-size: 12px;height: 38px;line-height: 38px;margin: 5px 0;padding: 0 10px;"><{t}>延长收货时间可以让买家有更多时间来“确定收货”，而不会急于去申请退款。<{/t}></p>
+        <div class="FormWrap bn">
+                  <div style="padding:10px; border-bottom:1px dashed #e3e3e3;">
+                          <ul>
+                              <li>
+                                <label><{t}>延长本交易的“确认收货”期限为：<{/t}></label>
+                                <select id="J_DelayDays" class="delay-days" name="delayDays" style="padding:2px; border:1px solid #e6e6e6;">
+                                    <option value="3">3天</option>
+                                    <option value="5">5天</option>
+                                    <option value="7">7天</option>
+                                    <option value="10">10天</option>
+                                </select>
+                              </li>
+                                    <!--  <li>
+                                        <label><{t}>选择支付币别：<{/t}></label>
+                                        <span><{$currencys.cur_name}></span>
+                                      </li>
+                                    --> 
+                           </ul>
+                  </div>
+                  <div id="sub" style="text-align:center; margin-top:10px;">
+                          <{button class="common-btn" type="button" label="确认"}>
+                  </div>
+        </div>
+
+</form>
+</div>
+
+<!-- right-->
+<script>
+	$('sub').addEvent('click',function(e){
+           var odr_form = $('extend_confirm');
+           if($('sub').get('disabled') == true){
+                return;
+           }
+
+            _formActionUrl = odr_form.get('action');
+            new Request({
+                url:_formActionUrl,
+                method:'post',
+                data:odr_form.toQueryString(),
+                onRequest:function(re){
+                    $('sub').getElement('button').set('html','loading...');
+                    $('sub').set('disabled','true');
+                },
+                onComplete:function(re){
+                    $('sub').getElement('button').set('html','确认');
+                    
+                    re = JSON.decode(re);
+                    $('sub').set('disabled',false);
+                    if(re.success){
+                        Message.success(re.success);
+                    }else{
+                        Message.error('提交失败');
+                    }
+                    top.location.reload();
+                }
+            }).send();
+    });
+
+
+</script>

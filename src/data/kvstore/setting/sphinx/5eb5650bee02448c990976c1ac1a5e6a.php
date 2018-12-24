@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:143:"a:4:{s:13:"sphinx_server";s:14:"127.0.0.1:9312";s:12:"sphinx_index";s:9:"b2c_goods";s:11:"sphinx_time";s:1:"3";s:16:"sphinx_max_limit";s:0:"";}";s:8:"dateline";s:10:"1415342338";s:3:"ttl";s:1:"0";}

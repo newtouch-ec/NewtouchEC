@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:188:"order_id,t_send,t_confirm,memo,ship_zip,ship_email,ship_tel,ship_area,ship_addr,t_begin,ship_mobile,status,member_id,logi_name,op_name,is_protect,money,delivery,ship_name,logi_no,reship_id";s:8:"dateline";s:10:"1433139229";s:3:"ttl";s:1:"0";}

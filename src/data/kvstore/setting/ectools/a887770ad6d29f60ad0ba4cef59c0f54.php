@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:242:"a:4:{s:7:"setting";a:5:{s:8:"pay_name";s:26:"银联在线支付ChinaPay";s:6:"mer_id";s:6:"112321";s:7:"pay_fee";d:0;s:11:"support_cur";s:1:"1";s:8:"pay_desc";s:6:"&nbsp;";}s:6:"status";s:5:"false";s:8:"pay_type";s:4:"true";s:8:"platform";N;}";s:8:"dateline";s:10:"1439173365";s:3:"ttl";s:1:"0";}

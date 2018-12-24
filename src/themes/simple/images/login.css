@@ -1,0 +1,99 @@
+﻿/*-------------------------------------------------共用-----------------------------------------------*/
+html{background: #f8f8f8;}
+body{background: #f8f8f8;padding: 8px 8px; font-family:"Microsoft YaHei","SimSun","SimHei";}
+.webwidth{width:980px;margin:0 auto;}
+.registered .user_name,.registered .email,.registered .password,.regist_header .rh_icon{background:url(login_icon.png) no-repeat;}
+
+/*-------------------------------------------------登录、注册-----------------------------------------------*/
+.regist_header{background: #fff;margin:0px auto;padding:6px 6px;display: block;overflow: hidden;}
+.regist_header .logo2{float: left;width:301px;height:78px;}
+.regist_header .logo2 a{width:301px;height:78px;display: block;overflow: hidden;}
+.regist_header .bt{float:right;width: 286px;height: 30px;margin-top: 19px;}
+.registered{display:block;overflow:hidden;background:url(regist_topbg.png) repeat-x;padding:46px 0 40px;}
+.registered .webwidth{position:relative;z-index:1;}
+.zidong_for{clear: both;}
+.register-wrap{_display:inline;float:right;margin:0 50px 0 0;padding:18px 30px;background:#fff; width:347px;height:340px;}
+.register-wrap h3{color:#090909;font-family: 'Microsoft Yahei';font-size: 25px;font-weight: normal;height: 35px;}
+.register-wrap h3 a{font-size: 12px;float: right;color: #08c;}
+.register-wrap h3 a:hover{color:#e32a2f;}
+.registered .loginbox,.registered .loginbox ul{padding: 0 0;margin: 0 0;}
+.register-wrap .loginbox {width: 300px;}
+.register-wrap .error{background: no-repeat;border: none;padding: 0 0;margin: 0 0;color:red;}
+.lonin_adv{position:absolute;z-index:2;top:0px;left:0px;}
+.lonin_adv img{width:520px;height:376px;}
+.registered .x-input{width:180px;padding:6px 34px 6px 14px;border:1px solid #dedede;float:none;font-size:14px;color:#666;}
+.registered .loginbox .login-v{*height:45px;padding: 0 0;margin-top:6px;float: left; position:relative;}
+.registered .loginbox .login-w{height: auto;margin-top: 0;}
+
+.registered .mobileverifycode{background: #fff;}
+.registered .checkbox{width:13px;margin-right:10px;border:none;margin-top: 0;}
+.registered .login_button{_width:285px;width:292px;height:35px;line-height:normal;background:#e32a2f;margin-top:20px;
+	-webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    -ms-border-radius:4px;
+    border-radius:4px;
+}
+.registered .login_button:hover{background:#c30000;}
+.mod_regist_wrap .login_button{margin-top: 0;background-position:0px -110px;width:331px;}
+.registered .login_button span{font-size:18px;color:#fff;}
+.registered .user_name{background-position:200px 6px;}
+.registered .email{background-position:200px -28px;}
+.registered .password{background-position:200px -64px}
+
+.mobile_time{ line-height:30px; margin-left:5px;}
+.mod_regist_wrap{width:970px;margin:0 auto;padding:5px;filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#33000000',endColorstr='#33000000');background-color:rgba(0,0,0,0.2);}
+.regist_border{padding:20px 0;background:#FFF;}
+.registered_l h4{font-family:'Microsoft Yahei';font-size:14px;font-weight:normal;color:#090909;height:40px;*+line-height:40px;border-bottom:1px solid #e5e5e5;margin-bottom:20px;}
+.registered_l h4 a{ display: inline-block; padding:0px 40px; line-height:39px; height:39px;border: 1px solid #e5e5e5;background: #f3f3f3;color: #5e5e5e;}
+.registered_l h4 a.active{ background:#fff; color:#e32a2f;border-bottom-color:#fff;}
+.registered_l h4 a:hover{ text-decoration:none;}
+.site{margin:10px 0px;line-height:26px;}
+.registered_l{width:619px;border-right:1px solid #e5e5e5;margin-left:40px;}
+.registered_l .loginbox{*margin-left:32px;}
+.registered_r{width:230px;margin-left:40px;}
+.registered_lnk,.registered_rimg{width:230px;overflow:hidden;display:block;}
+.registered_lnk{color: #666;line-height:50px;margin-top:90px;font-family: 'Microsoft Yahei';font-size: 20px;}
+.registered_lnk p{height:50px;position: relative;z-index: 1;}
+.registered_lnk a{width: 145px;height:35px;line-height:32px;color: #fff;display:inline-block;overflow: hidden;position: absolute;z-index: 2;top:8px;left:0px;text-align: center;background:#ffa100;
+	-webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    -ms-border-radius:4px;
+    border-radius:4px;}
+.registered_lnk a:hover{background:#F49300;}
+.lost-wrap{width:918px;margin:0 auto;padding:18px 30px;background: #fff;border:1px solid #e3e3e3;border-radius:3px;}
+.flowStep{padding-top:20px;padding-bottom:40px;border-bottom:1px dotted #e3e3e3}
+.flowStep ul{width:690px;margin-left:auto;margin-right:auto}
+.flowStep li{float:left;text-align:center;color:#999}
+.flowStep span{width:12px;height:12px;float:left;margin-top:-5px;background:url(login_icon.png) no-repeat -17px -158px}
+.flowStep .redline{height:2px;background-color:#e32a2f;float:left;width:310px}
+.flowStep p{margin-top:15px;margin-left:-310px}
+.flowStep .last{margin-right:-200px}
+.flowStep .current{color:#e32a2f;}
+.flowStep .current span{background-position:0px -158px}
+.lost-wrap .loginbox{padding:40px 0 40px 75px;width: 300px;}
+.lost-wrap .error{background: no-repeat;border: none;padding: 0 0;margin: 0 0;color:red;}
+.lost-wrap .submit-btn,.lost-wrap .common-btn{background:#e32a2f;clear: both;}
+.lost-wrap .submit-btn,.lost-wrap .common-btn span span{color:#fff;}
+.lost-wrap .btn{margin:0 0;}
+.lost-wrap .lost_ul li{padding-bottom: 10px;color: #666;}
+.lost-wrap .lost_ul label{color: #999;}
+
+
+
+.lonin_xinren{position:absolute;z-index:3;top:373px;right:40px;}
+.sendMobileCode{float:left;padding:5px 14px;background:#f4f4f4;border:1px solid #e6e6e6;}
+
+.registered .loginbox .login-k{float:left;text-align:right;*width:100%;width:100px;color: #999;padding: 0 0;margin:11px 5px 11px 0px; font-size:14px;}
+.registered .loginbox .login-v .crl_xu{ height: 30px;line-height:30px; position:absolute; width:130%;top:0px; left:240px;}
+
+.f_copyright_seton{text-align: center;line-height: 30px;color: #999;width: 100%;margin-top:10px;display: block;overflow: hidden;}
+.f_copyright_seton span{margin:0 8px;}
+.f_copyright_seton a{color: #999;}
+.f_copyright_seton a:hover{color: #e32a2f}
+.f_copyright_img{display: none;}
+.registered .loginbox, .registered .loginbox ul li { float:left; margin-bottom:10px;width:619px;}
+.possword_strength span{ vertical-align:middle;}
+.login_ul label{width:10% !important;}
+.crl_sz span span{height:20px;line-height:30px; color:#e32a2f !important;}

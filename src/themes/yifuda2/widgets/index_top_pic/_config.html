@@ -1,0 +1,145 @@
+<div class="tableform">
+  <div class="widgetconfig">
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+      <tbody>
+        <tr>
+          <th><{t app='b2c'}>广告尺寸：<{/t}></th>
+          <td>
+            <{t app='b2c'}>宽<{/t}>
+            <input type="text" vtype="digits" required="true" class='x-input' autocomplete='off' name="ad_pic_width" value="<{$setting.ad_pic_width|default:1200}>" style="width:40px">px
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <{t app='b2c'}>高<{/t}>
+            <input type="text" vtype="digits" required="true" class='x-input' autocomplete='off' name="ad_pic_height" value="<{$setting.ad_pic_height|default:70}>" style="width:40px">px
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <{help}>说明：建议尺寸 1200px*70px<{/help}>
+	        </td>
+        </tr>
+
+        <tr>
+          <th><{t app='b2c'}>广告图片：<{/t}></th>
+          <td>
+	          <input type=hidden name="ad_pic" value="<{$setting.ad_pic}>">
+            <input name='ad_pic' class="imgsrc x-input " vtype="img_url" required='true' id="ad_pic" value="<{$setting.ad_pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+	        </td>
+        </tr>
+
+        <tr>
+          <th><{t app='b2c'}>背景颜色：<{/t}></th>
+          <td>
+            <{input type="color" name="ad_pic_color" required='true' id="ad_pic_color" value=$setting.ad_pic_color}>
+	        </td>
+        </tr>
+
+        <tr>
+          <th><{t app='b2c'}>链接类型：<{/t}></th>
+          <td>
+            <label>
+              <input type="radio" name="link_type" <{if $setting.link_type=='default'||empty($setting.link_type)}>checked<{/if}> value="default">&nbsp;默认
+            </label>
+            <label>
+              <input type="radio" name="link_type" <{if $setting.link_type=='map'}>checked<{/if}> value="map">&nbsp;图片热区域
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <{help}>
+              图片热区域范围说明：坐标点以英文逗号“,”分割
+              矩形：请标注左上坐标和右下坐标点(x1,y1,x2,y2)；
+              例：(0,0,100,100)， 左上(0,0) 右下(100,100)。
+              圆形：请标注中心坐标和半径(x1,y1,r)；
+              例：(100,100,50)， 中心点(100,100) 半径50px。
+              多边形：设置多边形各个点的坐标(x1,y1,x2,y2,x3,y3,....)；
+              例：0,0,30,0,0,30， 第1个点(0,0)，第2个点(30,0)，第3个点(0,30)。
+            <{/help}>
+          </td>
+        </tr>
+
+        <tr id="def_link" <{if $setting.link_type=='map'}>style="display:none;"<{/if}>>
+          <th><{t app='b2c'}>图片链接：<{/t}></th>
+          <td>
+            <input type="text" class='x-input' vtype="purl" autocomplete='off' name="ad_pic_link" value="<{$setting.ad_pic_link}>">
+          </td>
+        </tr>
+        <tr id="desc_link" <{if $setting.link_type=='map'}>style="display:none;"<{/if}>>
+          <th><{t app='b2c'}>图片描述：<{/t}></th>
+          <td>
+            <input type="text" class='x-input' autocomplete='off'  name="ad_pic_txt" value="<{$setting.ad_pic_txt}>">
+          </td>
+        </tr>
+
+        <tr id="link_map" <{if $setting.link_type=='default' || empty($setting.link_type)}>style="display:none;"<{/if}>>
+          <th></th>
+          <td>
+            <div id="linkAddress" class="tableform">
+              <div class="linkcontent">
+                <{foreach from=$setting.hot_points item=data key=key}>
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <th><{t app="b2c"}>热点区域：<{/t}></th>
+                      <td>
+                        <input type="hidden" name="hot_points[<{$data.id}>][id]" value="<{$data.id}>">
+                        <{input required="true" type="select" name="hot_points["+$data.id+"][area_type]" options=array("rect"=>"矩形","circle"=>"圆形","poly"=>"多边形") value=$data.area_type|default:'rect'}>
+                      <th>范围：</th>
+                      <td>
+                        <input type="text" class="x-input" autocomplete="off" name="hot_points[<{$data.id}>][link_area]" value="<{$data.link_area}>">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th><{t app="b2c"}>热点链接：<{/t}></th>
+                      <td>
+                        <input name="hot_points[<{$data.id}>][link_target]" value="<{$data.link_target}>">
+                      </td>
+                      <th><{t app="b2c"}>热点描述：<{/t}></th>
+                      <td>
+                        <input type="text" class='x-input' autocomplete='off' name="hot_points[<{$data.id}>][link_info]" value="<{$data.link_info}>">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <td></td>
+                      <th><{t app="b2c"}>删除:<{/t}></th>
+                      <td><span onclick="$(this).getParent('table').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>
+                    </tr>
+                  </table>
+                <{/foreach}>
+              </div>
+
+              <{button label=$___b2c="添加图片热链接"|t:'b2c' class="addlink" app="desktop" icon="btn_add.gif"}>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+    (function(){
+        $$('input[type=radio]').each(function(el){
+            el.addEvent('click',function(e){
+                if(this.checked==true){
+                    $('def_link').setStyle('display',this.value=='map'?'none':'');
+                    $('desc_link').setStyle('display',this.value=='map'?'none':'');
+                    $('link_map').setStyle('display',this.value=='map'?'':'none');
+                }
+            });
+        });
+
+        var tag_type='table',tag_class='pic_items';
+        document.getElement(".addlink").addEvent('click',function(){
+            var i=new Date().getTime();
+            var tpl='\<tr><th><{t app="b2c"}>热点区域：<{/t}></th>\<td><input type="hidden" name="hot_points['+i+'][id]" value="'+i+'">\<{input required=true type="select" name="hot_points['+i+'][area_type]" options=array("rect"=>"矩形","circle"=>"圆形","poly"=>"多边形") value="rect"}></td>\<th>范围：</th><td><input type="text" class="x-input" autocomplete="off" name="hot_points['+i+'][link_area]"></td></tr>\<tr><th><{t app="b2c"}>热点链接：<{/t}></th>\<td><input name="hot_points['+i+'][link_target]" class="x-input"></td>\<th><{t app="b2c"}>热点描述：<{/t}></th>\<td><input type="text" class="x-input" autocomplete="off" name="hot_points['+i+'][link_info]"></td></tr>\<tr><th></th><td></td><th><{t app="b2c"}>删除:<{/t}></th>\<td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>\</tr>';
+
+            $('linkAddress').getElement('.linkcontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+        });
+    })();
+
+    function addPic(target){
+        var url = 'index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+
+        Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                $(target).getPrevious('input').value=image_src;
+            }});
+        });
+    }
+</script>

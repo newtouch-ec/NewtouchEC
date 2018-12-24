@@ -1,0 +1,11 @@
+<div class="shop_nav">
+    <ul>
+        <{if $data.nav}>
+            <{foreach from=$data.nav item=nav_s key=nav_k name=nav_n}>
+                <li><a href="<{$nav_s.link}>" target="_blank"><{$nav_s.title}></a></li>      
+            <{/foreach}>  
+        <{/if}>
+        <div class="cl_zhi"></div>
+    </ul>
+</div>
+

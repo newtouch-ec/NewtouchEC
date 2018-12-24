@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:66:"app_version,app_platform,app_staus,app_display_name,column_control";s:8:"dateline";s:10:"1418630387";s:3:"ttl";s:1:"0";}

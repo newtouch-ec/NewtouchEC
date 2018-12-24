@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:11:{s:10:"article_id";s:3:"109";s:5:"title";s:10:"test文章";s:4:"type";s:1:"1";s:7:"node_id";s:2:"46";s:6:"author";s:5:"alice";s:7:"pubtime";s:10:"1433260800";s:6:"uptime";s:10:"1433327037";s:5:"level";s:1:"1";s:5:"ifpub";s:4:"true";s:2:"pv";s:1:"0";s:8:"disabled";s:5:"false";}s:8:"dateline";s:10:"1433327049";s:3:"ttl";s:1:"0";}

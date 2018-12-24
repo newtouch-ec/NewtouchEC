@@ -1,0 +1,112 @@
+<!-- right-->
+<div class="member-main">
+    <div class="title"><{t}>账户信息<{/t}></div>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="order-info">
+        <tbody><tr>
+        <td>
+        <ul>
+          <li>
+            <span class="t"><{t}>登录账号：<{/t}></span>
+            <span class="default grid-msg"><{$mem.pam_account.login_name}></span>
+          </li>
+          <{if false}>     
+          <li>
+            <span class="t"><{t}>设置密码：<{/t}></span>
+            <span class="default grid-msg"><a class="font-blue"   title="修改" target="_blank" href="<{link app=b2c ctl='site_member'  full='1' act='security' arg0=password}>">修改密码</a></span>
+          </li>
+          <li>
+            <span class="t"><{t}>设定邮箱：<{/t}></span>
+            <span class="default grid-msg"><{$mem.contact.email|default:无}></span>
+            <span class="alert">
+              <{if $mem.verify_email=='N'}>
+              未验证
+              <{else}>
+              已验证
+              <{/if}>
+              <a class="font-blue"   title="验证" target="_blank" href="<{link app=b2c ctl='site_member'  full='1' act='security' arg0=email}>">点击<{if $mem.verify_email=='N'}>验证<{else}>修改<{/if}></a>
+            </span>
+          </li>
+          <li>
+            <span class="t"><{t}>手机号码：<{/t}></span>
+            <span class="default grid-msg"><{$mem.contact.phone.mobile|default:无}></span>
+            <span class="alert"><{if $mem.verify_mobile=='N'}>未验证<{else}>已验证<{/if}></span>
+            <a class="font-blue"   title="验证" target="_blank" href="<{link app=b2c ctl='site_member'  full='1' act='security' arg0=phone}>">点击<{if $mem.verify_mobile=='N'}>验证<{else}>修改<{/if}></a>
+          </li>
+          <{/if}>
+          <li>
+            <span class="t"><{t}>注册时间：<{/t}></span>
+            <span class="grid-msg"><{$mem.pam_account.createtime|cdate:'FDATE_FTIME'}></span>
+          </li>
+          <li>
+            <span class="t"><{t}>登录次数：<{/t}></span>
+            <span class="grid-msg">第&nbsp;<{$mem.login_count}>&nbsp;次登录</span>
+          </li>
+          <li>
+            <span class="t"><{t}>上次登录：<{/t}></span>
+            <span class="grid-msg"><{$mem.login_time|cdate:'FDATE_FTIME'}></span>
+            <span style="padding-left:20px;color:#e4393c"><{t}>如果上次非您本人登录，账号可能存在安全风险，请尽快修改登录密码。<{/t}></span>
+          </li>
+        </ul>
+        </td>
+        </tr>
+        <tr><td></td></tr>
+    </tbody>
+    </table> 
+    <div class="title"><{t}>安全设置<{/t}></div>
+  <table width="100%" cellspacing="0" cellpadding="0" border="0" class="order-info">
+        <tbody><tr>
+        <td>
+  <dd>
+    <ul class="safe-info">
+      <li class="item password ">
+      <div class="state">
+        <span class="alert">已设置</span>
+      </div>
+      <div class="title" style="margin-bottom: 0px;border-bottom: none;"><em>登&nbsp;录&nbsp;密&nbsp;码</em></div>
+      <div class="supply">
+      安全性高的密码可以使账号更安全。建议您定期更换密码，且设置一个包含数字和字母，并长度超过6位以上的密码。</div>
+        
+        <div class="operate">
+        <a class="font-blue"   title="修改" target="_blank" href="<{link app=b2c ctl='site_member'  full='1' act='security' arg0=password}>">修改</a>
+        </div>
+      </li>  
+      <{if false}>                   
+      <li class="item question">
+      <div class="state">
+      <span class="alert"><{if $mem.account.pw_answer}>已设置<{else}>未设置<{/if}></span>
+        </div>
+        <div class="title" style="margin-bottom: 0px;border-bottom: none;"><em>密&nbsp;保&nbsp;问&nbsp;题</em></div>
+        <div class="supply">是您找回登录密码的方式之一。建议您设置一个容易记住，且最不容易被他人获取的问题及答案，更有效保障您的密码安全。</div>
+        <div class="operate">
+        <a class="font-blue"   title="<{if $mem.account.pw_answer}>修改<{else}>设置<{/if}>" target="_blank" href="<{link app=b2c ctl='site_member'  full='1' act='security' arg0=question}>"><{if $mem.account.pw_answer}>修改<{else}>设置<{/if}></a>
+        </div>
+      </li>
+      <{/if}>
+      <li class="item email ">
+        <div class="state">
+          <span class="alert"><{if $mem.verify_email=='N'}>未验证<{else}>已验证<{/if}></span>
+        </div>
+        <div class="title" style="margin-bottom: 0px;border-bottom: none;"><em>邮&nbsp;箱&nbsp;验&nbsp;证</em></div>
+        <div class="supply">邮箱验证后，您可以使用该邮箱登录。也将成为您找回登录密码的方式之一。</div>
+        <div class="operate">
+        <a class="font-blue"   title="验证" target="_blank" href="<{link app=b2c ctl='site_member'  full='1' act='security' arg0=email}>"><{if $mem.verify_email=='N'}>验证<{else}>修改<{/if}></a>
+        </div>
+      </li>
+      <li class="item phonebind ">
+        <div class="state">
+          <span class="alert"><{if $mem.verify_mobile=='N'}>未验证<{else}>已验证<{/if}></span>
+        </div>
+        <div class="title" style="margin-bottom: 0px;border-bottom: none;"><em>手&nbsp;机&nbsp;验&nbsp;证</em></div>
+        <div class="supply">手机号验证后，您可以使用手机号登录。也将成为您找回登录密码的方式之一。</div>
+        <div class="operate">
+        <a class="font-blue"   title="验证" target="_blank" href="<{link app=b2c ctl='site_member'  full='1' act='security' arg0=phone}>"><{if $mem.verify_mobile=='N'}>验证<{else}>修改<{/if}></a>
+        </div>
+      </li>
+      </ul>
+    </dd>
+
+        </td></tr>
+    </tbody>
+    </table>    
+</div>
+

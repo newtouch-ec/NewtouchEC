@@ -1,0 +1,37 @@
+<!-- right-->
+<div class="member-main">  
+        <div class="title "><{t}>验证邮箱<{/t}>
+        <span class="disc"><{t}>| 邮件发出后请及时查收并保持在登录状态下进行后续操作。<{/t}></span>
+        </div>
+      <div class="FormWrap" style="background:none; border:none; padding:0; margin:0;">
+      <div class="division" style="border:none;margin-bottom:0">
+        <form method="POST" action="<{link app=business ctl='site_member'  full='1' act='do_verify_email'}>" class="section">
+        <input type='hidden' name="old_email" value="<{$mem.contact.email}>">
+          <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="forform">
+            <tr>
+              <th><{t}>登录账号：<{/t}></th>
+              <td><{$mem.pam_account.login_name}>
+              </td>
+            </tr>
+            <tr>
+              <th><em>*</em><{t}>当前密码：<{/t}></th>
+              <td>
+            <{input class="inputstyle" type="password" vtype=required name="old_passwd" }><span></span>
+          </td>
+            </tr>
+            <tr>
+                <th><em>*</em> 邮箱：</th>
+                <td>
+                    <{input type="text" id="email" name="email" value=$mem.contact.email  autocomplete="off" vtype="required&&email" }>
+
+                </td>
+            </tr>
+          </table>
+          <div
+        <div class="member-editwrap">
+          <{button class="submit-btn" rel="_request" type="submit" label=$___b2c="发送邮件"|t:'b2c'}>
+        </div>
+        </form>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="tableform widgetconfig">
+  <div class="division">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th>楼层小图标：</th>
+        <td>
+          <input type=hidden name="floor_icon" value="<{$setting.floor_icon}>">
+          <input name='floor_icon' class="imgsrc" value="<{$setting.floor_icon}>">
+          <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="tableform">
+    <div class="widgetconfig">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+                <th><{t app='b2c'}>选择添加广告图片的个数：<{/t}></th>
+                <td>
+                    <input type="radio" name="num" value="1" <{if $setting.num == '1'||$setting.num==""}>checked<{/if}>> 一张  
+                    <input type="radio" name="num" value="2" <{if $setting.num == '2'}>checked<{/if}>>两张
+                    <input type="radio" name="num" value="3" <{if $setting.num == '3'}>checked<{/if}>>三张
+                    <input type="radio" name="num" value="4" <{if $setting.num == '4'}>checked<{/if}>>四张
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div id="picAddress" class="tableform">
+                        <div class="piccontent">
+                        <{foreach from=$setting.ad.pic item=data key=key}>
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th><{t app="b2c"}>图片地址:<{/t}></th>
+                                    <td>
+                                        <input type=hidden name=ad[pic][<{$data.id}>][id] value="<{$data.id}>">
+                                        <input name='ad[pic][<{$data.id}>][link]'  autocomplete='off'  vtype="img_url" required='true'  class="imgsrc x-input" id="ad[pic][<{$data.id}>][link]"  value="<{$data.link}>">
+                                        <input type=button value=上传图片 class="uploadbtn">
+                                    </td>
+                                    <th><{t app="b2c"}>链接地址:<{/t}></th>
+                                    <td>
+                                        <input name="ad[pic][<{$data.id}>][linktarget]"  vtype="purl" class='x-input' autocomplete='off'   value="<{$data.linktarget}>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><{t app="b2c"}>描述:<{/t}></th>
+                                    <td>
+                                        <input name="ad[pic][<{$data.id}>][linkinfo]"  class='x-input' autocomplete='off'  value="<{$data.linkinfo}>">
+                                    </td>
+                                    <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>
+                                    <td><span onclick="$(this).getParent('table').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>
+                                </tr>
+                            </table>
+                        <{/foreach}>
+                        </div>
+                        <{button label=$___b2c="添加图片"|t:'b2c' class="addimage" app="desktop" icon="btn_add.gif"}>
+                    </div>
+                    </td>
+                </tr>
+            </table>
+    </div>
+</div>
+<script>
+(function(){
+    
+    var picnum = document.getElement('.piccontent').getElements('table').length;
+    var count=0;
+    
+    document.getElement(".addimage").addEvent('click',function(){
+
+        document.getElements('input[name="num"]').each(function(item){
+            if(item.checked){
+                count=item.value;
+            }
+        });
+        if(picnum<count){
+        
+          var i=new Date().getTime();
+
+          var tpl='\
+          <tr><th><{t app="b2c"}>图片地址:<{/t}></th>\
+            <td><input type=hidden name=ad[pic]['+i+'][id] value="'+i+'"><input autocomplete="off" name="ad[pic]['+i+'][link]" vtype="img_url" required="true"  class="imgsrc x-input">\
+              <input type=button value=<{t app="b2c"}>上传图片<{/t}> class="uploadbtn" id="ad[pic]['+i+']"></td>\
+            <th><{t app="b2c"}>链接地址:<{/t}></th>\
+            <td><input name="ad[pic]['+i+'][linktarget]" vtype="purl" class="x-input" autocomplete="off"></td></tr>\
+          <tr><th><{t app="b2c"}>描述:<{/t}></th>\
+            <td><input name="ad[pic]['+i+'][linkinfo]" class="x-input" autocomplete="off" ></td>\
+            <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>\
+            <td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>\
+          </tr>';
+          var tag_type='table',tag_class='pic_items';
+
+          $('picAddress').getElement('.piccontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+
+          $('ad[pic]['+i+']').addEvent('click',function(e){bindevent(this)});
+      }
+    });
+    $$(".piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+})();
+    
+
+    function bindevent(el){
+      var tag_type='table';
+      var target=$(el).getParent(tag_type).getElement('.imgsrc');
+      url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+      Ex_Loader('modedialog',function(){
+        return new imgDialog(url,{onCallback:function(image_id,image_src){
+            target.value=image_src;
+        }});
+      });
+    }
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+<{header}>
+<{if $theme}>
+<{else}>
+<script type='text/javascript'>
+   <!--
+   if (top.location != self.location)
+      top.location=self.location;
+   -->
+</script>
+<{/if}>
+<link rel="stylesheet" type="text/css" href="images/basic.css"/>
+<link rel="stylesheet" type="text/css" href="images/css.css"/>
+</head>
+
+<body>
+<div class="toolbar clb">
+        <div class="webwidth"> 
+            <div class="top_loginbox fl">
+                 <div class="top_login fl"><{widgets id="head_login"}></div><!--登陆注册-->
+                 <div class="top-tel fl"></div>
+            </div>
+            <div class="tool_link fr">
+                <ul>
+                    <li class="tool_arrow"><{widgets id="head_href_3"}></li>
+                    <li class="tool_arrow"><{widgets id="head_href_2"}></li>
+                    <li class="tool_cart"><{widgets id="head_cart"}></li>
+                    <li class="tool_cart_line" style="padding:0px"></li>
+                    <li class="tool_cart"><{widgets id="head_cart2"}></li>
+                    <li class="tool_cart_line"style="padding:0px"></li>
+                    <li class="tool_cart"><{widgets id="head_href_5"}></li>
+                    <li class="tool_cart"><{widgets id="head_href_7"}></li>
+                    <li class="tool_cart"><{widgets id="head_href_8"}></li>
+                </ul>
+            </div>
+        </div>
+</div>
+

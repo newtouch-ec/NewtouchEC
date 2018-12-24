@@ -1,0 +1,32 @@
+<div class="ys_floorbox">
+	<ul>
+		<{foreach from=$data.activelist item=item key=key name="activelist"}>
+		<li style="width:<{$data.width.$key}>px;height:<{$data.height.$key}>px;">
+			<a href="<{$data.goods_url.$key}>">
+			<div class="ys_bg"></div>
+			<div class="pro_img">
+				<img class="img-lazyload" src="images/transparent.gif" lazyload="<{$data.goods_img.$key|storager}>" alt="<{$item}>" style="width:<{$data.width.$key}>px;height:<{$data.height.$key}>px;"/>
+			</div>
+			<div class="pro_cont">
+				<p class="pro_name"><a href="<{$data.goods_url.$key}>"><{$item}></a></p>
+				<p class="pro_price"><{$data.goods_price.$key|cur}></p>
+			</div>
+			<div class="ys_btn" style="width:<{$data.width.$key}>px;">
+				<div class="ys_btnl fl">
+					<a href="<{$data.l_tab_url.$key}>">
+						<p><{$data.l_tab_name_1.$key}></p>
+						<p><{$data.l_tab_name_2.$key}>&gt;</p>
+					</a>
+				</div>
+				<div class="ys_btnr fr">
+					<a href="<{$data.r_tab_url.$key}>">
+						<p><{$data.r_tab_name_1.$key}></p>
+						<p><{$data.r_tab_name_2.$key}></p>
+					</a>
+				</div>
+			</div>
+			</a>
+		</li>
+		<{/foreach}>
+	</ul>
+</div>

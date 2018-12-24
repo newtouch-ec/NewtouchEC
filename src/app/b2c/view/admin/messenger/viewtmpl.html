@@ -1,0 +1,12 @@
+<div class="division">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <{if $sign_lot=='prefix'}>
+    <{if $smssign}>【<{$smssign}>】<{else}>【BizMall】<{/if}>
+  <{/if}>
+  <{$body}>
+  <{if $sign_lot!='prefix'}>
+    <{if $smssign}>【<{$smssign}>】<{else}>【BizMall】<{/if}>
+  <{/if}>
+</table>
+</div>
+

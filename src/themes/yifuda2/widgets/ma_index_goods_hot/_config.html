@@ -1,0 +1,6 @@
+<div class="tableform">	
+	显示商品数：<input type="text" name='show_nums' value='<{$setting.show_nums|default:2}>'>
+</div>
+<div class="tableform">	
+	选择商品：<{input type="goods_select" object="goods@b2c" filter=$goodslink_filter multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="linkid" linkid=$setting.linkid value=$setting.goods view="b2c:admin/goods/detail/rel_items.html"}>
+</div>

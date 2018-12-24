@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:102:"column_editbutton,column_tag,seller,regtime,order_num,nickname,idcard,point,sex,member_id,member_lv_id";s:8:"dateline";s:10:"1408684146";s:3:"ttl";s:1:"0";}

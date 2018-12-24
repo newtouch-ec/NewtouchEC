@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:2:{s:31:"ectools_payment_plugin_unionpay";s:31:"ectools_payment_plugin_unionpay";s:30:"ectools_payment_plugin_deposit";s:30:"ectools_payment_plugin_deposit";}}s:3:"ttl";i:0;s:8:"dateline";i:1528884013;}

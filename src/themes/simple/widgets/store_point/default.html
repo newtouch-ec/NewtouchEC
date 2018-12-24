@@ -1,0 +1,25 @@
+<div class="sj_info mb_10">
+	<!--<div class="info_title"><{$data.title}></div>-->
+  <{if $data.store_id}>
+    <div class="info_details">
+    <{if $data.showname && $data.showname == '1'}>
+    <{assign var="showname" value="true"}>
+    <{else}>
+    <{assign var="showname" value="false"}>
+    <{/if}>
+    <{input type="storepoint" store="{$data.store_id}" show_name=$showname}>
+    <div class="pro_l_shop_info">
+    <a href="<{link app=business ctl=site_shop act=view arg=$data.store_id}>" class="info_enter fl"><{t}><i class="iconfont">&#xe60f;</i>进店逛逛<{/t}></a>
+      <ul class="button pro_l_fav fr">
+        <li class="star-off" isspecial="1" <{if $data.login=="member"}>star="<{$data.store_id}>" data-type="on"<{/if}>> <a <{if $data.login=="nologin"}>href="<{link app="b2c" ctl="site_passport" act="login"}>"<{elseif $data.login=="business"}>href="javascript:void(0);" <{else}>href="javascript:void(0);" rel="_fav_"<{/if}> class=" listact"><!--<i class="has-icon"> </i>--><span>
+            <div class="fav"><{t}><i class="iconfont">&#xe602;</i>收藏店铺<{/t}></div>
+            <div class="nofav"><{t}><i class="iconfont">&#xe607;</i>已收藏<{/t}></div>
+        </span></a>
+        </li>
+      </ul>
+      </div>
+    </div>
+  <{else}>
+    <span>没有获取到任何店家信息</span>
+  <{/if}>
+</div>

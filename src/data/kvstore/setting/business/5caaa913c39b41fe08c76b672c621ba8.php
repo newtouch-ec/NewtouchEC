@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:276:"company_name,last_time,column_control,shop_name,store_name,column_tag,approve_time,approved_time,apply_time,limit_news_value,limit_goodsdown,limit_storedown,limit_news,limit_store,shopstatus,status,store_cert,store_grade,tel,company_cname,settlement_cycle,last_settlement_time";s:3:"ttl";i:0;s:8:"dateline";i:1528879945;}

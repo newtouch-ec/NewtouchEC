@@ -1,0 +1,15 @@
+<div class="sj_info mb_10">
+	<div class="info_title"><{$setting.title|default:$___b2c="搜索店内商品"|t:'b2c'}></div>
+  <form action='<{link app=business ctl=site_shop act=gallery arg0=$data.store_id}>' enctype="multipart/form-data" encoding="multipart/form-data" method="get" name="return_search">
+	<div class="info_details">
+	<div class="seach_line">
+  <input type="hidden" value="all" name="searchRange">
+	<span class="keys"><{t app='b2c'}>商品名<{/t}>：</span><input name="keyword" type="text" class="width_110" maxlength="8"/>
+	</div>
+	<div class="seach_line">
+	<span class="keys"><{t app='b2c'}>价格<{/t}>：</span><input name="price1" type="text" class="width_42" maxlength="8"/><span><{t app='b2c'}>到<{/t}></span><input name="price2" type="text" class="width_42" maxlength="8"/>
+	</div>
+	<div class="seach_line"><input type="submit" value="<{t app='b2c'}>搜索<{/t}>" class="search_anniu"></div>
+	</div>
+  </form>
+</div>

@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:193:"a:4:{s:14:"certificate_id";s:10:"1685121330";s:7:"node_id";s:10:"1399996137";s:9:"node_type";s:8:"ecos.b2c";s:5:"token";s:64:"c61b6dda3a89af8bea325794a1b85f191cfabcacc2ab87f14b367b3baa418987";}";s:8:"dateline";s:10:"1432259885";s:3:"ttl";s:1:"0";}

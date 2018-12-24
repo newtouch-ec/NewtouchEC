@@ -1,0 +1,34 @@
+<style>
+#ex_slide_<{$widgets_id}>{width:<{$data.width}>px;height:<{$data.height}>px;overflow:hidden;position:relative;}
+#ex_slide_<{$widgets_id}> ol li{height:<{$data.height}>px; width:100%;list-style:none;display:block;overflow:hidden;border:0;margin:0;}
+#ex_slide_<{$widgets_id}> .slide-trigger{position:absolute;z-index:60; bottom:10px; left:43%;}
+#ex_slide_<{$widgets_id}> li{ float:left; background:#fff; width:60px; height:3px; margin-right:5px; text-indent:-9999px; overflow:hidden;}
+#ex_slide_<{$widgets_id}> li.active{background:#e32a2f;}
+</style>
+<div class="ex-slide1-box">
+  <div id="ex_slide_<{$widgets_id}>" class="ex-slide1">
+    <ol class="switchable-content clearfix">
+          <{foreach from=$data.pic item=parent key=parentId}>
+          <a href="<{$parent.linktarget}>">
+              <li class="switchable-panel" style="background:<{$parent.hexcode}>;">
+                  <div style="background:url('<{$parent.link}>') no-repeat top center; width:1200px; height:<{$data.height}>px; margin:0 auto;"></div>
+              </li>
+          </a>
+          <{/foreach}>
+    </ol>
+        <ul class="switchable-triggerBox slide-trigger">
+          <{assign var=countnum value="1"}>
+          <{foreach from=$data.pic item=parent key=parentId}>
+                <li><{$countnum++}></li> 
+          <{/foreach}> 
+        </ul>
+  </div>
+</div>
+<script>
+
+    new Switchable('ex_slide_<{$widgets_id}>',{
+        effect:'fade',
+        autoplay:<{$data.autoplay}>,
+        interval:5000
+    });//只能为渐隐渐现，滚动会出现样式问题
+</script>

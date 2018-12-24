@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:4:{s:11:"signup_next";s:25:"http://localhost/yifuda3/";s:7:"account";a:1:{s:6:"member";s:3:"955";}s:4:"type";s:6:"member";s:10:"login_time";i:1528771698;}s:3:"ttl";i:3600;s:8:"dateline";i:1528771722;}

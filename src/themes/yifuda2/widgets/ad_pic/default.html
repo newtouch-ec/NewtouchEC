@@ -1,0 +1,8 @@
+
+<a 
+	<{if $data.ad_pic_link}>
+	href="<{$data.ad_pic_link}>" target="_blank"
+	<{/if}>
+>
+  <img src="images/transparent.gif" lazyload="<{$data.ad_pic|storager}>" class="img-lazyload" alt="<{$setting.ad_pic_txt}>" <{if $data.ad_pic_width}>width='<{$data.ad_pic_width}>'<{/if}> <{if $data.ad_pic_height}>height='<{$data.ad_pic_height}>'<{/if}>>
+</a>

@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:8:{s:5:"price";s:2:"73";s:6:"status";s:2:"74";s:11:"presonlimit";s:2:"63";s:6:"remark";s:2:"41";s:9:"member_id";s:2:"52";s:3:"aid";s:3:"126";s:8:"store_id";s:2:"77";s:3:"gid";s:3:"192";}s:8:"dateline";s:10:"1394610131";s:3:"ttl";s:1:"0";}

@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:1:{s:25:"goodsapi_shopex_brand_add";s:25:"goodsapi_shopex_brand_add";}}s:8:"dateline";s:10:"1386729379";s:3:"ttl";s:1:"0";}

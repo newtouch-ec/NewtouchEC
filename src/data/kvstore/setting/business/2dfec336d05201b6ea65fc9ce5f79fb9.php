@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:226:"store_id,goodsdown_starttime,goodsdown_endtime,storedown_starttime,storedown_endtime,news_starttime,news_endtime,store_starttime,store_endtime,sales_starttime,sales_endtime,goods_starttime,goods_endtime,news_value,score,cat_id";s:8:"dateline";s:10:"1440472059";s:3:"ttl";s:1:"0";}

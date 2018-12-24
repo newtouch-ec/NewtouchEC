@@ -1,0 +1,145 @@
+﻿<style>
+  .ad_ul .add-title,
+  .ad_ul .add-url,
+  .ad_ul .delete{float:left;_display:inline;margin-left:5px;}
+  .ad_ul .delete{height:20px;width:16px;cursor:pointer;}
+  .ad_ul .ad-item{background-color:#E2E8EB;padding:5px 5px 3px;line-height:22px;margin:2px 0;}
+  .ad_ul{cursor:pointer;}
+
+  #hotkey_area .add-title,
+  #hotkey_area .add-url,
+  #hotkey_area .delete{float:left;_display:inline;margin-left:5px;}
+  #hotkey_area .delete{height:20px;width:16px;cursor:pointer;}
+  #hotkey_area .hot-link-item{background-color:#E2E8EB;padding:5px 5px 3px;line-height:22px;margin:2px 0;}
+  #add_hotkey{cursor:pointer;}
+</style>
+<div class="tableform widgetconfig">
+    <div class="division">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <input type=hidden name="newCatPic" id="newCatPic" value="0">
+            <{foreach from=$data.cat item=cat key=k}>
+                <input type=hidden name="cat[<{$k}>][cat_id]" value="<{$cat.cat_id}>">
+                <input type=hidden name="cat[<{$k}>][cat_name]" value="<{$cat.cat_name}>">
+            <tr>
+                <th colspan="4" style="text-align:left;background:#DDE5FC;color:#669">&nbsp;
+                    <strong>
+                        <{$cat.cat_name}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <{t app='b2c'}>自定义标题<{/t}>：<input type="text" name="cat[<{$k}>][title]" value="<{$setting.cat.$k.title}>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <{t app='b2c'}>自定义链接<{/t}>：<input type="text" name="cat[<{$k}>][link]" value="<{$setting.cat.$k.link}>">
+                    </strong>
+                </th>
+        </tr>
+
+        <tr>
+            <th><{t app='b2c'}>分类分组自定义链接<{/t}>：</th>
+            <td>
+                <div id="selfLink_<{$k}>" class="tableform">
+                    <div class="js_linkcontent">
+                    <{foreach from=$setting.cat.$k.selfLink item=data key=key}>
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <th><{t app='b2c'}>名称：<{/t}></th>
+                                <td>
+                                    <input type=hidden name='cat[<{$k}>][selfLink][<{$data.id}>][id]' value="<{$data.id}>">
+                                    <input name='cat[<{$k}>][selfLink][<{$data.id}>][self_name]' value="<{$data.self_name}>">
+                                </td>
+                                <th><{t app='b2c'}>链接<{/t}>：</th>
+                                <td>
+                                    <input name='cat[<{$k}>][selfLink][<{$data.id}>][self_link]' value="<{$data.self_link}>">
+                                </td>
+                                <th><{t app="b2c"}>删除<{/t}>:</th>
+                                <td>
+                                    <span onclick="$(this).getParent('table').destroy()">
+                                    <{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    <{/foreach}>
+                    </div>
+                    <{button label=$___b2c="添加自定义链接"|t:'b2c' class="addLinks" app="desktop" icon="btn_add.gif"}>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th><{t app='b2c'}>促销广告图片<{/t}>：</th>
+            <td>
+                <div class="tableform">
+                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <th><{t app='b2c'}>广告尺寸：<{/t}></th>
+                            <td><{t app='b2c'}>宽<{/t}>
+                                <input type="text" name="cat[<{$k}>][ad][width]" value="<{$setting.cat.$k.ad.width}>" style="width:40px">px 
+                                <{t app='b2c'}>高<{/t}>
+                                <input type="text" name="cat[<{$k}>][ad][height]" style="width:40px" value="<{$setting.cat.$k.ad.height}>">px
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><{t app='b2c'}>图片：<{/t}></th>
+                            <td>
+                                <input type=hidden name="cat[<{$k}>][ad][pic]" value="<{$cat.ad.pic}>">
+                                <input name='cat[<{$k}>][ad][pic]' class="imgsrc"  value="<{$setting.cat.$k.ad.pic}>"><input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><{t app='b2c'}>图片链接：<{/t}></th>
+                            <td><input type="text" name="cat[<{$k}>][ad][link]" value="<{$setting.cat.$k.ad.link}>"></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+      </tr>
+      <{/foreach}>
+    </table>
+</div>
+
+    <div class="division">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th colspan="4" style="text-align:left;background:#DDE5FC;color:#669">&nbsp;
+                <strong><{t app='b2c'}>弹出菜单<{/t}></strong></th></tr>
+            <tr>
+                <th><{t app='b2c'}>三级分类最多显示数<{/t}>：</th>
+                <td colspan="3"><{input name="gshowmax" value=$setting.gshowmax|default:'0'}>“0”<{t app='b2c'}>为全显示，如果商品分类超出设置数，超出部分隐藏并显示更多<{/t}></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+
+function addPic(target){
+    var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+    Ex_Loader('modedialog',function(){
+    return new imgDialog(url,{onCallback:function(image_id,image_src){
+                     target.getPrevious('input').value=image_src;
+    }});
+    });
+}
+
+function add_ad(id,k){
+      var li_len = $('ad_ul_'+k).getElements('li').length;
+      var ActiveLi = new Element(
+            'li',{'class':'ad-item clearfix','html':'<table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr><th><{t app="b2c"}>广告尺寸：<{/t}></th><td><{t app="b2c"}>宽<{/t}><input type="text" name="cat['+k+'][ad]['+li_len+'][width]" style="width:40px">px <{t app="b2c"}>高<{/t}><input type="text" name="cat['+k+'][ad]['+li_len+'][height]" style="width:40px">px</td></tr><tr><th><{t app="b2c"}>图片：<{/t}></th><td><input type=hidden name="cat['+k+'][ad]['+li_len+'][pic]"><input name="cat['+k+'][ad]['+li_len+'][pic]" class="imgsrc" id="cat_'+k+'_ad_'+li_len+'"><input type=button value="<{t app="b2c"}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(\'cat_'+k+'_ad_'+li_len+'\')"></td></tr><tr><th><{t app="b2c"}>图片描述：<{/t}></th><td><input type="text" name="cat['+k+'][ad]['+li_len+'][txt]"></td></tr><tr><th><{t app="b2c"}>图片链接：<{/t}></th><td><input type="text" name="cat['+k+'][ad]['+li_len+'][link]"></td></tr></tbody></table> <a class="delete" title="删除"></a>'}).inject(id);
+      ActiveLi.getElement('.delete').addEvent('click',function(){
+        DelTopMenu(this);
+      });
+}
+function DelTopMenu(item){
+        item.getParent(".ad-item").destroy();
+    }
+
+	(function(){
+    var tag_type='table',tag_class='tableform';
+    document.getElements('.addLinks').each(function(item,index){
+        item.addEvent('click',function(){
+            var i=new Date().getTime();
+            var tpl='<tr><th><{t app="b2c"}>名称：<{/t}></th><td><input type=hidden name="cat['+index+'][selfLink]['+i+'][id]" value="'+i+'" ><input name="cat['+index+'][selfLink]['+i+'][self_name]" ></td><th><{t app="b2c"}>链接<{/t}>:</th><td><input name="cat['+index+'][selfLink]['+i+'][self_link]" ></td><th><{t app="b2c"}>删除<{/t}>:</th><td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td></tr>';
+
+            $('selfLink_'+index).getElement('.js_linkcontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+        });
+    });
+})();
+</script>

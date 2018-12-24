@@ -1,0 +1,29 @@
+<div class="tableform">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>图片：</th>
+            <td>
+                <input type=hidden name="weibo" value="<{$setting.weibo}>">
+                <input name='weibo' class="imgsrc x-input" value="<{$setting.weibo}>">
+                <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+            </td>
+         </tr>
+
+         <tr>
+            <th>描述：</th>
+            <td>
+                <input name='weibo_info' class="x-input" value="<{$setting.weibo_info}>">
+             </td>
+        </tr>
+    </table>
+</div>
+<script>
+function addPic(target){
+    var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+    Ex_Loader('modedialog',function(){
+    return new imgDialog(url,{onCallback:function(image_id,image_src){
+        target.getPrevious('input').value=image_src;
+    }});
+    });
+}
+</script>

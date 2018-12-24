@@ -1,0 +1,62 @@
+<style>
+    .none {display: none;}
+</style>
+
+
+<div class="floor_new webwidth">
+
+      <div class="plist">
+            <ul class="tabs tabs_zf js_<{$widgets_id}>_tab">
+                <{foreach from=$data.tab item=tab name="tab"}>
+					<li  <{if $smarty.foreach.tab.first}>class="hover" <{/if}>><{$tab.title}></li>
+				<{/foreach}>
+            </ul>
+        	<{foreach from=$data.tab item=tabGoods name="tabGoods"}>
+            <ul class="tabsprolist tabsprolist_zf fl <{if !$smarty.foreach.tabGoods.first}>none<{/if}> js_<{$widgets_id}>_tabsprolist">
+				<{if $tabGoods.goods_info}>
+				<{foreach from=$tabGoods.goods_info item=goods key=key name=gname}>
+
+                <{if $goods.udfimg == 'true'}>
+                <{assign var="gimage" value=$goods.thumbnail_pic}>
+                <{else}>
+                <{assign var="gimage" value=$goods.image_default_id|default:$data.defaultImage}>
+                <{/if}>
+				<li> 
+				     <div class="p-img">
+				         <a href="<{link app=b2c ctl=site_product act=index arg1=$goods.goods_id}>" target="_blank">
+				            <img src="images/transparent.gif" lazyload="<{$gimage|storager}> " alt="<{$goods.name}>" />
+                         </a>
+				     </div>
+				     <div class="p-name">
+				         <a href="<{link app=b2c ctl=site_product act=index arg1=$goods.goods_id}>" target="_blank"><{$goods.name|cut:100,''}></a>
+				     </div>
+				     <div class="p-price <{$data.css_class}>"><b><{$goods.price|cur}></b></div>
+					 
+
+				</li>
+				<{/foreach}>
+				<{/if}>
+            </ul>
+			<{/foreach}>
+      </div>
+</div>
+
+<script>
+addEvent('domready', function () {
+	var aLi = $$(".js_<{$widgets_id}>_tab li");
+	var aTabsprolist = $$(".js_<{$widgets_id}>_tabsprolist");
+
+	$$(".js_<{$widgets_id}>_tab li").each(function(o,i){
+		o.addEvent('mouseover',function(){
+			aLi.removeClass('hover');
+			aLi.setStyle("border-bottom",'');
+			//aLi.setStyle("color",'');
+			aTabsprolist.addClass('none');
+			o.addClass('hover');
+			//o.setStyle("border-bottom","2px solid ");
+			//o.setStyle("color",color);
+			aTabsprolist[i].removeClass('none');
+		});
+	});
+});
+</script>

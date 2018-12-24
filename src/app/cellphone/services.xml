@@ -1,0 +1,157 @@
+<services>
+    <service id="openapi.cellphone">
+        <class>cellphone_cellphone</class>
+    </service>
+    <service id="business_menu_extends">
+      <class>cellphone_member_menuextends</class>
+    </service>
+    <service id="cellphone_tag_extends">
+      <class>cellphone_member_tagextends</class>
+    </service>
+    <service id="image_set">
+        <class>cellphone_service_image</class>
+    </service>
+    <service id="openapi.cellphone.goods">
+        <class>cellphone_base_misc_goods</class>
+    </service>
+    <service id="openapi.cellphone.homepage.brand">
+        <class>cellphone_base_homepage_brand</class>
+    </service>
+    <service id="openapi.cellphone.homepage.channel">
+        <class>cellphone_base_homepage_channel</class>
+    </service>
+    <service id="openapi.cellphone.activities">
+        <class>cellphone_base_misc_activities</class>
+    </service>
+    <service id="openapi.cellphone.cart">
+        <class>cellphone_base_misc_cart</class>
+    </service>
+    <service id="cellphone_cart_object">
+        <class>cellphone_cart_goods</class>
+        <class>cellphone_cart_package</class>
+        <class>cellphone_cart_coupon</class>
+    </service>
+    <service id="openapi.cellphone.order">
+        <class>cellphone_base_misc_order</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_activity">
+        <class>cellphone_finder_activity</class>
+    </service>
+    <service id="autotask">
+        <class>cellphone_misc_task</class>
+    </service>
+    <service id="openapi.cellphone.regions">
+        <class>cellphone_base_interface_regions</class>
+    </service>
+    <service id="openapi.cellphone.member.order">
+        <class>cellphone_base_member_order</class>
+    </service>
+    <service id="openapi.cellphone.member.coupon">
+        <class>cellphone_base_member_coupon</class>
+    </service>
+    <service id="openapi.cellphone.member.favorite">
+        <class>cellphone_base_member_favorite</class>
+    </service>
+    <service id="openapi.cellphone.member.history">
+        <class>cellphone_base_member_history</class>
+    </service>
+    <service id="openapi.cellphone.member.address">
+        <class>cellphone_base_member_address</class>
+    </service>
+	<service id="openapi.cellphone.member.auction">
+        <class>cellphone_base_member_auction</class>
+    </service>
+    <service id="openapi.cellphone.member.feedback">
+        <class>cellphone_base_member_feedback</class>
+    </service>
+    <service id="openapi.cellphone.member">
+        <class>cellphone_base_member_passport</class>
+    </service>
+    <service id="openapi.cellphone.virtualcat">
+        <class>cellphone_goods_virtualcat</class>
+    </service>
+    <service id="openapi.cellphone.goods.goodscat">
+        <class>cellphone_goods_goodscat</class>
+    </service>
+    <service id="openapi.cellphone.goods.search">
+        <class>cellphone_goods_search</class>
+    </service>
+     <service id="openapi.cellphone.payment.mobilepay">
+        <class>cellphone_base_payment_mobilepay</class>
+    </service>
+    <service id="openapi.cellphone.homepage.banner">
+        <class>cellphone_base_homepage_banner</class>
+    </service>
+	
+    <service id="openapi.cellphone.homepage.column">
+        <class>cellphone_base_homepage_column</class>
+    </service>
+
+    <service id="openapi.cellphone.auction.info">
+        <class>cellphone_base_auction_info</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_banner">
+        <class>cellphone_finder_banner</class>
+    </service>
+	 <service id="desktop_finder.cellphone_mdl_picad">
+        <class>cellphone_finder_picad</class>
+    </service>
+	 <service id="desktop_finder.cellphone_mdl_columntype">
+        <class>cellphone_finder_columntype</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_column">
+        <class>cellphone_finder_column</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_brand">
+        <class>cellphone_finder_brand</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_channeltype">
+        <class>cellphone_finder_channeltype</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_channelpic">
+        <class>cellphone_finder_channelpic</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_channelgoods">
+        <class>cellphone_finder_channelgoods</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_channelbrand">
+        <class>cellphone_finder_channelbrand</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_recstore">
+        <class>cellphone_finder_recstore</class>
+    </service>
+    <service id="desktop_finder.cellphone_mdl_recgoods">
+        <class>cellphone_finder_recgoods</class>
+    </service>
+	<service id="desktop_finder.cellphone_mdl_busauction">
+        <class>cellphone_finder_busauction</class>
+    </service>
+	<service id="desktop_finder.cellphone_mdl_perauction">
+        <class>cellphone_finder_perauction</class>
+    </service>
+    <service id="openapi.cellphone.shop">
+        <class>cellphone_base_misc_shop</class>
+    </service>
+	<service id="openapi.cellphone.member.cusphone">
+        <class>cellphone_base_member_cusphone</class>
+    </service>
+   <service id="desktop_finder.cellphone_mdl_phone">
+    <class>cellphone_finder_phone</class>
+   </service>
+   <service id="openapi.cellphone.shop.search">
+        <class>cellphone_shop_search</class>
+    </service>
+   <service id="openapi.cellphone.shop.goods.search">
+        <class>cellphone_shop_goods_search</class>
+    </service>
+
+    <service id="openapi.cellphone.payment.unionpay">
+        <class>cellphone_base_payment_unionpay</class>
+    </service>
+
+    <service id="ectools_payment.ectools_mdl_payment_cfgs" optname="支付插件列表">
+        <class>cellphone_payment_plugin_deposit</class>
+        <class>cellphone_payment_plugin_appunionpay</class>
+    </service>
+
+</services>

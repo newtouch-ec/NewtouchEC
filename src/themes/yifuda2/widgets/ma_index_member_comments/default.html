@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="%THEME%/widgets/comment/images/widgets.css" />
+<div class="custom-title">CUSTOMER'S REVIEW</div>
+<{foreach from=$data item=item key=key}>
+    <div class="custom-cp fl">
+    	<div class="cp-t">
+    		<div class="cp-l">
+    			<div class="name" title="<{$item.goodsName}>"><{$item.goodsName|cut:100}></div>
+    			<div class="price"><span class="del"><{$item.goodsDetail.goodsMarketPrice|cur}></span><{$item.goodsDetail.goodsSalePrice|cur}></div>
+    		</div>
+    		<div class="cp-r"><a href="<{$item.goodsLink}>" target="_blank"><img width="140px" height="140px" src="<{$item.goodsDetail.goodsPicS|storager}>"></a></div>
+    		<div class="clr"></div>
+    	</div>
+    	<div class="cp-b">
+    		<div class="pl"><{$item.comment|cut:100}></div>
+    	</div>
+    </div>
+<{/foreach}>

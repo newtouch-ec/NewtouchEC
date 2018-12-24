@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:3:{s:9:"brand_url";s:3:"214";s:14:"brand_keywords";s:3:"113";s:10:"brand_name";s:3:"273";}s:8:"dateline";s:10:"1439550450";s:3:"ttl";s:1:"0";}

@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:79:"shop_name,store_name,column_control,column_tag,last_time,apply_time,store_grade";s:3:"ttl";i:0;s:8:"dateline";i:1528890741;}

@@ -1,0 +1,72 @@
+<div class="shop_head_<{$widgets_id}> shop_head" style="background:url('<{$data.bg_pic}>') no-repeat;">
+    <div class="shop_top">
+    <div class="shop_logo le_zhi" style="overflow:hidden;">
+        <a target='_blank' class="fl" title="<{$data.store.store_name}>"  href="<{link app=business ctl=site_shop act=view  arg=$data.store.store_id}>">
+        <img height="60" src="images/transparent.gif" lazyload="<{if $data.logo}><{$data.logo|storager}><{else}><{$data.store.image|storager}><{/if}>" class="img-lazyload"  >
+        </a>
+        <h3 class="fl"><{$data.store.store_name}></h3>
+    </div>    
+    <div class="kef le_zhi">
+         <ul class="button">
+            <li class="star-off" isspecial="1" <{if $data.isLogin}>star="<{$data.store.store_id}>" data-type="on"<{/if}>>
+                <a <{if $data.isLogin==false}>href="<{link app="b2c" ctl="site_passport" act="login"}>" <{else}>href="javascript:void(0);" rel="_fav_"<{/if}> class=" listact">
+                 <span>
+                    <div class="fav"><{t}>收藏本店<{/t}></div>
+                    <div class="nofav"><{t}>已收藏<{/t}></div>
+                </span>
+                </a>
+            </li>
+        </ul>
+     </div> 
+    
+    <div class="shop_broad ri_zhi">
+          <{if $data.notice}>
+              <b>通知:<{$data.notice}></b>
+              <{else}>
+          <{/if}>
+          
+              <{if $data.show_jiathis=='true'}>
+                <div class="shop_share ri_zhi">
+                       <!-- JiaThis Button BEGIN -->
+                      <div id="ckepop">
+                      <p style="float:left;" >分享店铺</p>
+                        <a class="jiathis_button_douban"></a>
+                        <a class="jiathis_button_renren"></a>
+                        <a class="jiathis_button_tqq"></a>
+                        <a class="jiathis_button_tsina"></a>
+                        <a class="jiathis_button_kaixin001"></a>
+                        <a href="http://www.jiathis.com/share" title="更多" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a> 
+                      </div>
+                      <script type="text/javascript" >
+                      var jiathis_config={
+                        data_track_clickback:false,
+                        url:"",
+                        summary:"",
+                        title:"<{$data.store.store_name}>",
+                        pic:"<{$data.store.image|storager:'s'}>",
+                        hideMore:false
+                      }
+                      </script>
+                      <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=1626174" charset="utf-8"></script>
+                      <!-- JiaThis Button END --> 
+                </div>
+              <{/if}>
+          </div>
+    </div>
+</div>
+<script>
+function AddFavorite() {
+  var url = document.location.href;
+  var title = document.title;
+  try {
+      window.external.addFavorite(url, title);
+  }catch (e) {
+     try {
+       window.sidebar.addPanel(title, url, "");
+    }catch (e) {
+         //alert("Sorry, your browser cannot complete this operation.\n\nAdd collection failure，Please use Ctrl+D to add");
+		 alert("对不起,您的浏览器无法完成此操作,加入收藏失败,请使用Ctrl + D添加");
+     }
+  }
+}
+</script>

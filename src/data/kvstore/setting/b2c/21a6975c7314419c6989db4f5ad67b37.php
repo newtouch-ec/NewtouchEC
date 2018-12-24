@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:229:"column_control,cat_id,column_goods_pic,name,store_id,weight,score,column_tag,last_modify,downtime,uptime,store_freeze,store,mktprice,notify_num,unit,brief,d_order,type_id,bn,freight_bear,goods_state,cost,brand_id,marketable,price";s:8:"dateline";s:10:"1408089506";s:3:"ttl";s:1:"0";}

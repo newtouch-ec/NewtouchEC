@@ -1,0 +1,46 @@
+<div class="shop_head_<{$widgets_id}> shop_head" style="background:url('<{$data.bg_pic}>') no-repeat;">
+    <div class="shop_top">
+    <div class="shop_logo le_zhi" style="overflow:hidden;">
+        <a target='_blank' class="fl" title="<{$data.store.store_name}>"  href="<{link app=business ctl=site_shop act=view  arg=$data.store.store_id}>">
+        <img height="110" src="images/transparent.gif" lazyload="<{if $data.logo}><{$data.logo|storager}><{else}><{$data.store.image|storager}><{/if}>" class="img-lazyload"  >
+        </a>
+        <h3 class="fl"><{$data.store.store_name}></h3>
+    </div>  
+    <div class="shop_broad ri_zhi">
+          <{if $data.notice}>
+              <b>公告：<{$data.notice}></b>
+              <{else}>
+          <{/if}>
+          
+              <{if $data.show_jiathis=='true'}>
+                <div class="kef ri_zhi">
+                 <ul class="button">
+                    <li class="star-off" isspecial="1" <{if $data.isLogin}>star="<{$data.store.store_id}>" data-type="on"<{/if}>>
+                        <a <{if $data.isLogin==false}>href="<{link app="b2c" ctl="site_passport" act="login"}>" <{else}>href="javascript:void(0);" rel="_fav_"<{/if}> class=" listact">
+                         <span>
+                            <div class="fav"><{t}>收藏本店<{/t}></div>
+                            <div class="nofav"><{t}>已收藏<{/t}></div>
+                        </span>
+                        </a>
+                    </li>
+                </ul>
+             </div>
+              <{/if}>
+          </div>
+    </div>
+</div>
+<script>
+function AddFavorite() {
+  var url = document.location.href;
+  var title = document.title;
+  try {
+      window.external.addFavorite(url, title);
+  }catch (e) {
+     try {
+       window.sidebar.addPanel(title, url, "");
+    }catch (e) {
+         alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+     }
+  }
+}
+</script>

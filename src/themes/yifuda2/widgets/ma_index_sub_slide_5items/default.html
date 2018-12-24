@@ -1,0 +1,130 @@
+﻿<{lang_script src="lang.js" app="b2c"}>
+<{script src="shoptools_min.js" app="b2c" pdir="js_mini"}>
+<script type="text/javascript" src="%THEME%/widgets/ma_index_sub_slide_5items/images/widgets.js?static" ></script>
+<link rel="stylesheet" type="text/css" href="%THEME%/widgets/ma_index_sub_slide_5items/images/widgets.css" />
+
+<div class="index_title1">
+	<img src="%THEME%/images/arr-1.jpg">
+	<span><{$setting.widgets_title|default:"RELATED PRODUCTS THAT YOU'VE VIEWED"}></span>
+	<!--<a href="#">MORE>></a>-->
+</div>
+<div class="sub-slide-5items" id="sub_slide_<{$widgets_id}>">
+    <span class="go-left"></span>
+    <span class="go-right"></span>
+    <div class="slide-box">
+        <ul class="slide-list" id="box_<{$widgets_id}>">
+            <{foreach from=$data.pic item=parent key=parentId}>
+            <li class="slide-item">
+          		<div class="tag <{$parent.tag}>"><div class="s-1"><{$parent.salepercent}>%</div><div class="s-2">SALE</div></div>
+				<div class="cp"><a href="<{$parent.linktarget}>"><img src="<{$parent.link}>" title="<{$parent.linkinfo}>"/></a></div>
+				<div class="clr"></div>
+				<div class="name"><{$parent.productname}></div>
+				<div class="price"><span class="del">RM:<{$parent.marketprice}></span>RM:<{$parent.saleprice}></div>
+				<div class="buy"><a href="<{$parent.linktarget}>"><img onmouseover="ma_index_sub_slide_5items_icon_shopping(this, true)" onmouseout="ma_index_sub_slide_5items_icon_shopping(this, false)" src="%THEME%/widgets/ma_index_sub_slide_5items/images/icon_shopping.jpg"></a></div>
+            </li>
+            <{/foreach}>
+        </ul>
+    </div>
+</div>
+<script>
+    withBrowserStore(function(browserStore){
+        browserStore.get('history',function(v){
+            v = JSON.decode(v);
+            var dataList = new Array();
+            
+            //没有浏览记录的场合
+            if(!v || !v.length){
+                v = new Array();
+            }
+            else{
+                v.sort(function(a, b){
+                    return b['sortTime']-a['sortTime'];
+                });
+            }
+
+            v.each(function(goods, index){
+                if(goods.goodsId == null){
+                    return;
+                }
+                var data = {};
+                data.goodsId = goods.goodsId;
+                data.productname = goods.goodsName;
+                data.salepercent = "";
+                data.linktarget = "<{link app=b2c ctl='site_product' act='index' arg0='goodsId'}>".replace('index-goodsId', data.goodsId);
+                data.marketprice = "";
+                data.saleprice = goods.goodsPrice;
+                data.tag = "tag-1";
+                data.link = goods.goodsImg;
+                data.linkinfo = "";
+                dataList.push(data);
+            });
+            
+            <{foreach from=$data.pic item=parent key=parentId}>
+                var data = {};
+                data.goodsId = null;
+                data.productname = "<{$parent.productname}>";
+                data.salepercent = "<{$parent.salepercent}>";
+                data.linktarget = "<{$parent.linktarget}>";
+                data.marketprice = "<{$parent.marketprice}>";
+                data.saleprice = "<{$parent.saleprice}>";
+                data.tag = "<{$parent.tag}>";
+                data.link = "<{$parent.link}>";
+                data.linkinfo = "<{$parent.linkinfo}>";
+                dataList.push(data);
+            <{/foreach}>
+            
+            var html='';
+            
+            
+            var template1 = '<li class="slide-item">';
+                template1+= '<div class="tag {tag}"><div class="s-1">{salepercent}%</div><div class="s-2">SALE</div></div>';
+                template1+= '<div class="cp"><a target="_blank" href="{linktarget}"><img src="{link}" title="{linkinfo}"/></a></div>';
+                template1+= '<div class="clr"></div>';
+                template1+= '<div class="name">{productname}</div>';
+                template1+= '<div class="price">RM:<span class="del">{marketprice}</span>RM:{saleprice}</div>';
+                template1+= '<div class="buy"><a target="_blank" href="{linktarget}"><img onmouseover="ma_index_sub_slide_5items_icon_shopping(this, true)" onmouseout="ma_index_sub_slide_5items_icon_shopping(this, false)" src="%THEME%/widgets/ma_index_sub_slide_5items/images/icon_shopping.jpg"></a></div>';
+                template1+= '</li>';
+                
+            var template2 = '<li class="slide-item">';
+                template2+= '<div class="tag {tag}"><div class="s-2" style="margin-top:25px;">VIEWED</div></div>';
+                template2+= '<div class="cp"><a target="_blank" href="{linktarget}"><img src="{link}" title="{linkinfo}"/></a></div>';
+                template2+= '<div class="clr"></div>';
+                template2+= '<div class="name">{productname}</div>';
+                template2+= '<div class="price">{saleprice}</div>';
+                template2+= '<div class="buy"><a target="_blank" href="{linktarget}"><img onmouseover="ma_index_sub_slide_5items_icon_shopping(this, true)" onmouseout="ma_index_sub_slide_5items_icon_shopping(this, false)" src="%THEME%/widgets/ma_index_sub_slide_5items/images/icon_shopping.jpg"></a></div>';
+                template2+= '</li>';
+            dataList.each(function(goods, index){
+                //广告商品的场合
+                if(goods.goodsId == null){
+                    html += template1.substitute(goods);
+                }
+                //Cookie浏览记录的场合
+                else{
+                    html += template2.substitute(goods);
+                }
+            });
+            
+            document.getElementById('box_<{$widgets_id}>').innerHTML = html;
+
+            new Slide('sub_slide_<{$widgets_id}>',{
+                autoplay:false,
+                haslrbtn:true,
+                effect:'scrollx',
+                hasTriggers:false,
+                panels:'.slide-item',
+                prev:'.go-left',
+                next:'.go-right',
+                viewStep:5
+            });
+        });
+    });
+    
+    function ma_index_sub_slide_5items_icon_shopping(obj, flag){
+        if(flag){
+        	obj.src = "%THEME%/widgets/ma_index_sub_slide_5items/images/icon_shopping2.jpg";
+        }	
+        else{
+        	obj.src = "%THEME%/widgets/ma_index_sub_slide_5items/images/icon_shopping.jpg";
+        }
+    }
+</script>

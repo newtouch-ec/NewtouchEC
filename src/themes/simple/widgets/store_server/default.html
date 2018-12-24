@@ -1,0 +1,8 @@
+<{if $data.type == 'qq'}>
+<div class="sj_info mb_10">
+	<div class="info_title mb_10"><{$setting.title|default:'店内客服'}></div>
+    <a style="padding:10px 0 0 10px;" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$data.number}>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<{$data.number}>:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+</div>
+<{elseif $data.type == 'ww'}> 
+    <a style="padding:10px 0 0 10px;" target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=<{$data.number}>&site=cntaobao&s=1&charset=utf-8" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<{$data.number}>&site=cntaobao&s=1&charset=utf-8"/></a>
+<{/if}>

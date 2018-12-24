@@ -1,0 +1,17 @@
+<div class="custom-title">POPULAR ACTIVITIES</div>
+<{foreach from=$data.goods item=linklist name=product}>
+    <div class="custom-cp fl">
+        <div class="cp-t">
+        	<div class="cp-l">
+        		<div class="name"><{$linklist.nice|cut:100}></div>
+        		<div class="price-title">GROUP PRECE</div>
+        		<div class="price"><span class="del"><{$linklist.mktprice|cur}></span> <{$linklist.price|cur}></div>
+        	</div>
+        	<div class="cp-r"><a target='_blank' href="<{link app=b2c ctl=site_product act=index arg0=$linklist.id}>"><img width="140px" height="140px" src="<{$linklist.pic|storager:'s'}>"></a></div>
+        	<div class="clr"></div>
+        </div>
+        <div class="cp-b">
+        	<div class="icon"><a target='_blank' href="<{link app=b2c ctl=site_product act=index arg0=$linklist.id}>"><input type="button" value="BUY NOW" /></a></div>
+        </div>
+    </div>
+<{/foreach}>

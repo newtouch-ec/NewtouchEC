@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:102:"column_shopname,brand_name,brand_keywords,status,column_editbutton,brand_url,store_cat,type,column_tag";s:8:"dateline";s:10:"1438917028";s:3:"ttl";s:1:"0";}

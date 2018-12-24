@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:37:"column_edit,cate_id,d_order,type_name";s:3:"ttl";i:0;s:8:"dateline";i:1444815202;}

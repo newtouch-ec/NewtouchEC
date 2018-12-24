@@ -1,0 +1,63 @@
+<form class="tableform" method="post" action="index.php?app=b2c&ctl=admin_member_messenger&act=saveSmsSign" id='messenger-sms-form' >
+  <{t}>短信签名<{/t}> :
+  【 <{input type="text" name="sign" value=$sign vtype="required"}> 】
+  <br>
+  <br>
+  <{if $sms_app}>
+  <{t}>签名位置<{/t}> :
+  <input type='radio' name="sign_lot" value="prefix"  id="sign_lot_prefix"  <{if $sign_lot == 'prefix'}>checked<{/if}>><label for="sign_lot_prefix">短信内容前</label>
+  <input type='radio' name="sign_lot" value="postfix"  id="sign_lot_postfix" <{if $sign_lot !='prefix'}>checked<{/if}>><label for="sign_lot_postfix">短信内容后</label>
+  <br>
+  <br><{/if}>
+  <br>
+  <hr>
+  <div class="notice">
+    <{t}>
+    说明：<br>
+    1、签名的中括号不必填写，发送短信会自动带上中括号签名<br>
+    2、签名必填，签名长度为2到8字<br>
+    3、签名（包括中括号）会占用短信字数，建议使用简短字符<br>
+    4、签名不能包含测试、test、成对的[]、{}、及天猫、tmall、淘宝、taobao,、1号店、易迅、京东、亚马逊等知名电商企业<br>
+    <{/t}>
+  </div>
+  <div class="table-action">
+    <{button label=$___b2c="保存"|t:'b2c' type="submit" id="sms-form-submit"}>
+  </div>
+</form>
+<script>
+   (function(){
+  
+    var _form = $('messenger-sms-form');
+    var btn =$('sms-form-submit');
+    //var finder = finderGroup['<{$env.get.finder_id}>'];
+
+    _form.store('target',{
+      onRequest:function() {
+        //btn.set('disabled', true);
+      },
+        onComplete:function(){
+
+        },
+        onSuccess:function(response){
+            var hash_res_obj = JSON.decode(response);
+            if (hash_res_obj.success != undefined && hash_res_obj.success != "")
+            {
+                try{
+                    var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+                }catch(e){}
+
+                if(_dialogIns)
+                {
+                    _dialogIns.close();
+                }
+            }
+            else
+            {
+               
+            }
+        }
+    });
+
+})();
+
+</script>

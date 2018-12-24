@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:3:{s:26:"package_order_beforecreate";s:26:"package_order_beforecreate";s:28:"couponlog_order_beforecreate";s:28:"couponlog_order_beforecreate";s:31:"progetcoupon_order_beforecreate";s:31:"progetcoupon_order_beforecreate";}}s:8:"dateline";s:10:"1439279653";s:3:"ttl";s:1:"0";}

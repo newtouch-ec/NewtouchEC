@@ -1,0 +1,22 @@
+.sub-slide-5items { border: 0px solid #eae8e8; height: 208px; position: relative; }
+.sub-slide-5items .go-left { border: 1px solid #eae8e8; background: url(arr-l.jpg) no-repeat 50% 50%; width: 46px; height: 208px; line-height: 208px; position: absolute; left: 0; top: 0; cursor: pointer; z-index: 1; }
+.sub-slide-5items .go-right { border: 1px solid #eae8e8; background: url(arr-r.jpg) no-repeat 50% 50%; width: 46px; height: 208px; line-height: 208px; position: absolute; right: 0; _right: -1px; top: 0; cursor: pointer; z-index: 1; }
+.sub-slide-5items .slide-box { border:1px solid #eae8e8; width: 1104px; height: 208px; margin-left: 47px; position: relative; overflow: hidden; }
+.sub-slide-5items .slide-item { width: 220px; height: 208px; float: left; _display: inline; border-right: 1px solid #d4d4d4; overflow: hidden; }
+
+.sub-slide-5items .slide-box .slide-list {width:1105px;float:left;}
+.sub-slide-5items .slide-box .slide-list li {width:220px;border-right:1px solid #eae8e8;float:left;display:block;height:208px;}
+.sub-slide-5items .slide-box .slide-list .tag {width:78px;height:78px;margin-top:5px;margin-left:10px;float:left;text-align:center;line-height:28px;}
+.sub-slide-5items .slide-box .slide-list .tag .s-1 {color:#fff;font-size:22px;margin-top:10px}
+.sub-slide-5items .slide-box .slide-list .tag .s-2 {color:#fff;font-size:18px;}
+.sub-slide-5items .slide-box .slide-list .tag-1 {background:url(tag-1d.png) no-repeat}
+.sub-slide-5items .slide-box .slide-list .tag-2 {background:url(tag-2d.png) no-repeat}
+.sub-slide-5items .slide-box .slide-list .tag-3 {background:url(tag-3d.png) no-repeat}
+.sub-slide-5items .slide-box .slide-list .tag-4 {background:url(tag-4d.png) no-repeat}
+.sub-slide-5items .slide-box .slide-list .tag-5 {background:url(tag-5d.png) no-repeat}
+.sub-slide-5items .slide-box .slide-list .cp {float:right;margin-right:10px;margin-top:5px;}
+.sub-slide-5items .slide-box .slide-list .cp img {width:110px;height:110px;}
+.sub-slide-5items .slide-box .slide-list .name {height:30px;color:#863a20;font-size:11px;text-align:center;line-height:16px;}
+.sub-slide-5items .slide-box .slide-list .price {color:#e21d3d;text-align:center;line-height:20px;}
+.sub-slide-5items .slide-box .slide-list .price .del {color:#863a20;text-decoration:line-through;padding-right:5px;}
+.sub-slide-5items .slide-box .slide-list .buy {text-align:center;margin-top:6px}

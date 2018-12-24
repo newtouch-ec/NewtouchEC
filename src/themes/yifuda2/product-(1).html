@@ -1,0 +1,38 @@
+<{require file="block/header.html"}>
+<div id="container" class="webpage main webwidth dis_bl">
+  <a class="toTop" href="#"></a>
+  <div class="Navigation">
+            <{widgets id="position"}>
+        </div>
+        
+              <{main}>
+        <div id="guaj" class="fl webcelan">
+              <{widgets id="pro_list_left_01"}>
+              <{widgets id="pro_list_left_02"}>
+              <{widgets id="pro_list_left_03"}>
+              <{widgets id="pro_list_left_04"}>
+              <{widgets id="pro_list_left_05"}>
+              <{widgets id="pro_list_left_06"}>
+        </div>
+       <div class="cl_zhi"></div>
+</div>
+<script type="text/javascript">
+jq(function(){
+  // 钱币符号外加span
+  var insTag=jq('.product-price');
+  var priceHtml='';
+  var priceInterval = setInterval(function(){
+    if(insTag.html()){
+      clearInterval(priceInterval);
+      var priceHtml=insTag.html();
+      priceHtml = ('<span class="sign">'+priceHtml.charAt(0)+'</span>'+priceHtml.substring(1));
+      insTag.html(priceHtml);
+    }
+  },100);
+
+  // aside位置调整
+  jq('.pageAside').prependTo('.second-area');
+
+});
+</script>
+<{require file="block/footer.html"}>

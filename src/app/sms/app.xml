@@ -1,0 +1,13 @@
+<app version="1.0">
+  <name>短信接口（亿美）</name>
+  <description>短信接口（亿美）</description>
+  <author>
+      <name>ql</name>
+  </author>
+  <version>0.1</version>
+  <parent_model_class>dbeav_model</parent_model_class>
+  <license>license</license>
+  <depends>
+    <app>b2c</app>
+  </depends>
+</app>

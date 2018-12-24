@@ -1,0 +1,376 @@
+<!-- right-->
+<div class="member-main">
+    <div>
+        <div class="title title2"><span style="float:left"><{t}>收货地址<{/t}><span class="disc">|</span> <span id='add' class="disc add-icon" ><a href="javascript:void(0);" ><{t}>添加新的收货地址<{/t}></a></span></span><{if !$is_allow}><span class="noticebox"><{t}>最多只能添加6个地址，请先删除一条地址之后再添加<{/t}></span><{/if}></div>
+        <{if !$receiver}>
+        <div class="noinfo"><{t}>暂无收货地址<{/t}></div>
+        <{/if}>
+        <div id='addr_div' style="display:none">
+            <form method="post" action="<{link app=b2c ctl='site_member' act='insert_rec'}>" id="Member_addr">
+                <div class="division" style="border:none; border-bottom:1px dashed #ddd" id="region_add_container">
+                    <table border=0 cellpadding="0" class="forform" cellspacing="0" border="0" width="100%">
+                        <tr>
+                            <th colspan="2">
+                                <div class="title title2">
+                                    <div style='float:left;margin-left:100px;cursor:pointer;display:none;'>
+                                        <input id="address_type_add_1" type="radio" name="address_type_add" onclick='return changeRegion(1, "region_add_container");' value=1 /><label for="address_type_add_1">中国大陆</label>
+                                    </div>
+                                    <div style='float:left;margin-left:100px;cursor:pointer;'>
+                                        <input id="address_type_add_2" type="radio" name="address_type_add" checked="checked" onclick='return changeRegion(2, "region_add_container");' value=2 /><label for="address_type_add_2">日本酒店/旅馆</label>
+                                    </div>
+                                    <div style='float:left;margin-left:50px;cursor:pointer;'>
+                                        <input id="address_type_add_3" type="radio" name="address_type_add" onclick='return changeRegion(3, "region_add_container");' value=3 /><label for="address_type_add_3">日本机场</label>
+                                    </div>
+                                    <div style='clear:both;'></div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr class="search-condition-container">
+                            <td style="padding-left:62px" colspan="2">
+                                通过日本酒店电话号码快速查询日本酒店地址信息。
+                            </td>
+                        </tr>
+                        <tr class="search-condition-container">
+                            <td colspan="2">
+                                <div style="padding-left:57px" >
+                                    <span style="padding-right:10px;">酒店电话：</span>
+                                    <input class="inputstyle" type="text" id="search_add_phone" style="width:150px" /><button id="btn_add_search" type="button" class="btn">查询</button><span style="color:#ED5A55">电话号码查询仅限日本地区</span>
+                                    <br />
+                                    <span style="color:#ED5A55">(直接输入数字，例如：034321765)</span>
+                                </div>
+                                <div style="width:100%;border-top:1px solid #EEEEEE;margin:10px 0px 5px 0px;">
+                                <div style='clear:both;'></div>
+                            </td>
+                        </tr>
+                        <tr class="tr_name" style="display:none;"><th><em class="red">*</em><{t}>收货人：<{/t}></th><td><{input class="inputstyle" name="name" type="text" id="name" size="30" value=$name|escape:'html'}></td></tr>
+                        <tr class="tr_addr" style="display:none;"><th><em class="red">*</em><{t}>地址：<{/t}></th><td><span id="addr_area"></span><{input class="inputstyle" type="input" size="50"  name="addr" id="addr" rows="2" cols="30" value=$addr|escape:'html'}></td></tr>
+                        <tr class="tr_zipcode" style="display:none;"><th><em class="red">*</em><{t}>邮编：<{/t}></th><td><{input class="inputstyle" id="zipcode" name="zipcode" size="15" onfocus="onFocus(this)" value=$zipcode vtype="number&&check_zipcode"}><span class='fontColor3' id='zipcode_p'></span></td></tr>
+                        <tr><th><em class="red">*</em><{t}>收货地址：<{/t}></th><td><span id="checkout-select-area"><{input type="region" name="area" required="true" value='' app="ectools" callback="selectArea"}></span></td></tr>
+                        <tr class="tr_div_addr">
+                            <th>
+                            </th>
+                            <td>
+                                <div id="divAddr_add" style="border:1px solid #CCCCCC;height:30px; "></div>
+                            </td>
+                        </tr>
+                        <tr><th><em class="red">*</em><{t}>手机号码：<{/t}></th><td><{input class="inputstyle"  name="phone[mobile]" onfocus="onFocus(this)" onblur="onBlur(this)" vtype="phone" placeholder="手机号码必须输入" id="mobile" size="50" value=$mobile|escape:'html'}>&nbsp;<span class="infotips"></span><span class='fontColor3' id='mobile_p'></span></td>
+                            <td style="padding:8px 0 0 0"><input type="hidden" vtype="mobile_or_phone" /></td>
+                        </tr>
+						<tr><th><{t}>电话号码<{/t}>:</th><td><{input class="inputstyle" vtype="tel" name="phone[telephone]" onfocus="onFocus(this)" onblur="onBlur(this)" type="order_tel" placeholder="请输入电话号码" id="telephone" size="50" value=$tel}>&nbsp;<span class='fontColor3' id='telephone_p'></span></td></tr>
+                    </table>
+                </div>
+                <div class="member-editwrap"><span class="float-span" >
+                        <{button class="btn submit-btn" type="submit" rel="_request" id="save_member_addr_btn" label=$___b2c="保存"|t:'b2c'}></span>
+                    <span class="float-span" style="float:left; margin-left:8px">
+                        <{button id="unset" type="button" label=$___b2c="取消"|t:'b2c'}></span>
+                </div>
+            </form>
+        </div>
+        <div id='addr_edit_div' style="display:none">
+            <form method="post" action="<{link app=b2c ctl='site_member' act='save_rec'}>" id="Member_addr_edit">
+           </form>
+        </div>
+        <{if $receiver}>
+        <table class="gridlist gridlist_member border-all mt10" width="100%" border="0" cellspacing="0" cellpadding="0" style="table-layout:fixed;">
+            <tr>
+                <th class="first" style="word-break: break-all; word-wrap:break-word;" width="40%"><{t}>地址<{/t}></th>
+                <th style="word-wrap:break-word;display:none;" width="15%"><{t}>收货人<{/t}></th>
+                <th><{t}>联系电话<{/t}></th>
+                <th><{t}>默认<{/t}></th>
+                <th><{t}>操作<{/t}></th>
+            </tr>
+            <tbody>
+                <{foreach from=$receiver item=items key=key}>
+                <tr>
+                    <!--td class="textwrap textleft no_bk" style="word-break: break-all; word-wrap:break-word;"><{$items.area|region}>&nbsp;<{$items.addr|escape:'html'}> , <{$items.zip|escape:'html'}></td-->
+                    <td class="textwrap textleft no_bk" style="word-break: break-all; word-wrap:break-word;"><{$items.area|region}>&nbsp;<{if $items.region_type == 2 }><{$items.p_2}><{/if}></td>
+                    <td class="textcenter" style="display:none;word-break: break-all; word-wrap:break-word;"><span class="font-blue"><{$items.name|escape:'html'}></span></td>
+                    <td class="textcenter"><{if $items.mobile}><{$items.mobile|escape:'html'}><{else}><{$items.tel|escape:'html'}><{/if}></td>
+                    <td class="textcenter"><{if $items.def_addr}>
+                        <span class="set-tacitly"><a href='<{link app=b2c ctl=site_member act=set_default arg0=$items.addr_id arg1=1}>' rel="_request"><{t}>取消默认<{/t}></a></span>
+                        <{else}>
+                        <span class="tacitly-add"><a href='<{link app=b2c ctl=site_member act=set_default arg0=$items.addr_id arg1=2}>' rel="_request"><{t}>设为默认<{/t}></a></span>
+                        <{/if}>
+                    </td>
+                    <td align="center"><a href="javascript:void(0);" class="btn-bj-hover operate-btn" onclick="edit('<{$items.addr_id}>');"><span><{t}>修改<{/t}></span></a><a class="btn-bj-hover operate-btn" href="<{link app=b2c ctl=site_member act=del_rec arg0=$items.addr_id}>" rel="_request"><span><{t}>删除<{/t}></span></a></td>
+                </tr>
+                <{/foreach}>
+            </tbody>
+
+        </table>
+
+
+    </div>
+</div>
+<{/if}>
+
+<script type="text/javascript">
+    var firstname = "<{$member_info.firstname}>";
+    var lastname = "<{$member_info.lastname}>";
+    var passport = "<{$member_info.passport}>";
+
+    function edit(addrid){
+        new Request.HTML({
+        url:'<{link app=b2c ctl=site_member act=edit_addr}>',
+        update:$('Member_addr_edit'),
+        data:'addrid='+addrid,
+        method:'post',
+        onComplete:function(rs){
+            $('addr_div').setStyle('display','none');
+            $('addr_edit_div').setStyle('display','block');
+            //$('Member_addr').action='<{link app=b2c ctl="site_member" act="save_rec"}>';
+        }
+        }).send();
+            selectArea = function(sels) {
+            var selected = [];
+            sels.each(function(s){
+               if(s.getStyle('display') != 'none') {
+                   var text = s[s.selectedIndex].text.trim().clean();
+                   if(['<{t}>北京<{/t}>','<{t}>天津<{/t}>','<{t}>上海<{/t}>','<{t}>重庆<{/t}>'].indexOf(text)>-1)return;
+                   selected.push(text);
+                }
+            });
+            var selectedV = selected.join('');
+            $('addr_area').innerHTML =selectedV;
+            
+        };
+         validatorMap['check_zipcode']= ['<{t}>请录入正确的邮编<{/t}>', function(element, v) {
+              var value = v.trim();
+              var _is_validate = true;
+              if(/^[0-9][0-9]{5}$/.test(value)){
+                _is_validate = true;
+              }else{
+                _is_validate = false;
+              }
+              return _is_validate;
+            }];
+         validatorMap['check_phone']= ['<{t}>请输入正确的电话号码<{/t}>', function(element, v) {
+              var value = v.trim();
+              var _is_validate = true;
+              if(/^0?1[3458]\d{9}$|^(0\d{2,3}-?)?[23456789]\d{5,7}(-\d{1,5})?$/.test(value)){
+                _is_validate = true;
+              }else{
+                _is_validate = false;
+              }
+              return _is_validate;
+            }];
+    }
+    function a(url,options){
+        if(!url) return;
+        options = Object.append({
+            width:window.getSize().x*0.8,
+            height:window.getSize().y*0.8
+        },options||{});
+        var params = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width={width},height={height}';
+        params = params.substitute(options);
+
+        window.open(url,'_blank',params);
+    }
+
+
+    function checkPassport(){
+        if(firstname == "" || lastname == "" || passport == ""){
+            return false;
+        }
+        return true;
+    }
+    (function(){
+        //add by ql
+         //绑定地域选择第三级下拉选择的change事件
+        $('region_add_container').getElements("select").each(function(item){
+            if(item.get("data-level-index") == 2){
+                item.addEvent('change', function(e) {
+                    //日本酒店/旅馆 以外的场合，处理中止
+                    if($("address_type_add_2").checked != true){
+                        return;
+                    }
+                    var region_id = item.get("value");
+                    new Request({
+                        url:'<{link app=b2c ctl=site_member act=get_addr}>',
+                        method:'post',
+                        data:'region_id='+region_id,
+                        async:true,
+                        onSuccess:function(relist){
+                            var addr = eval(relist)[0].p_2;
+                            $('region_add_container').getElementById('addr').set("value", addr);
+                            $("divAddr_add").set("html", addr);
+                        }
+                    }).send();
+                });
+            }
+        });
+        
+        //电话号码检索
+        $("btn_add_search").addEvent('click', function(e) {
+            var phone = $("search_add_phone").value;
+            if(phone == ""){
+                alert("请输入查询电话号码。");
+                return;
+            }
+            new Request({
+                url:'<{link app=b2c ctl=site_member act=get_region_addr}>',
+                method:'post',
+                data:'phone='+phone,
+                async:true,
+                onSuccess:function(data){
+                    //data[0]:叶子结点地域行数据
+                    //data[1]:二级地域列表数据
+                    //data[2]:三级地域列表数据
+                    var data = eval(data);
+                    
+                    if(data.length == 0) {
+                        alert("根据您所输入的电话号码未找到相关酒店，请确认酒店电话的正确性。");
+                        return;
+                    }
+                    //地域路径
+                    var path = data[0].region_path.split(",");
+                    
+                    //选择的地域文本路径
+                    var selected_area = ""
+                    
+                    //重置一级地域
+                    var region_select = $('checkout-select-area').getElements('select[data-level-index=0]');
+                    for (i=0;i<region_select[0].length;i++){
+                       if (region_select[0][i].value == path[1])
+                       {
+                          region_select[0][i].selected = true;
+                          //一级路径
+                          selected_area = 'hotel:' + region_select[0][i].text;
+                          break;
+                       }
+                    }
+                    
+                    //重置二级地域
+                    region_select = $('checkout-select-area').getElements('select[data-level-index=1]');
+                    region_select.setStyle("display", "");
+                    region_select[0].options.length = 0;
+                    region_select[0][0]=new Option("请选择",0);
+                    for (i = 0; i < data[1].length; i ++){
+                      region_select[0][i+1] = new Option(data[1][i].local_name, data[1][i].region_id);
+                    }
+                    for (i=0;i<region_select[0].length;i++){
+                       if (region_select[0][i].value == path[2])
+                       {
+                          region_select[0][i].selected = true;
+                          //二级路径
+                          selected_area += "/" + region_select[0][i].text;
+                          break;
+                       }
+                    }
+                    
+                    //重置三级地域
+                    region_select = $('checkout-select-area').getElements('select[data-level-index=2]');
+                    region_select.setStyle("display", "");
+                    region_select[0].options.length = 0;
+                    region_select[0][0]=new Option("请选择",0);
+                    for (i = 0; i < data[2].length; i ++){
+                      region_select[0][i+1] = new Option(data[2][i].local_name, data[2][i].region_id);
+                    }
+                    for (i=0;i<region_select[0].length;i++){
+                       if (region_select[0][i].value == path[3])
+                       {
+                          region_select[0][i].selected = true;
+                          //三级路径
+                          selected_area += "/" + region_select[0][i].text;
+                          selected_area += ':' + data[0].region_id;
+                          $$('input[name=area]').setProperty('value', selected_area);
+                          break;
+                       }
+                    }
+                    var addr = data[0].p_2;
+                    $('region_add_container').getElementById('addr').set("value", addr);
+                    $("divAddr_add").set("html", addr);
+                }
+            }).send();
+        });
+
+        $$(".delete_addr").addEvent('click',function(e){
+            if(!confirm('<{t}>确定删除?<{/t}>')) return false;
+        });
+        $("add").addEvent('click',function(e){
+            if(<{$is_allow}>)
+            {
+                if(!checkPassport()){
+                    alert("个人基本信息不全，请去[账户中心-个人信息]画面填写姓名及护照号码等基本信息。");
+                    return;
+                }
+                $('addr_div').setStyle('display','inline');
+                $('addr_edit_div').setStyle('display','none');
+            }
+            else{
+                return false;
+            }
+        });
+
+        <{if $is_allow}>
+        selectArea = function(sels) {
+            var selected = [];
+            sels.each(function(s){
+                if(s.getStyle('display') != 'none') {
+                    var text = s[s.selectedIndex].text.trim().clean();
+                    if(['<{t}>北京<{/t}>','<{t}>天津<{/t}>','<{t}>上海<{/t}>','<{t}>重庆<{/t}>'].indexOf(text)>-1)return;
+                    selected.push(text);
+                }
+            });
+            var selectedV = selected.join('');
+            $('addr_area').innerText = selectedV;
+        };
+
+        validatorMap['mobile_or_phone'] = ['<{t}>手机或电话必填其一！<{/t}>', function(element, v) {
+            var _contacts = $(element).getParent('td').getPrevious('td').getElements('input');
+
+            var _is_validate = false;
+            _contacts.each(function(el){
+                if (el.value) _is_validate = true||_is_validate;
+            });
+
+            return _is_validate;
+        }];
+
+         validatorMap['check_zipcode']= ['<{t}>请录入正确的邮编<{/t}>', function(element, v) {
+          var value = v.trim();
+          var _is_validate = true;
+          if(/^[0-9][0-9]{5}$/.test(value)){
+            _is_validate = true;
+          }else{
+            _is_validate = false;
+          }
+          return _is_validate;
+        }];
+
+        $("unset").addEvent('click',function(e){
+            $('addr_div').setStyle('display','none');
+        });
+        <{/if}>
+    })();
+        function onFocus(input){
+            $(input.id + '_p').setHTML("");
+    }
+
+    function onBlur(input){
+      if(input.value.trim() != ''){
+          if(!/^\d{11}$/.test(input.value.trim()))
+          {
+              $(input.id + '_p').setHTML("*<{t}>请输入正确的号码！<{/t}>");
+              return;
+          }
+      }
+    }
+
+    
+    //默认触发日本酒店/旅馆
+    window.addEvent('domready',function(){
+        $('save_member_addr_btn').addEvent('click',function(e){
+            e.stop();
+            if(!$('mobile').value && !$('telephone').value){
+                Message.error('<{t}>手机号码和电话号码不能同时为空<{/t}>');
+                return false;
+            }else{
+                $('save_member_addr_btn').getParent('form').submit();
+            }
+        });
+        changeRegion(2, "region_add_container");
+    });
+</script>
+
+<!-- right-->

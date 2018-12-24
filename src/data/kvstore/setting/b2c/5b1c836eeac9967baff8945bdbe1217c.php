@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:37:"b2c_messenger_sms,b2c_messenger_email";s:8:"dateline";s:10:"1439545816";s:3:"ttl";s:1:"0";}

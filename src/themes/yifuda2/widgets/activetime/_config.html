@@ -1,0 +1,18 @@
+
+<div class="tableform">
+<div class="widgetconfig">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<{assign var="end_date"  value=$setting.end_time}>
+		<{assign var="end_hour"  value=$setting._DTIME_.H.end_time}>
+		<{assign var="end_minute"  value=$setting._DTIME_.M.end_time}>
+		<{assign var="end_time"  value=strtotime(str_pad(strval($end_date),10).strval($end_hour).":".strval($end_minute))}>
+		<td>目标时间:</td><td><{input type="time" name="end_time" id="end_time" value=$end_time}></td>
+	</tr>
+</table>
+
+</div>
+</div>
+<script>
+
+</script>

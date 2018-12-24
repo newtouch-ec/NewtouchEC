@@ -1,0 +1,111 @@
+<style>
+    #ex_slide_<{$widgets_id}>{ 
+        width:<{$data.ad.width}>px;
+        height:<{$data.ad.height}>px;
+        overflow:hidden;
+        position:relative;
+    }
+    #ex_slide_<{$widgets_id}> ol li{
+        height:<{$data.ad.height}>px;
+        width:<{$data.ad.width}>px;
+        list-style:none outside none; 
+        display:block;
+        overflow:hidden;
+        border:0;
+        margin:0 0 0 0 ;
+    }
+#ex_slide_<{$widgets_id}> .slide-trigger{position:absolute;z-index:60; bottom:10px; left:50%;}
+.slide-trigger li{ float:left; background:#626262;margin-right:5px;font-size: 0;text-indent: -999;height: 3px;width: 20px;}
+.slide-trigger li.active{background:#e32a2f;}
+
+</style>
+ <div class="floorone clb"><!--楼层1-->
+<div class="floor_out">
+    <a name="floor_<{$widgets_id}>" class="js_floor_icon" img_src="<{$data.floor_icon}>"></a>
+    <div class="floorone_left">
+         <div class="floor_tag" style="background:<{$data.fbg_color}>">
+             <div class="floor_num"><{$data.floor_num}></div>
+             <div class="floor_corner" style="border-color:transparent transparent transparent <{$data.fbg_color}>"></div>
+             <div class="floor_corner2" style="border-color:transparent transparent transparent <{$data.fbg_color}>"></div>
+         </div>
+          <h2  style="background:<{$data.bg_color}>"><{$data.title}></h2>
+              <ul>
+                <{foreach from=$data.f_link item=item key=key}>
+                    <li><a href="<{$item.top_link_url}>"><{$item.top_link_title}></a></li>
+                <{/foreach}>
+              </ul>
+              <dl>
+                <{* foreach from=$data.brand item=item key=k}>
+                    <dd>
+                        <a href="<{$item.0.brand_url}>">
+                            <img src='<{$item.brand_logo|default:$data.defaultImage|storager}>' alt="<{$item.brand_name}>"/>
+                        </a>
+                    </dd>
+                <{/foreach *}>
+                <dd>
+                    <a href="<{$data.piclink.0}>"><img src="<{$data.pic.0}>" /></a>
+               </dd>
+               <dd>
+                    <a href="<{$data.piclink.1}>"><img src="<{$data.pic.1}>" /></a>
+               </dd>
+              </dl>
+       </div>
+    
+        <!--轮播广告开始-->
+        <div class="floorone_center">
+            <div class="ex-slide1-box cl_zhi" style="width:<{$data.ad.width}>px;height:<{$data.ad.height}>px;overflow: hidden;margin:0 auto;">
+                <div id="ex_slide_<{$widgets_id}>" class="ex-slide1">
+                    <ol class="switchable-content clearfix">
+                    <{foreach from=$data.ad.pic item=parent key=parentId}>
+                        <li class="switchable-panel">
+                            <a href="<{$parent.linktarget}>">
+                                <img src="images/transparent.gif" lazyload="<{$parent.link}>" class="img-lazyload" title="<{$data.linkinfo}>">
+                            </a>
+                        </li>
+                    <{/foreach}>
+                    </ol>
+                    <ul class="switchable-triggerBox slide-trigger">
+                        <{assign var=countnum value="1"}>
+                        <{foreach from=$data.ad.pic item=parent key=parentId}>
+                            <li><{$countnum++}></li> 
+                        <{/foreach}> 
+                    </ul>
+                </div>
+            </div>
+            </div>
+            <!--轮播广告结束-->
+    
+       <div class="floorone_right">
+          <ul>
+             <{foreach from=$data.goods item=linklist name=product}>
+             <{if $smarty.foreach.product.iteration <= 6}>
+             <li>
+                <{if $linklist.pic}>
+                    <a href="<{link app=b2c ctl=site_product act=index arg=$linklist.id}>"><img src="images/transparent.gif" lazyload="<{$linklist.pic}>" class="img-lazyload"  ></a>
+                <{else}>
+                      <a href="<{link app=b2c ctl=site_product act=index arg=$linklist.id}>">
+                    <img src="<{$linklist.image_default_id|storager:'m'}>" lazyload="<{$linklist.image_default_id|storager:'m'}>" class="img-lazyload"  >
+    </a>
+                <{/if}>
+                <div class="floor_title">
+                    <p class="floor_title_tis"><a href="<{link app=b2c ctl=site_product act=index arg=$linklist.id}>"><{$linklist.nice}></a></p>
+                    <p class="floor_title_pearc"><{$linklist.price|cur}></p>
+                </div>
+             </li>
+             <{/if}>
+         <{/foreach}>
+          </ul>
+       </div>
+</div>
+</div>
+<script> 
+window.addEvent('domready',function(){
+
+    new Switchable('ex_slide_<{$widgets_id}>',{
+        effect:'<{$data.ad.switcheffect}>',
+        autoplay:<{$data.ad.autoplay}>
+    });
+
+});
+
+</script> 

@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:129:"remark,column_control,goodsdown_days,storedown_days,news_days_value,news_days,store_days,score_value,sales_days,goods_days,cat_id";s:8:"dateline";s:10:"1440471904";s:3:"ttl";s:1:"0";}

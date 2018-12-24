@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:59:"/alidata/demo.bizsov.com/b2b2c/app/scws/rule/rules.utf8.ini";s:8:"dateline";s:10:"1415339266";s:3:"ttl";s:1:"0";}

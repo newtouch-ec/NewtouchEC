@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+<{header}>
+<{if $theme}>
+<{else}>
+<script type='text/javascript'>
+   <!--
+   if (top.location != self.location)
+      top.location=self.location;
+   -->
+</script>
+<{/if}>
+<link rel="stylesheet" type="text/css" href="images/basic.css"/>
+<link rel="stylesheet" type="text/css" href="images/css.css"/>
+<link rel="stylesheet" type="text/css" href="images/ren.css"/>
+</head>
+
+<body>
+<link rel="stylesheet" href="images/styles.css" />
+<script type="text/javascript" src="images/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	var jq = jQuery.noConflict();
+</script>
+
+<header id="header">
+        <div id="headerTopWrapper">
+            <div id="headerTop">
+                <div id="headerTopLeft">
+                    <div id="memberTop"><{widgets id="menberTop"}></div>
+                    <div id="linkTop1"><{widgets id="linkTop1"}></div>
+                    <div id=""><{widgets id="customTop"}></div>
+                </div>
+                <div id="headerTopRight">
+                    <div id="linkTop2"><{widgets id="linkTop2"}></div>
+                    <div id="cartTop"><{widgets id="cartTop"}>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+                    <div id="linkTop3"><{widgets id="linkTop3"}>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <div id="headerMainWrapper">
+            <div id="headerMain">
+                <div id="logo"><{widgets id="logo"}></div>
+                <div id="search"><{widgets id="search"}></div>
+                <div id="topImg"><{widgets id="topImg"}></div>
+            </div>
+        </div>
+        <div id="navBG">
+            <nav id="navWrapper">
+                <div id="goodsCat">
+                    <a><div class="menuEvent"><{widgets id="index_all_category"}></div></a>
+                   
+                </div>
+                <div id="nav"><{widgets id="nav"}></div>
+            </nav>
+        </div>
+</header>
+
+<script type="text/javascript">
+jq(function(){
+    jq('#goodsCat').mouseenter(function(){
+        jq('#goodsCat .cat-ex-vertical').show();
+    });
+    jq('#goodsCat').mouseleave(function(){
+        jq('#goodsCat .cat-ex-vertical').hide();
+    });
+});
+</script>
+

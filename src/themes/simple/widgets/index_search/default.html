@@ -1,0 +1,242 @@
+<{if $data.top_html}><{$data.top_html}><{/if}>
+<form id='apply_form_<{$widgets_id}>' action="<{link app=b2c ctl=site_search act=result }>"  class="SearchBar  searchBar_<{$widgets_id}>" >
+
+     <div class="top_search_input fl">
+        
+         <{assign var=showtip value=true}>
+         <{if $data.search_key}>
+          <{if $data.search_key !=$env.conf.b2c.search.goods.tip}>
+            <{assign var=showtip value=false}>
+          <{/if}>
+         <{/if}>
+         
+          <label class="topsearch_tip" id='J_Fsk_top_tip' <{if $showtip==false}>style='display:none;'<{/if}>></label>
+         <input type="text"  id='J_Fsk' name="name[]" value="<{$data.search_key}>" autocompleter="associate_autocomplete_goods:name,goods_id" ac_options="{}" class="input_search fl"  />
+     
+         
+
+     </div>
+     <div class="top_search_select fl">
+    <div class="search-triggers">
+       <ul id="ks-switchable-nav" class="ks-switchable-nav">
+        <{if $data.search_key}>
+       <{if $data.st=='g'}>
+            <div id='searchKey'>
+              <li  class="J_SearchTab selected" onclick='searchTab(this);' id='<{$widgets_id}>_g' >
+                <a href="javascript:void(0);">宝贝</a>
+              </li>
+              <li  class="J_SearchTab" onclick='searchTab(this);' id='<{$widgets_id}>_s'>
+                <a href="javascript:void(0);">店铺</a>
+              </li>
+              </div>
+         <{else}>
+              <div id='searchKey'>
+              <li  class="J_SearchTab" onclick='searchTab(this);' id='<{$widgets_id}>_g' >
+                <a href="javascript:void(0);">宝贝</a>
+              </li>
+              <li  class="J_SearchTab selected" onclick='searchTab(this);' id='<{$widgets_id}>_s'>
+                <a href="javascript:void(0);">店铺</a>
+              </li>
+              </div>
+        <{/if}>
+         <{else}>
+             <div id='searchKey'>
+              <li  class="J_SearchTab selected" onclick='searchTab(this);' id='<{$widgets_id}>_g' >
+                <a href="javascript:void(0);">宝贝</a>
+              </li>
+              <li  class="J_SearchTab" onclick='searchTab(this);' id='<{$widgets_id}>_s'>
+                <a href="javascript:void(0);">店铺</a>
+              </li>
+              </div>
+
+          <{/if}>
+
+       </ul>
+       <div class="search-tab-icon">
+              <i>
+                <em></em>
+                <span></span>
+              </i>
+       </div>
+   </div>
+</div>
+
+<{if $data.st=='s'}>
+    <input type="hidden" name='view' value='index'>
+    <input type="hidden" name='st' value='s'>
+<{else}>     
+    <input type="hidden" name='view' value='grid'>
+    <input type="hidden" name='st' value='g'>
+<{/if}>
+<input type="button" class="btn_search fr" onfocus='this.blur();' view="grid" st="g" value="搜 索"/>    
+     
+</form>
+<{ if $data.search}>
+<div class="key_words">
+<!--热门搜索词好像没有呀。-->
+<{if $setting.hotkey}><span><{$setting.hotkey}>:</span><{/if}>
+<{foreach from=$data.search item=toplink key=top_key}>
+    <a href="<{$toplink.top_link_url}>"><{$toplink.top_link_title}></a>
+<{/foreach}>
+</div>
+<{/if}>
+
+
+<script>
+(function(scope){
+    if(scope){ 
+    var hview=scope.getElement('input[name="view"]');
+    var hst = scope.getElement('input[name="st"]');
+    var subBtn=scope.getElements('.btn_search');
+
+    var j_input=$('J_Fsk');
+    var form=$('apply_form_<{$widgets_id}>');
+    
+    j_input.addEvent('keydown',function(e){  
+        if(e.code == 13){
+            //搜索条前台店铺商品样式  Add by PanF  2013-12-23 begin
+            var id= $$('.selected')[0].id;
+            if(id=="<{$widgets_id}>_g"){
+                subBtn[0].attributes['st'].nodeValue='g';
+                subBtn[0].attributes['view'].nodeValue='grid';
+            } else{
+                subBtn[0].attributes['st'].nodeValue='s';
+                subBtn[0].attributes['view'].nodeValue='index';
+            }
+
+
+           var j_fsk=$('J_Fsk');
+           if(j_fsk.value.trim()==''){
+              e.stop();
+              j_fsk.value='';
+              //$('J_Fsk_top_tip').set('html','请输入关键字');
+              $('J_Fsk_top_tip').set('html','<{$env.conf.b2c.search.goods.tip}>');
+			  
+              j_fsk.focus();
+           }else{
+                 e.stop();
+                 hview.value =  subBtn[0].get('view');
+                 hst.value = subBtn[0].get('st');
+                 form.submit();
+           }
+        }
+    });
+
+    j_input.addEvent('mouseenter',function(e){  
+        $('J_Fsk_top_tip').hide();
+    });
+
+    j_input.addEvent('mouseout',function(e){ 
+         if($(this).value==''){
+             $('J_Fsk_top_tip').show();
+         }else{
+            $('J_Fsk_top_tip').hide();
+         }
+    });
+ 
+
+
+    subBtn.addEvent('click',function(e){
+
+        //搜索条前台店铺商品样式  Add by PanF  2013-12-23 begin
+        var id= $$('.selected')[0].id;
+        if(id=="<{$widgets_id}>_g"){
+            subBtn[0].attributes['st'].nodeValue='g';
+      subBtn[0].attributes['view'].nodeValue='grid';
+        } else{
+            subBtn[0].attributes['st'].nodeValue='s';
+      subBtn[0].attributes['view'].nodeValue='index';
+        }
+
+
+       var j_fsk=$('J_Fsk');
+       if(j_fsk.value.trim()==''){
+          e.stop();
+          j_fsk.value='';
+          //$('J_Fsk_top_tip').set('html','请输入关键字');
+		  
+          $('J_Fsk_top_tip').set('html','<{$env.conf.b2c.search.goods.tip}>');
+          j_fsk.focus();
+       }else{
+             e.stop();
+             hview.value = this.get('view');
+             hst.value = this.get('st');
+             form.submit();
+           
+       }
+    });
+
+     //搜索条前台店铺商品样式  Add by PanF  2013-12-23 begin
+    $('ks-switchable-nav').addEvent('mouseenter',function(e){
+        $$('.J_SearchTab')[1].setStyle('display','block');
+    });
+
+    if($('J_Fsk').value.trim()==''){
+         //$('J_Fsk_top_tip').set('html','请输入关键字');
+		 
+        $('J_Fsk_top_tip').set('html','<{$env.conf.b2c.search.goods.tip}>');
+    }
+
+    
+    
+    $(scope).getElements('input[autocompleter]').each(function(item) {
+         item.addEvents({
+         'focus':function(e){
+            $('J_Fsk_top_tip').setStyle('color','#999');
+         },
+         'blur':function(e){
+            if($(this).value==''){
+                $('J_Fsk_top_tip').setStyle('color','#999');
+                $('J_Fsk_top_tip').show();
+            }else{
+                $('J_Fsk_top_tip').hide();
+            }
+         },
+         'keydown':function(e){
+            $('J_Fsk_top_tip').hide();
+         },
+         'change':function(e){
+            $('J_Fsk_top_tip').hide();
+         }
+         });
+    });
+}
+})(document.getElement('.searchBar_<{$widgets_id}>'));
+
+
+//搜索条前台店铺商品样式  Add by PanF  2013-12-23 begin
+function searchTab(object){
+
+    if(object.attributes['class'].value=="J_SearchTab selected" ){
+        return;
+    }
+
+    DelTopMenu(object);
+
+
+    if(object.id=='<{$widgets_id}>_g'){
+      var ActiveLi = new Element(
+            'div',{'id':'searchKey',
+          'html':'<li  class="J_SearchTab selected" onclick="searchTab(this);"  id="<{$widgets_id}>_g"><a href="javascript:void(0);">宝贝</a></li><li  class="J_SearchTab" onclick="searchTab(this);" id="<{$widgets_id}>_s"><a href="javascript:void(0);">店铺</a></li>'
+           }).inject('ks-switchable-nav');
+    }
+
+
+    if(object.id=='<{$widgets_id}>_s'){
+      var Li = new Element(
+            'div',{'id':'searchKey',
+          'html':'<li  class="J_SearchTab selected" onclick="searchTab(this);" id="<{$widgets_id}>_s"><a href="javascript:void(0);">店铺</a></li><li  class="J_SearchTab" onclick="searchTab(this);" id="<{$widgets_id}>_g"><a href="javascript:void(0);">宝贝</a></li>'
+           }).inject('ks-switchable-nav');
+    }
+
+    $$('.J_SearchTab')[1].setStyle('display','none');
+    
+}
+
+function DelTopMenu(item){
+        $('searchKey').destroy();
+}
+
+//搜索条前台店铺商品样式  Add by PanF  2013-12-23 end
+</script>
+<{if $data.bottom_html}><{$data.bottom_html|regex_replace:'/widgets_id/':$widgets_id}><{/if}>

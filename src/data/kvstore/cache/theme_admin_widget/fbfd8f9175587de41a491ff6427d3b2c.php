@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:127:"<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $this->_vars['data']; ?>&site=qq&menu=yes">在线客服</a>";s:8:"dateline";s:10:"1433317985";s:3:"ttl";s:1:"0";}

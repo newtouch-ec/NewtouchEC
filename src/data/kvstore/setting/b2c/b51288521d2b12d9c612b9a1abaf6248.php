@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:211:"order_id,final_amount,column_tag,ship_area,member_id,store_id,ship_mobile,mark_type,status,ship_addr,createtime,payment,ship_name,ship_tel,order_kind,is_extend,ship_status,pay_status,refund_status,column_printer";s:8:"dateline";s:10:"1433143167";s:3:"ttl";s:1:"0";}

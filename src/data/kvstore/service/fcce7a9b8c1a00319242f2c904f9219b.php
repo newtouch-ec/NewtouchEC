@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:2:{s:31:"package_cart_object_split_goods";s:31:"package_cart_object_split_goods";s:27:"b2c_cart_object_split_goods";s:27:"b2c_cart_object_split_goods";}}s:8:"dateline";s:10:"1439279653";s:3:"ttl";s:1:"0";}

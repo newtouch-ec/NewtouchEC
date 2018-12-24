@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:11:{s:10:"article_id";s:2:"74";s:5:"title";s:26:"2013年BIZmall入驻流程";s:4:"type";s:1:"1";s:7:"node_id";s:2:"38";s:6:"author";s:3:"yzb";s:7:"pubtime";s:10:"1384099200";s:6:"uptime";s:10:"1407714512";s:5:"level";s:1:"1";s:5:"ifpub";s:4:"true";s:2:"pv";s:1:"0";s:8:"disabled";s:5:"false";}s:8:"dateline";s:10:"1407714518";s:3:"ttl";s:1:"0";}

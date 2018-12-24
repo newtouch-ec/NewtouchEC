@@ -1,0 +1,59 @@
+<style>
+#ex_slide_<{$widgets_id}>{ 
+    width:<{$data.width}>px;
+    height:<{$data.height}>px;
+    position:relative;
+}
+#ex_slide_<{$widgets_id}> ol li{
+    height:<{$data.height}>px;
+    width:<{$data.width}>px;
+    list-style:none; 
+    display:block;
+    border:0;
+    margin:0;
+}
+#ex_slide_<{$widgets_id}> .slide-trigger{
+    position:absolute; 
+    z-index:999;
+}
+#ex_slide_<{$widgets_id}> .slide-trigger{bottom:60px;right:30px;}
+#ex_slide_<{$widgets_id}> .slide-trigger li{
+    display: block;
+    width:10px;
+    height:10px;
+    border-radius: 5px;
+    background-color:rgb(214,9,52);
+    float:left;
+    margin-right: 5px;
+    cursor:pointer;
+}
+#ex_slide_<{$widgets_id}> .slide-trigger li.active{
+    background-color:rgb(52,52,52);
+}
+</style>
+
+<div class="ex-slide1-box" style="width:<{$data.width}>px;height:<{$data.height}>px;">
+  <div id="ex_slide_<{$widgets_id}>" class="ex-slide1">
+    <ol class="switchable-content clearfix">
+      <{foreach from=$data.pic item=parent key=parentId}>
+      <li class="switchable-panel">
+          <a href="<{$parent.linktarget}>">
+            <img src="<{$parent.link}>" width="<{$data.width}>px" height="<{$data.height}>px" title="<{$data.linkinfo}>"/>
+        </a>
+    </li>
+    <{/foreach}>
+</ol>
+<ul class="switchable-triggerBox slide-trigger">
+  <{assign var=countnum value="1"}>
+  <{foreach from=$data.pic item=parent key=parentId}>
+  <li></li> 
+  <{/foreach}> 
+</ul>
+</div>
+</div>
+<script>
+new Switchable('ex_slide_<{$widgets_id}>',{
+    effect:'<{$setting.switcheffect}>',
+    autoplay:<{$setting.autoplay}>
+});
+</script>

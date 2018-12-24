@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:49:"column_control,regtime,role_name,store_id,role_id";s:8:"dateline";s:10:"1432644012";s:3:"ttl";s:1:"0";}

@@ -1,0 +1,131 @@
+﻿<div id="picAddress" class="tableform">
+    <div class="piccontent">
+        <{foreach from=$setting.pic item=data key=key}>
+        <table  width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <th><{t app="b2c"}>图片地址:<{/t}></th>
+                <td>
+                    <input type=hidden name=pic[<{$data.id}>][id] value="<{$data.id}>">
+                    <input name='pic[<{$data.id}>][link]' class="imgsrc" id="pic[<{$data.id}>][link]" value="<{$data.link}>" style="width:200px;">
+                    <input type=button value=<{t app="b2c"}>上传图片<{/t}> class="uploadbtn">
+                </td>
+                <th><{t app="b2c"}>链接地址:<{/t}></th>
+                <td>
+                    <input name="pic[<{$data.id}>][linktarget]" value="<{$data.linktarget}>" style="width:200px;">
+                </td>
+            </tr>
+            <tr>                
+                <th><{t app="b2c"}>商品名称:<{/t}></th>
+                <td>
+                    <input name="pic[<{$data.id}>][productname]" value="<{$data.productname}>" style="width:200px;">
+                </td>
+                <th><{t app="b2c"}>广告内容<{/t}>:</th>
+                <td>
+                    <input name="pic[<{$data.id}>][saleoff]" value="<{$data.saleoff}>" style="width:100px;">
+                </td>
+            </tr>
+            <tr>
+                <th><{t app="b2c"}>标签图片<{/t}>:</th>
+                <td>                    
+                    <input type=radio name=pic[<{$data.id}>][tag] value="tag-1" <{if $data.tag == "tag-1"}>checked<{/if}> style="margin-top:-45px;">
+                    <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-1.png" app="desktop"}>
+                    <input type=radio name=pic[<{$data.id}>][tag] value="tag-2" <{if $data.tag == "tag-2"}>checked<{/if}> style="margin-top:-45px;">
+                    <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-2.png" app="desktop"}>
+                    <input type=radio name=pic[<{$data.id}>][tag] value="tag-3" <{if $data.tag == "tag-3"}>checked<{/if}> style="margin-top:-45px;">
+                    <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-3.png" app="desktop"}>
+                    <input type=radio name=pic[<{$data.id}>][tag] value="tag-4" <{if $data.tag == "tag-4"}>checked<{/if}> style="margin-top:-45px;">
+                    <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-4.png" app="desktop"}>
+                </td>
+                <th><{t app="b2c"}>标签文字<{/t}>:</th>
+                <td>
+                    <input name="pic[<{$data.id}>][tagname]" value="<{$data.tagname}>" style="width:100px;">(HOT/NEW/FREE/GOOD)
+                </td>
+            </tr>
+            <tr>
+                <th><{t app="b2c"}>描述<{/t}>:</th>
+                <td>
+                    <input name="pic[<{$data.id}>][linkinfo]" value="<{$data.linkinfo}>" style="width:200px;">
+                </td>
+                <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>
+                <td><span onclick="$(this).getParent('table').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c' app="desktop"}></span></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <hr />
+                </td>
+            </tr>
+        </table>
+        <{/foreach}>
+    </div>
+    <{button label=$___b2c="添加图片"|t:'b2c' class="addimage" app="desktop" icon="btn_add.gif"}>
+</div>
+<script>
+(function(){
+    var tag_type='table',tag_class='pic_items';
+
+    document.getElement(".addimage").addEvent('click',function(){
+        var i=new Date().getTime();
+        var tpl='\
+        <tr>\
+            <th><{t app="b2c"}>图片地址:<{/t}></th>\
+            <td>\
+                <input type=hidden name=pic['+i+'][id] value="'+i+'">\
+                <input name="pic['+i+'][link]" class="imgsrc" style="width:200px;">\
+                <input type=button value=<{t app="b2c"}>上传图片<{/t}> class="uploadbtn" id="pic['+i+']"></td>\
+            <th><{t app="b2c"}>链接地址:<{/t}></th>\
+            <td><input name="pic['+i+'][linktarget]" style="width:200px;"></td></tr>\
+        <tr>\
+            <th><{t app="b2c"}>商品名称:<{/t}></th>\
+            <td>\
+                <input name="pic['+i+'][productname]" value="<{$data.productname}>" style="width:200px;">\
+            </td>\
+            <th><{t app="b2c"}>广告内容<{/t}>:</th>\
+            <td>\
+                <input name="pic['+i+'][saleoff]" value="<{$data.saleoff}>" style="width:100px;">(%) OFF\
+            </td>\
+        </tr>\
+        <tr>\
+            <th><{t app="b2c"}>标签图片<{/t}>:</th>\
+            <td>\
+                <input type=radio name=pic['+i+'][tag] value="tag-1" checked style="margin-top:-45px;">\
+                <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-1.png" app="desktop"}>\
+                <input type=radio name=pic['+i+'][tag] value="tag-2" style="margin-top:-45px;">\
+                <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-2.png" app="desktop"}>\
+                <input type=radio name=pic['+i+'][tag] value="tag-3" style="margin-top:-45px;">\
+                <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-3.png" app="desktop"}>\
+                <input type=radio name=pic['+i+'][tag] value="tag-4" style="margin-top:-45px;">\
+                <{img src="../../../themes/simple/widgets/ma_index_sub_slide_4items/images/bq-4.png" app="desktop"}>\
+            </td>\
+            <th><{t app="b2c"}>标签文字<{/t}>:</th>\
+            <td>\
+                <input name="pic['+i+'][tagname]" style="width:100px;">(HOT/NEW/FREE/GOOD)\
+            </td>\
+        </tr>\
+        <tr><th><{t app="b2c"}>描述<{/t}>:</th>\
+            <td><input name="pic['+i+'][linkinfo]" style="width:200px;"></td>\
+            <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>\
+            <td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c' app="desktop"}></span></td>\
+        </tr>\
+        <tr>\
+            <td colspan=4>\
+                <hr />\
+            </td>\
+        </tr>';
+
+        $('picAddress').getElement('.piccontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+
+        $('pic['+i+']').addEvent('click',function(e){bindevent(this)});
+    });
+
+    function bindevent(el){
+        var target=$(el).getParent(tag_type).getElement('.imgsrc');
+        var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+        Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                    target.value=image_src;
+            }});
+        });
+    }
+
+})();
+</script>

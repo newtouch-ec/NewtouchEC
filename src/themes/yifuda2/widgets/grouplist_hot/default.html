@@ -1,0 +1,50 @@
+<h3>今日推荐</h3>
+<s></s>
+<div class="grounp_hotbox">
+  <ul class="grounp_hotlist" id="group_products">
+	<{foreach from=$data item=item}>
+    <li>
+      <{assign var="cimage" value=$item.image_codeid|default:$item.image|storager:'m'}>
+      <{assign var="gimage" value=$cimage|default:$item.defaultImage|storager:'m'}>
+      <a target="_blank" class="group_img" href="<{link app=groupbuy ctl=site_product act=index args=$item.args}>"><img src="<{$gimage}>"></a>
+      <a target="_blank" class="group_name" href="<{link app=groupbuy ctl=site_product act=index args=$item.args}>"><{$item.goods_name}></a>
+      <div class="group_price">
+        <div class="group_pricel fl">
+          <div class="group_buy"><{$item.price|cur}></div>
+          <div class="group_sprice">
+            <div class="group_namor"><del><{$item.mktprice|cur}></del></div>
+            <div class="group_sall">节省：<{$item.mktprice-$item.price}></div>
+          </div>
+        </div>
+        <div class="group_btnr fr">
+		  <{if $item.now >= $item.start_time && $item.now <= $item.end_time}>
+			  <{if $item.remainnums != '' && $item.remainnums <= 0}>
+				  <a class="btn_b">已售完</a>
+			  <{else}>
+				  <a href="<{link app=groupbuy ctl=site_product act=index args=$item.args}>" target="_blank" class="btn_a"><{t app='b2c'}>我要团<{/t}></a>
+			  <{/if}>
+		  <{elseif $item.now < $item.start_time}>
+			  <a class="btn_c">未开始</a>
+		  <{elseif $item.now > $item.end_time}>
+			  <a class="btn_b">已结束</a>
+		  <{/if}>
+          <!--
+          <a class="btn_b">已售完</a>
+          <a class="btn_c">未开始</a>
+          <a class="btn_b">已结束</a>
+        -->
+        </div>
+      </div>
+      <div class="group_time_people">
+        <div class="fl group_time" starttime="<{$item.start_time}>" endtime="<{$item.end_time}>" gid="<{$item.gid}>">
+          <span class="day">0</span><span>天</span>
+          <span class="hour">0</span><span>小时</span>
+          <span class="minute">0</span><span>分</span>
+          <span class="second">0</span><span>秒</span>
+        </div>
+        <div class="fr group_people">已有<i><{$item.nums - $item.remainnums}></i>人已购买</div>
+      </div>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>

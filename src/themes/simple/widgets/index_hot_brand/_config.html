@@ -1,0 +1,110 @@
+<div class="tableform">
+    <div class="widgetconfig">
+    <h4 style="color:red;">建议左右侧广告图片尺寸为：194*326</h4>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody>
+            <tr>
+                <th><{t app="b2c"}>左侧图片:<{/t}></th>
+                <td>
+                  <input type=hidden name="left_pic" value="<{$setting.left_pic}>">
+                  <input name='left_pic' class="imgsrc x-input" value="<{$setting.left_pic}>">
+                  <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this)">
+                </td>
+                <th><{t app="b2c"}>链接:<{/t}></th>
+                <td>
+                    <input name='left_piclink' class="x-input" value="<{$setting.left_piclink}>">
+                </td>
+            </tr>
+            <tr>
+                <th><{t app="b2c"}>右侧图片:<{/t}></th>
+                <td>
+                  <input type=hidden name="right_pic" value="<{$setting.right_pic}>">
+                  <input name='right_pic' class="imgsrc x-input" value="<{$setting.right_pic}>">
+                  <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this)">
+                </td>
+                <th><{t app="b2c"}>链接:<{/t}></th>
+                <td>
+                    <input name='right_piclink' class="x-input" value="<{$setting.right_piclink}>">
+                </td>
+            </tr>
+            <tr>
+                <th><{t app='b2c'}>标题：<{/t}></th>
+                <td>
+                    <input type=hidden name="tab_info[0][title_id]" value="<{$setting.tab_info.0.title_id}>">
+                    <input name="tab_info[0][title]" type="text" class="x-input" value="<{$setting.tab_info.0.title}>" onfocus="set_title_name(this);">
+                </td>
+                <th><{t app='b2c'}>选择对应的品牌：<{/t}></th>
+                <td>
+                    <{input type="object" object="brand@b2c" multiple="true" return_url="" rowselect="true" textcol="brand_name" name="list[0][id]" filter=$data value=$setting.list.0.id }>
+                </td>
+            </tr>
+
+            <tr>
+                <th><{t app='b2c'}>标题：<{/t}></th>
+                <td>
+                    <input type=hidden name="tab_info[1][title_id]" value="<{$setting.tab_info.1.title_id}>">
+                    <input name="tab_info[1][title]" type="text" class="x-input" value="<{$setting.tab_info.1.title}>" onfocus="set_title_name(this);">
+                </td>
+                <th><{t app='b2c'}>选择对应的品牌：<{/t}></th>
+                <td>
+                    <{input type="object" object="brand@business" multiple="true" return_url="" rowselect="true" textcol="brand_name" name="list[1][id]" filter=$data value=$setting.list.1.id }>
+                </td>
+            </tr>
+
+            <tr>
+                <th><{t app='b2c'}>标题：<{/t}></th>
+                <td>
+                    <input type=hidden name="tab_info[2][title_id]" value="<{$setting.tab_info.2.title_id}>">
+                    <input name="tab_info[2][title]" type="text" class="x-input" value="<{$setting.tab_info.2.title}>" onfocus="set_title_name(this);">
+                </td>
+                <th><{t app='b2c'}>选择对应的品牌：<{/t}></th>
+                <td>
+                    <{input type="object" object="brand@business" multiple="true" return_url="" rowselect="true" textcol="brand_name" name="list[2][id]" filter=$data value=$setting.list.2.id }>
+                </td>
+            </tr>
+
+            <tr>
+                <th><{t app='b2c'}>标题：<{/t}></th>
+                <td>
+                    <input type=hidden name="tab_info[3][title_id]" value="<{$setting.tab_info.3.title_id}>">
+                    <input name="tab_info[3][title]" type="text" class="x-input" value="<{$setting.tab_info.3.title}>" onfocus="set_title_name(this);">
+                </td>
+                <th><{t app='b2c'}>选择对应的品牌：<{/t}></th>
+                <td>
+                    <{input type="object" object="brand@business" multiple="true" return_url="" rowselect="true" textcol="brand_name" name="list[3][id]" filter=$data value=$setting.list.3.id }>
+                </td>
+            </tr>
+
+            <tr>
+                <th><{t app='b2c'}>标题：<{/t}></th>
+                <td>
+                    <input type=hidden name="tab_info[4][title_id]" value="<{$setting.tab_info.4.title_id}>">
+                    <input name="tab_info[4][title]" type="text" class="x-input" value="<{$setting.tab_info.4.title}>" onfocus="set_title_name(this);">
+                </td>
+                <th><{t app='b2c'}>选择对应的品牌：<{/t}></th>
+                <td>
+                    <{input type="object" object="brand@business" multiple="true" return_url="" rowselect="true" textcol="brand_name" name="list[4][id]" filter=$data value=$setting.list.4.id}>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+<script>
+
+    function set_title_name(input){
+        var idate=new Date().getTime();
+        $(input).getPrevious('input').value=idate;
+    }
+
+    function addPic(target){
+        var url = 'index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+
+        Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                $(target).getPrevious('input').value=image_src;
+            }}) ;
+        });
+    }
+
+</script>

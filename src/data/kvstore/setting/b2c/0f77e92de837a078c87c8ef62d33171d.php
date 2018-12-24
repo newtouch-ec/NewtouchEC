@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:135:"paymethod,disabled,order_id,memo,payment_id,message,import_money,member_advance,explode_money,mtime,money,shop_advance,member_id,log_id";s:8:"dateline";s:10:"1432541185";s:3:"ttl";s:1:"0";}

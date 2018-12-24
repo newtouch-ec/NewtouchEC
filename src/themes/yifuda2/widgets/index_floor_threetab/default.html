@@ -1,0 +1,70 @@
+<div class="floorthree webwidth clb" style="border-top:2px solid <{$data.bg_color}>;"><!--需要取标题色-->
+  <a name="floor_<{$widgets_id}>" class="js_floor_icon" img_src="<{$data.floor_icon}>"></a>
+  <div class="floorbt fl">
+    <h2 style="background:<{$data.bg_color}>"><a href="<{$data.title_link}>" title="<{$data.title}>" target="_blank"><{$data.title}></a></h2><!--需要取标题色-->
+    <div class="floorthreead01"><a href="<{$data.floor_pic_link}>" target="_blank"><img src="images/transparent.gif" lazyload="<{$data.floor_pic}>" class="img-lazyload" /></a></div>
+  </div>
+
+  <div class="floorthree-box fr" style="border:1px solid <{$data.bg_color}>;border-top:none;"><!--需要取标题色-->
+    <div class="floor-inner fl">
+      <ul class="floor-side fl" id="floor-side_<{$widgets_id}>">
+        <{foreach from=$data.tab item=item key=key}>
+          <li key="<{$key}>"><a href="<{$item.link}>" title="<{$item.title}>" target="_blank"><{$item.title}></a></li>
+        <{/foreach}>
+      </ul>
+      <div class="floorthreead02 fl"><a href="<{$data.tab_icon_link}>"><img src="images/transparent.gif" lazyload="<{$data.tab_icon}>" class="img-lazyload" /></a></div>
+    </div>
+
+    <{foreach from=$data.tab item=item key=key}>
+      <div class="floorthree-ad fl J_f J_f_<{$widgets_id}>_<{$key}>" <{if $key >0}>style="display:none"<{/if}>>
+        <div class="floorthreead03">
+          <a href="<{$item.ad.pic_link}>" target="_blank"><img src="images/transparent.gif" lazyload="<{$item.ad.pic}>" class="img-lazyload" /></a>
+        </div>
+
+        <{foreach from=$item.goodsinfo item=sitem key=skey}>
+          <{if $skey < 3}>
+            <div class="floorthreead04 fl">
+              <a href="<{$sitem.goodslink}>" title="<{$sitem.name}>">
+                <img  lazyload=<{$sitem.image_default_id|storager:'s' }> class="img-lazyload" >
+              </a>
+              <h3><a href="<{$sitem.goodslink}>" title="<{$sitem.name}>"><{$sitem.name}></a></h3>
+              <p><{$sitem.price|cur}></p>
+            </div>
+          <{/if}>
+        <{/foreach}>
+      </div>
+    <{/foreach}>
+
+    <{foreach from=$data.tab item=item key=key}>
+      <span class="J_f J_f_<{$widgets_id}>_<{$key}>" <{if $key >0}>style="display:none"<{/if}>>
+        <{foreach from=$item.goodsinfo item=iitem key=ikey}>
+          <{if $ikey > 2}>
+            <div class="floorthreead04 fl">
+              <a href="<{$iitem.goodslink}>" title="<{$iitem.name}>">
+                <img src="images/transparent.gif" app="b2c" lazyload=<{$iitem.image_default_id|storager:'s'}> class="img-lazyload">
+              </a>
+              <h3><a href="<{$iitem.goodslink}>" title="<{$iitem.name}>"><{$iitem.name}></a></h3>
+              <p><{$iitem.price|cur}></p>
+            </div>
+          <{/if}>
+        <{/foreach}>
+      </span>
+    <{/foreach}>
+  </div>
+</div>
+
+<script>
+	$$("#floor-side_<{$widgets_id}> li").each(function(o,i){
+//		console.log(i);
+			o.addEvent('mouseover',function(){
+        $$("#floor-side_<{$widgets_id}> li").setStyle('background',"");
+        $$("#floor-side_<{$widgets_id}> li").removeClass('current');
+        o.addClass('current');
+        o.setStyle('background',"<{$data.bg_color}>");
+        $$(".J_f").setStyle('display','none');
+        var key = o.get('key');
+//        console.log(key);
+        $$(".J_f_<{$widgets_id}>_"+key).setStyle('display','block');
+		});
+	});
+</script>

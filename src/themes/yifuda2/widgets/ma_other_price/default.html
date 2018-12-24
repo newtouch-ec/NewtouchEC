@@ -1,0 +1,37 @@
+<div class="sj_info mb_10">
+	<div class="info_title">OTHER SHOP</div>
+	<ul class="info_details info_details2" id="box_<{$widgets_id}>">
+    </ul>
+</div>
+<script>
+withBrowserStore(function(otherPrice){
+    var box=$('box_<{$widgets_id}>');
+    otherPrice.get('history',function(v){
+        v=JSON.decode(v);
+        if(!v||!v.length)return;
+        var html='';
+        var template = '<li class="block1 {last}">';
+            template+= '<div class="pricet"><span>RM 2789</span>  + RM 6.5 Shipping</div>';
+            template+= '<div class="buyer">Sold by: Beyond Tech</div>';
+            template += '<input type="button" value="ADD TO CART" /></li>';
+
+        var max=Math.min(v.length,<{$setting.max|default:3}>);
+        
+        v.each(function(goods,index){
+        	//循环生成 html
+            if(index<max){
+                html += template.substitute(goods);
+           }
+        });
+        //上下移动 button
+		html += '<div class="block2">';
+		html += '<a href="#"><img src="images/arr_t.jpg"></a>';
+		html += '<a href="#"><img src="images/arr_b.jpg"></a>';
+		html += '</div>';
+		
+        $('box_<{$widgets_id}>').set('html',html);
+
+    });
+        
+});
+</script>

@@ -1,0 +1,40 @@
+<!-- right-->
+<div class="member-main">
+    <div class="title "><{t}>设置密保问题<{/t}></div>
+      <div class="FormWrap" style="background:none; border:none; padding:0; margin:0;">
+        
+        <div class="division" style="border:none;margin-bottom:0">
+        <form method="post" action="<{link app=business ctl='site_member'  full='1' act='save_security_question'}>" class="section">
+
+    
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" class="forform">
+            <tr>
+              <th><{t}>登录账号：<{/t}></th>
+              <td><{$mem.pam_account.login_name}>
+              </td>
+            </tr>
+            <tr>
+              <th><em>*</em><{t}>当前密码：<{/t}></th>
+              <td>
+                <{input class="inputstyle" type="password" vtype=required name="old_passwd" }><span></span>
+              </td>
+            </tr>
+            <tr>
+              <th><em>*</em><{t}>密保问题：<{/t}></th>
+              <td>
+                <{input class="inputstyle" type="text" value=$mem.account.pw_question vtype=required name="pw_question"}><span></span>
+              </td>
+            </tr>
+            <tr>
+              <th><em>*</em><{t}>密保答案：<{/t}></th>
+              <td>
+                <{input class="inputstyle" type="text" value=$mem.account.pw_answer vtype=required name="pw_answer"}>
+              </td>
+            </tr>
+          </table>
+        <div class="member-editwrap">
+          <{button class="submit-btn" rel="_request" type="submit" label=$___b2c="保存"|t:'b2c'}>
+        </div>
+        </form>
+      </div>
+  </div>

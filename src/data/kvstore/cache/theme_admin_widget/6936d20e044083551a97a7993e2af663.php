@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:272:"<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $this->_vars['data']; ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $this->_vars['data']; ?>:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>";s:8:"dateline";s:10:"1407723056";s:3:"ttl";s:1:"0";}

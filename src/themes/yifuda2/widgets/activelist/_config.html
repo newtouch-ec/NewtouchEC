@@ -1,0 +1,117 @@
+<style>
+  .add_area .add-title,
+  .add_area .add-url,
+  .add_area .delete{float:left;_display:inline;margin-left:5px;}
+  .add_area .delete{height:20px;width:16px;cursor:pointer; float: right;}
+  .add_area .top-item{background-color:#E2E8EB;padding:5px 5px 3px;line-height:22px;margin:2px 0;}
+  .add_area{cursor:pointer;}
+</style>
+<div class="tableform">
+<div class="widgetconfig">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+  <tbody>
+    <tr>
+        <th><{t app='b2c'}>活动商品：<{/t}></th>
+        <td>
+           <input type="button" id="floor_cate" value="添加活动商品" />
+            <ul id="floor_cate_area" class="add_area">
+                <{if $setting.activelist}>
+                <{foreach from=$setting.activelist item=item key=key}>
+                    <li class="top-item clearfix">
+                        <table>
+                            <tr>
+                                <td>商品名称</td>
+                                <td><input type="text" name="activelist[]" value="<{$item}>"/></td>
+                                <td>商品价格</td>
+                                <td><input type="text" name="goods_price[]" value="<{$setting.goods_price.$key}>"/></td>
+								<td>链接</td>
+                                <td><input type="text" name="goods_url[]" value="<{$setting.goods_url.$key}>"/></td>
+                                <td>商品图片</td>
+								<td><{input name="goods_img[]" type="image" value=$setting.goods_img.$key}> </td>
+							</tr>
+							<tr>
+                                <td>商品宽度</td>
+                                <td><input type="text" name="width[]" value="<{$setting.width.$key}>"/></td>
+                                <td>商品高度</td>
+								<td><input type="text" name="height[]" value="<{$setting.height.$key}>"/></td>
+							</tr>
+							<tr>
+								<td>左tab名称(上部)</td>
+                                <td><input type="text" name="l_tab_name_1[]" value="<{$setting.l_tab_name_1.$key}>"/></td>
+								<td>左tab名称(下部)</td>
+                                <td><input type="text" name="l_tab_name_2[]" value="<{$setting.l_tab_name_2.$key}>"/></td>
+								<td>左tab链接</td>
+                                <td><input type="text" name="l_tab_url[]" value="<{$setting.l_tab_url.$key}>"/></td>
+							</tr>
+							<tr>
+								<td>右tab名称(上部)</td>
+                                <td><input type="text" name="r_tab_name_1[]" value="<{$setting.r_tab_name_1.$key}>"/></td>
+								<td>右tab名称(下部)</td>
+                                <td><input type="text" name="r_tab_name_2[]" value="<{$setting.r_tab_name_2.$key}>"/></td>
+								<td>右tab链接</td>
+                                <td><input type="text" name="r_tab_url[]" value="<{$setting.r_tab_url.$key}>"/></td>
+							</tr>
+							<tr>
+								<td> <span class="delete" title="删除" onclick="DelItem(this)"></span></td>
+                            </tr>
+                        </table>
+                    </li>
+                <{/foreach}>
+                <{/if}>
+            </ul>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+<script>
+function DelItem(item){
+    item.getParent(".top-item").destroy();
+}
+
+//添加楼层分类
+var AddFloorCate = $('floor_cate');
+AddFloorCate.addEvent('click',function(){
+    var html = '';
+        html += '<table>';
+        html +=    '<tr>';
+        html +=      '<td>商品名称</td>';
+        html +=      '<td><input type="text" name="activelist[]"/></td>';
+        html +=      '<td>商品价格</td>';
+        html +=      '<td><input type="text" name="goods_price[]"/></td>';
+		html +=      '<td>链接</td>';
+        html +=      '<td><input type="text" name="goods_url[]"/></td>';
+        html +=      '<td>商品图片</td><td><{input name="goods_img[]" type="image"}> </td>';
+		html +=    '</tr>';
+		html +=    '<tr>';
+		html +=      '<td>图片宽度</td>';
+        html +=      '<td><input type="text" name="width[]" value="297"/></td>';
+		html +=      '<td>图片高度</td>';
+        html +=      '<td><input type="text" name="height[]" value="451"/></td>';
+		html +=    '</tr>';
+		html +=    '<tr>';
+		html +=      '<td>左tab名称(上部)</td>';
+		html +=      '<td><input type="text" name="l_tab_name_1[]"/></td>';
+		html +=      '<td>左tab名称(下部)</td>';
+		html +=      '<td><input type="text" name="l_tab_name_2[]"/></td>';
+		html +=      '<td>左tab链接</td>';
+		html +=      '<td><input type="text" name="l_tab_url[]"/></td>';
+		html +=    '</tr>';
+		html +=    '<tr>';
+		html +=      '<td>右tab名称(上部)</td>';
+		html +=      '<td><input type="text" name="r_tab_name_1[]"/></td>';
+		html +=      '<td>右tab名称(下部)</td>';
+		html +=      '<td><input type="text" name="r_tab_name_2[]"/></td>';
+		html +=      '<td>右tab链接</td>';
+		html +=      '<td><input type="text" name="r_tab_url[]"/></td>';
+		html +=    '</tr>';
+		html +=    '<tr>';
+        html +=      '<td> <span class="delete" title="删除" onclick="DelItem(this)"></span></td>';
+        html +=    '</tr>';
+        html += '<table>';
+    var ActiveLi = new Element('li',{'class':'top-item clearfix','html':html}).inject('floor_cate_area');
+});
+
+</script>

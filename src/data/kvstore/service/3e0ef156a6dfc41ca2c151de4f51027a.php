@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:2:{s:18:"openid_render_href";s:18:"openid_render_href";s:19:"base_service_render";s:19:"base_service_render";}}s:8:"dateline";s:10:"1386729376";s:3:"ttl";s:1:"0";}

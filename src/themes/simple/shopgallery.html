@@ -1,0 +1,66 @@
+<{if $theme}>
+	<{if $is_platform}>
+		<{require file="block/header.html"}>
+		<{require file="block/top.html"}>
+		<{require file="block/shop_nav.html"}>
+	<{else}>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns:wb="http://open.weibo.com/wb">
+		<head>
+		<{header}>
+		<link rel="stylesheet" type="text/css" href="images/basic.css"/>
+		<link rel="stylesheet" type="text/css" href="images/css.css"/>
+		</head>
+		<body>
+		<div class="widget_disabled_box clb">
+		商城共通
+		</div>
+	<{/if}>
+<{else}>
+<{require file="block/header.html"}>
+<{require file="block/top.html"}>
+<{require file="block/shop_nav.html"}>
+<{/if}>
+<link rel="stylesheet" type="text/css" href="images/template/red.css" media="all" />
+<link rel="stylesheet" type="text/css" href="images/shop/shopone.css" media="all" />
+
+<div class="shop_width shop_topbj pos_r"><!--shop_topbj辅助定位头部背景宣传图片-->
+     <div class="shop_top pos_r">
+         <{widgets id="shop2_0"}>
+     </div>
+</div>
+<div class="shop_width">
+       <{widgets id="shop2_1"}>
+</div>
+
+<div class="shop_backgro">
+    <div class="shop_main">
+        <{widgets id="shop_list_header3"}>
+       <div class="mt10">
+           <{require file="block/store_lefter.html"}>
+           <div class="shop_ri ri_zhi">
+           <{main}>
+           </div>
+           <div class="cl_zhi"></div>
+       </div>
+        <{widgets id="shop_list_foot1"}>
+        <{widgets id="shop_list_foot2"}>
+        <{widgets id="shop_list_foot3"}>
+    </div>
+</div>
+<{if $theme}>
+<{if $is_platform}>
+<{require file="block/footer.html"}>
+<{else}>
+<div class="widget_disabled_box clb">商城共通</div>
+<div class="f_copyright dis_bl clb"> 
+     <div class="webwidth">
+        <{footer}>
+     </div>
+</div>
+</body>
+</html>
+<{/if}>
+<{else}>
+<{require file="block/footer.html"}>
+<{/if}>

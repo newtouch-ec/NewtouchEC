@@ -1,0 +1,87 @@
+<{css src="shop.css" app="b2c"}>
+<p class="mall_store_info_p">
+<strong>Store:</strong>
+<span>Description:</span> <strong><{if $data.store_point.0.avg_point}> <{$data.store_point.0.avg_point}><{else}>0<{/if}> </strong>
+<{if empty($data.store_point.0.avg_point)}>
+ <span class="point blow">Lower</span>
+    <span>100%</span>
+<{else}>
+    <{if $data.store_point.0.avg_percent > 0}>
+      <span class="point blow">Lower</span>
+    <span><{$data.store_point.0.avg_percent|abs}>%</span>
+    <{elseif $data.store_point.0.avg_percent < 0 }>
+        <span class="point">Higher</span>
+    <span><{$data.store_point.0.avg_percent|abs}>%</span>
+    <{else}>
+        <span class="point">Flat</span>
+    <span><{$data.store_point.0.avg_percent|abs}>%</span>
+    <{/if}>
+<{/if}>
+<span class="store_down"></span>
+<span class="cl_zhi"></span>
+</p>
+<div class="mall_store_shop_info_detail">
+<div class="shopheader-dsr p_0 border_b">
+<p class="shopdsr-title" >Store score<span>Comparison</span></p>
+<ul class="shopdsr-con">
+    <{foreach from=$data.store_point  item=item key=key}>
+        <li style="width:200px;">
+        <span class='de_score'><{$item.name}>:&nbsp;</span><span class="sdc-num"><{if empty($item.avg_point)==false}><{$item.avg_point}><{else}>0<{/if}></span>
+        <{if empty($item.avg_point)}>
+        <b class="sdc-low">Lower</b>
+                <span class="sdc-low">100%</span>
+        <{else}>
+            <{if $item.avg_percent > 0}>
+                <b class="sdc-low">Lower</b>
+                <span class="sdc-low"><{$item.avg_percent|abs}>%</span>
+            <{elseif $item.avg_percent < 0 }>
+                <b class="sdc-high">Higher</b>
+                <span class="sdc-high"><{$item.avg_percent|abs}>%</span>
+            <{else}>
+                <b class="sdc-high">Flat</b>
+                <span class="sdc-high">----</span>
+            <{/if}>
+        <{/if}>
+      </li>
+    <{/foreach}>
+    </ul>
+  </div>
+<div class="mall_store_shop_info_addre">
+   <p>Store&nbsp;level:&nbsp;&nbsp;<span><{$data.grade_name}></span></p>
+   <p>Store&nbsp;name:&nbsp;<span><{$data.store.store_name}></span></p>
+    <{if $data.type == 'qq'}>
+    <p><strong class="fl">Customer:</strong>
+    <span class="fl">   
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$data.number}>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<{$data.number}>:51" alt="Click here to give me a message" title="Click here to give me a message"/></a>
+     </span>
+      <span class="cl_zhi"></span>
+     </p>
+   <{/if}>
+   <{if $data.type == 'ww'}> 
+   <p><strong class="fl">Customer:</strong>
+    <span class="fl"> 
+    <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=<{$data.number}>&site=cntaobao&s=1&charset=utf-8" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<{$data.number}>&site=cntaobao&s=1&charset=utf-8"/></a>
+    </span>
+      <span class="cl_zhi"></span>
+     </p>
+   <{/if}>
+
+   <p>Company:&nbsp;&nbsp;&nbsp;&nbsp;<span><{$data.store.company_name}></span></p>
+   <p>Location:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><{$data.store.area}></span></p>
+   <div class="mall_store_shop_info_come">
+     <a target="_blank" href="<{link app=business ctl=site_shop act=view  arg=$data.store.store_id}>">Enter store</a>
+     
+    <ul class="button">
+            <li class="star-off" isspecial="1" <{if $data.isLogin}>star="<{$data.store.store_id}>" data-type="on"<{/if}>>
+            <a <{if $data.isLogin==false}>href="<{link app="b2c" ctl="site_passport" act="login"}>" <{else}>href="javascript:void(0);" rel="_fav_"<{/if}> class=" listact">
+             <span>
+                <div class="fav"><{t}>Favorite <{/t}></div>
+                <div class="nofav"><{t}>Favorite <{/t}></div>
+            </span>
+            </a>
+            </li>
+          </ul>
+     <div class="cl_zhi"></div>
+   </div>
+</div>
+</div>

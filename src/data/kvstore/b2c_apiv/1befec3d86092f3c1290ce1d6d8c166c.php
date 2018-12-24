@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:2:{s:12:"ecos.ome_2.2";s:3:"2.0";s:12:"ecos.taocrm_";s:3:"2.0";}s:8:"dateline";s:10:"1386729354";s:3:"ttl";s:1:"0";}

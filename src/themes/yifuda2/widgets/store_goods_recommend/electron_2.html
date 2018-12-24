@@ -1,0 +1,21 @@
+<div class="shop2_newp">
+	      <h4><span><{$setting.title}></span></h4>
+		  <ul class="shop2_newp_ul">
+            <{foreach from=$data.goods item=good key=key name="_good"}>
+		     <li> <a target="_blank" href="<{link app=b2c ctl="site_product" act="index" arg0=$good.goods_id}>">
+                 <img class="img-lazyload" src="images/transparent.gif" lazyload="<{$good.image_default_id|default:$data.defaultImage|storager:'m'}>" alt="<{$good.name|cut:72}>" />
+                 </a>
+			 <div class="shop2_newp_ul_div" style="height:50px; overflow:hidden;">
+                <a title="<{$good.name}>" target="_blank" href="<{link app=b2c ctl="site_product" act="index" arg0=$good.goods_id}>">
+                     <{$good.name}>
+                </a>
+                </div>
+                        <div class="shop2_newp_ul_div">
+                <p><span class="price le_zhi"><{$good.price|cur_odr}></span>
+                         <span class="sall ri_zhi"><{$good.mktprice|cur_odr}></span>
+                         <span class="cl_zhi"></span></p>
+                </div>
+               </li>
+		    <{/foreach}>
+		  </ul>
+</div>

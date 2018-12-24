@@ -1,0 +1,3 @@
+<?php exit(); ?>a:3:{s:5:"value";a:11:{s:2:"id";s:2:"47";s:10:"article_id";s:2:"64";s:9:"tmpl_path";s:1:"0";s:7:"content";s:220:"<div align="center">
+&nbsp;
+公测公告<br/><br/><div align="left">深商e天下超级猫平台定于7月1日开放外部公测，请参与外部公测的商户联系相关负责人进行公测安排！<br/></div></div>";s:9:"seo_title";s:0:"";s:15:"seo_description";s:0:"";s:12:"seo_keywords";s:0:"";s:10:"goods_info";s:0:"";s:8:"hot_link";s:0:"";s:6:"length";s:3:"220";s:8:"image_id";s:32:"12ebe81a88abfbced010d4e71c93675d";}s:8:"dateline";s:10:"1439864922";s:3:"ttl";s:1:"0";}

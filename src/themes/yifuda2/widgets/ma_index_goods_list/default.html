@@ -1,0 +1,16 @@
+<{foreach from=$data.goods item=linklist name=product}>
+    <{if $smarty.foreach.product.iteration == 1 || $smarty.foreach.product.iteration == 5}>
+        <div class="product-block product-block1">
+    <{else}>
+        <div class="product-block product-block2">
+    <{/if}>
+	<div class="block-l">
+		<div class="name" style="height:60px;"><{$linklist.nice|cut:75}></div>
+		<div class="price"><{$linklist.price|cur}></div>
+		<div class="price2"><{$linklist.new_tag|cut:20}></div>
+		<div class="buy"><input class="login_buy" type="button" value="BUY NOW"  onclick="window.open('<{link app=b2c ctl=site_product act=index arg0=$linklist.id}>')"></div>
+	</div>
+	<div class="block-r"><a target='_blank' href="<{link app=b2c ctl=site_product act=index arg0=$linklist.id}>"><img width="140px" height="140px" src="<{$linklist.pic|storager:'s'}>"></a></div>
+	<div class="block-clr"></div>
+    </div>
+<{/foreach}>

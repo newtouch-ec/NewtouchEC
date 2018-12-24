@@ -1,0 +1,64 @@
+<form method="post" action="<{link app=sms ctl=admin_sms act=signup}>" id='messenger-sms-form' >
+<div class="division" id="stepOne">
+    <table class="tableform" border="0" cellpadding="0" cellspacing="0" >
+        <tr>
+            <th ><font color="red">*</font><{t}>序列号：<{/t}></th>
+            <td>
+                <{input type="text" name="sms_code_num" value="{$sms_code.sms_code_num}" vtype="required"}>
+            </td>
+        </tr>
+        <tr>
+            <th ><font color="red">*</font><{t}>序列号密码：<{/t}></th>
+            <td>
+                <{input type="text" name="sms_code_psw" value="{$sms_code.sms_code_psw}" vtype="required"}>
+            </td>
+        </tr>
+        <tr>
+            <th ><font color="red">*</font><{t}>KEY值：<{/t}></th>
+            <td>
+                <{input type="text" name="sms_code_key" value="{$sms_code.sms_code_key}" vtype="required" maxlength='15'}>
+            </td>
+        </tr>
+    </table>
+    <div class="notice"><{t}>
+        1. “序列号”和“序列号密码”，请通过亿美销售人员获取。<br>
+        2．用户自定义key值， 长度不超过15个字符的字符串(可包含数字和字母)<br>
+        3．将key做好备份，不要遗忘<br>
+        4．请做好保密工作，因客户自身原因泄露该关键字造成的经济损失由客户自己承担全部责任<{/t}>
+    </div>
+    <div class="table-action">
+    <{button label=$___b2c="保存"|t:'b2c' type="submit" id="sms-form-submit"}>
+    </div>
+</div>
+</form>
+<script>
+   (function(){
+    var _form = $('messenger-sms-form');
+    var btn =$('sms-form-submit');
+    _form.store('target',{
+        onRequest:function() {
+        },
+        onComplete:function(){
+
+        },
+        onSuccess:function(response){
+            var hash_res_obj = JSON.decode(response);
+            if (hash_res_obj.success != undefined && hash_res_obj.success != "")
+            {
+                try{
+                    var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+					if(_dialogIns)
+					{
+						_dialogIns.close();
+					}
+                }catch(e){}
+
+                
+            }else{
+                
+            }
+        }
+    });
+})();
+
+</script>

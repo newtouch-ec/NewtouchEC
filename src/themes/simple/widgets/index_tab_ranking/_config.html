@@ -1,0 +1,55 @@
+<div id="goods_exshow_config" class="tableform">
+	<div class="division">
+		<h4><{t app='b2c'}>tab项<{/t}></h4>
+		<div class="tableform">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<th><{t app='b2c'}>tab名称：<{/t}></th>
+					<td>
+						<input type="text" name='tab[0][title]' value="<{$setting.tab.0.title}>" class="inputstyle" >
+					</td>
+					<td>
+						<{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[0][goods_id]" obj_name='tab[0][goods]' linkid=$setting.tab.0.goods_id value=$setting.tab.0.goods view="b2c:admin/goods/detail/rel_items.html"}>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">请选择5件商品</span>
+					</td>
+				</tr>
+				<tr>
+					<th><{t app='b2c'}>tab名称：<{/t}></th>
+					<td>
+						<input type="text" name='tab[1][title]' value="<{$setting.tab.1.title}>" class="inputstyle" >
+					</td>
+					<td>
+						<{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[1][goods_id]" obj_name='tab[1][goods]' linkid=$setting.tab.1.goods_id value=$setting.tab.1.goods view="b2c:admin/goods/detail/rel_items.html"}>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">请选择5件商品</span>
+					</td>
+				</tr>
+				<tr>
+					<th><{t app='b2c'}>tab名称：<{/t}></th>
+					<td>
+						<input type="text" name='tab[2][title]' value="<{$setting.tab.2.title}>" class="inputstyle" >
+					</td>
+					<td>
+						<{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[2][goods_id]" obj_name='tab[2][goods]' linkid=$setting.tab.2.goods_id value=$setting.tab.2.goods view="b2c:admin/goods/detail/rel_items.html"}>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">请选择5件商品</span>
+					</td>
+				</tr>
+				<tr>
+					<th><{t app='b2c'}>tab名称：<{/t}></th>
+					<td>
+						<input type="text" name='tab[3][title]' value="<{$setting.tab.3.title}>" class="inputstyle" >
+					</td>
+					<td>
+						<{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[3][goods_id]" obj_name='tab[3][goods]' linkid=$setting.tab.3.goods_id value=$setting.tab.3.goods view="b2c:admin/goods/detail/rel_items.html"}>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">请选择5件商品</span>
+					</td>
+				</tr>
+				<tr>
+					<th><{t app='b2c'}>tab名称：<{/t}></th>
+					<td>
+						<input type="text" name='tab[4][title]' value="<{$setting.tab.4.title}>" class="inputstyle" >
+					</td>
+					<td>
+						<{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[4][goods_id]" obj_name='tab[4][goods]' linkid=$setting.tab.4.goods_id value=$setting.tab.4.goods view="b2c:admin/goods/detail/rel_items.html"}>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">请选择5件商品</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+

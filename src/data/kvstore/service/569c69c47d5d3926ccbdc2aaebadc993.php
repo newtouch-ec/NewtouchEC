@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:1:{s:26:"entermembercenter_auth_use";s:26:"entermembercenter_auth_use";}}s:8:"dateline";s:10:"1386729318";s:3:"ttl";s:1:"0";}

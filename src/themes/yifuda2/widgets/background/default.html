@@ -1,0 +1,9 @@
+<script>
+(function(){
+	if("<{$data.image|storager}>"){
+		$('backgroumd').style.backgroundImage="url(<{$data.image|storager}>)";
+	}else{
+		$('backgroumd').setStyle('background-color',"<{$data.color}>");
+	}
+})();
+</script>

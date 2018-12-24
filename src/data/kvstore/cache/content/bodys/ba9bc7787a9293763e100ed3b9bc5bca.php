@@ -1,0 +1,2 @@
+<?php exit(); ?>a:3:{s:5:"value";a:11:{s:2:"id";s:2:"45";s:10:"article_id";s:2:"62";s:9:"tmpl_path";s:1:"0";s:7:"content";s:326:"<P><FONT size=4><STRONG>商品包装是否有保证？</STRONG></FONT></P>
+<DIV><FONT size=2>我们所发送商品均由专人进行打包，商品在未签收前都由我们负责，如在收到商品时发现包装有破损或是其它方面问题，请直接致电客服热线，客服人员会帮您解决。</FONT></DIV>";s:9:"seo_title";s:0:"";s:15:"seo_description";s:0:"";s:12:"seo_keywords";s:0:"";s:10:"goods_info";s:0:"";s:8:"hot_link";s:0:"";s:6:"length";s:3:"326";s:8:"image_id";s:0:"";}s:8:"dateline";s:10:"1407654677";s:3:"ttl";s:1:"0";}

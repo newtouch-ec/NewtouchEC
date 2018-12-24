@@ -1,0 +1,28 @@
+<div class="tableform widgetconfig">
+    <div class="division">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th><{t app='b2c'}>电话小图标<{/t}>:</th>
+                <td>
+                    <input type=hidden name="icon" value="<{$setting.icon}>">
+                    <input name="icon" class="imgsrc x-input" value="<{$setting.icon}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+            </tr>
+            <tr>
+                <th><{t app='b2c'}>电话号码<{/t}>:</th>
+                <td><input name="tel" value="<{$setting.tel}>" class="x-input"/></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    function addPic(target){
+            var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+            Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                     $(target).getPrevious('input').value=image_src;
+            }}) ;
+            });
+        }
+</script>

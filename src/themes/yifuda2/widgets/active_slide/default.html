@@ -1,0 +1,31 @@
+<style>
+#ex_slide_<{$widgets_id}>{width:<{$data.width}>px;height:<{$data.height}>px;overflow:hidden;position:relative;}
+#ex_slide_<{$widgets_id}> ol li{height:<{$data.height}>px;width:<{$data.width}>px;list-style:none;display:block;overflow:hidden;border:0;margin:0;}
+#ex_slide_<{$widgets_id}> .slide-trigger{position:absolute;z-index:60;}
+</style>
+<div class="ex-slide1-box">
+  <div id="ex_slide_<{$widgets_id}>" class="ex-slide1">
+    <ol class="switchable-content clearfix" style="position: absolute; width: 7680px;">
+          <{foreach from=$data.pic item=parent key=parentId}>
+          <li class="switchable-panel" style="background:url('<{$parent.link}>') no-repeat top center; ">
+               <a href="<{$parent.linktarget}>"><div></div></a>
+          </li>
+          <{/foreach}>
+    </ol>
+  </div>
+</div>
+<script>
+(function(){
+    var width_screen=screen.width;
+    var div_screen_width = $('ex_slide_<{$widgets_id}>').getElements('ol').getElements('div');
+    for(i=0;i<div_screen_width.length;i++){
+        div_screen_width[i].setStyle('width',width_screen);
+        div_screen_width[i].setStyle('height',<{$data.height}>);
+    }
+})();
+
+    new Switchable('ex_slide_<{$widgets_id}>',{
+        effect:'<{$data.switcheffect}>',
+        autoplay:<{$data.autoplay}>
+    });
+</script>

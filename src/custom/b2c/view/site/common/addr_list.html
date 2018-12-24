@@ -1,0 +1,121 @@
+<{if $default_addr}>
+	<li class="J_Addr J_MakePoint selected" >
+    	<input type="hidden" value="<{$default_addr.addr_id}>">
+    	<input type="hidden" id="default_addr" value="<{$default_addr._area}>">
+    	<input type="hidden" value="<{$default_addr.region_type}>">
+    	<input type="hidden" value="<{$default_addr.area_str}>">
+		<div class="addr_hd" style="display: block;">
+			<span class="addrinfo-province"><{$default_addr.area_str}></span>
+			<span class="addrinfo-name"><{$default_addr.name}></span>
+		</div>
+		<div class="addr_bd" style="display: block;">
+			<!--<span class="addrinfo-dist"><{$default_addr.area_arr.2}></span>-->
+			<span title="<{t}>收货地区<{/t}>" class="addrinfo-street"><{$default_addr.addr}></span>
+		</div>
+		<span class="addrinfo-tel"><{$default_addr.mobile}> </span>
+   </li>
+<{/if}>
+<{if $addrlist}>
+<{foreach from=$addrlist item=item key=key name="addrlist"}>
+  <{if !$item.def_addr}>
+	<li class="J_Addr J_MakePoint" >
+    	<input type="hidden" value="<{$item.addr_id}>">
+    	<input type="hidden" value="<{$item._area}>">
+    	<input type="hidden" value="<{$item.region_type}>">
+    	<input type="hidden" value="<{$item.area_str}>">
+		<div class="addr_hd" style="display: block;">
+			<span class="addrinfo-province"><{$item.area_str}></span>
+			<span class="addrinfo-name"><{$default_addr.name}></span>
+		</div>
+		<div class="addr_bd" style="display: block;">
+			<span title="<{t}>收货地区<{/t}>" class="addrinfo-street"><{$item.addr}></span>
+		</div>
+		<span class="addrinfo-tel"><{$item.mobile}> </span>
+     </li>
+  <{/if}>
+<{/foreach}>
+<{/if}>
+<input type="hidden" id="addr_id" name="delivery[addr_id]" value="<{$default_addr.addr_id}>">
+<input type="hidden" id="ship_area_backup" name="ship_area_backup" value="">
+<script>
+	window.addEvent('domready',function(){
+        //设置默认收货地址的送货时间
+        changeReveiveAddress(<{$default_addr.region_type}>, "<{$default_addr.area_str}>", "<{$default_addr.addr_id}>");
+        
+		$$('.J_MakePoint').each(function(item){
+			item.addEvent('click',function(){
+				var input = item.getChildren('input');
+				input_addrId = input[0];
+                //如果点击的是当前选中的地址，则返回。
+                if(input_addrId.value==$('addr_id').value){
+                    return;
+                }
+                if(!confirm('<{t}>更换地址后，您需要重新确认订单信息<{/t}>')){
+                    return;
+                }
+				$('addr_id').value = input_addrId.value;
+				updateNewAddr(input_addrId.value,'');
+				$$('.selected').removeClass('selected');
+				item.addClass('selected');
+				$('newAddr').setStyle('display','none');
+				$('addrArea_id').value = input[1].value;
+				setUpShipping(input[1].value);
+                
+                //地域分类
+                var region_type = input[2].value;
+                changeReveiveAddress(region_type, input[3].value, input[0].value);
+			});
+
+			item.addEvent('mouseenter',function(){
+			});
+
+			item.addEvent('mouseenter',function(){
+			});
+		});
+	});
+    
+    //设置收货地址的送货时间
+    function changeReveiveAddress(region_type, area_str, addr_id){
+        var region_package = "";
+        
+        $("region_type").set("value", region_type);
+        //大陆地址
+        if(region_type == 1){
+            $("div_addr_confirm").setStyle("display", "none");
+            
+            $("tr_flight_no").set("value", "");
+            $("tr_departure_time").set("value", "");
+            $("tr_hope_service_date").set("value", "");
+            
+            region_package = "mainland:";
+        }
+        //日本酒店
+        else if(region_type == 2){
+            $("div_addr_confirm").setStyle("display", "");
+            $("div_addr_confirm_title").set("html", "确认送达酒店时间");
+            
+            $("tr_flight_no").setStyle("display", "none");
+            $("tr_departure_time").setStyle("display", "none");
+            $("tr_hope_service_date").setStyle("display", "");
+            
+            $("tr_flight_no").set("value", "");
+            $("tr_departure_time").set("value", "");
+            
+            region_package = "hotel:";
+        }
+        //日本机场
+        else if(region_type == 3){
+            $("div_addr_confirm").setStyle("display", "");
+            $("div_addr_confirm_title").set("html", "确认送达机场时间");
+            
+            $("tr_flight_no").setStyle("display", "");
+            $("tr_departure_time").setStyle("display", "");
+            $("tr_hope_service_date").setStyle("display", "none");
+            
+            $("tr_hope_service_date").set("value", "");
+            
+            region_package = "airport:";
+        }
+        $("ship_area_backup").set("value", region_package + area_str + ":" + addr_id);
+    }
+</script>

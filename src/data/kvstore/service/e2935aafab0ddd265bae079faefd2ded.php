@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:1:{s:4:"list";a:1:{s:34:"couponlog_finder_order_coupon_user";s:34:"couponlog_finder_order_coupon_user";}}s:8:"dateline";s:10:"1386729369";s:3:"ttl";s:1:"0";}

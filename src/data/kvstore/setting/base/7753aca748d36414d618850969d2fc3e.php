@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:79:"local_ver,app_id,remote_ver,description,status,debug_mode,column_tools,app_name";s:8:"dateline";s:10:"1440406989";s:3:"ttl";s:1:"0";}

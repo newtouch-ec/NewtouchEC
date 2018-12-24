@@ -1,0 +1,72 @@
+<ul id="widgets_brand_list">
+    <{foreach from=$data item=item key=key name="branditem"}>
+        <{if $smarty.foreach.branditem.iteration % 5 == 0}>
+            <li class="brn">
+        <{else}>
+            <li>
+        <{/if}>
+        <a href="<{link app=b2c ctl=site_brand act=index arg0=$item.brand_id}>" title="<{$item.brand_name}>">
+            <img width="155px" height="59px"  src="<{$item.brand_logo|storager}>" alt="<{$item.brand_name}>" />
+        </a>
+        </li>
+        <{if $smarty.foreach.branditem.iteration == 25}>
+            <{break}>
+        <{/if}>
+    <{/foreach}>
+</ul>
+<script type="text/javascript">
+    var recordCount = <{$data|count}>;
+    var dataList = new Array();
+    var pageNo = 1;
+    var pageSize = 25;
+    
+    var totalPage = Math.ceil(recordCount / pageSize);
+    <{foreach from=$data item=item key=key name="branditem"}>
+        var data = {};
+        data.brand_id = "<{$item.brand_id}>";
+        data.brand_name = "<{$item.brand_name}>";
+        data.brand_logo = "<{$item.brand_logo|storager}>";
+        data.link_url = "";        
+        dataList.push(data);
+    <{/foreach}>
+    
+    function go_brand_page(flag){
+        if(flag == 1 && pageNo == 1){
+            return false;
+        }
+        
+        if(flag == 2 && pageNo == totalPage){
+            return false;
+        }
+        
+        if(flag == 1){
+            pageNo --;
+        }
+        if(flag == 2){
+            pageNo ++;
+        }
+        var start = (pageNo - 1) * pageSize;
+        var end = pageNo * pageSize;
+        
+        var html = "";
+        for(var i = start ; i < end ; i ++){
+            if(i >= dataList.length){
+                break;
+            }
+            if((i + 1) % 5 == 0){
+                html += '<li class="brn">';
+            }
+            else{
+                html += '<li>';
+            }
+            
+            html += '<a href="" title="' + dataList[i].brand_name + '">';
+            html += '<img width="155px" height="59px" src="' + dataList[i].brand_logo + '" alt="' + dataList[i].brand_name + '" />';
+            html += '</a>';
+            html += '</li>';
+        }
+        document.getElementById('widgets_brand_list').innerHTML = html;
+        return false;
+    }
+    
+</script>

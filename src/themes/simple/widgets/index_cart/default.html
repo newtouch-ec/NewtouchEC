@@ -1,0 +1,51 @@
+<div class="cart_div" id="head_menu_cart">
+    <a href="<{link app=b2c ctl=site_cart act=index}>" class="mini-cart fl jiesuan2">
+   <b></b>
+   我的购物车 
+    <{if $setting.cart_show_type==1}>
+      <{t app='b2c'}><{/t}>
+    <{else}>
+      <{t app='b2c'}><{/t}>
+    <{/if}>
+	
+  </a>
+  <a href="<{link app=b2c ctl=site_cart act=index}>" class="jiesuan">
+     <script>
+        var _prefix_number = "";
+        var _subfix_number = "</span>";
+
+        <{if $setting.cart_show_type==1}>
+            _prefix_number = '<span id="cart_num">';
+            document.write(typeof(Cookie)=='undefined' ? (_prefix_number + '0' + _subfix_number) : _prefix_number + (Cookie.read('S[CART_NUMBER]')?Cookie.read('S[CART_NUMBER]'):'0') + _subfix_number);
+        <{else}>
+            _prefix_number = '<span id="cart_count">';
+            document.write(typeof(Cookie)=='undefined' ? (_prefix_number + '0' + _subfix_number): _prefix_number + (Cookie.read('S[CART_COUNT]')?Cookie.read('S[CART_COUNT]'):'0') + _subfix_number);
+        <{/if}>
+    </script>
+  </a>
+  <div class="cart_inproduct" style="display:none" id="cart_goods_div">
+    <{include file="site/cart/cart_mini.html" app="b2c"}>
+  </div>
+</div>
+
+<script>
+    $('head_menu_cart').addEvent('mouseenter',function(){
+        $('cart_goods_div').setStyle('display','');
+        var cart_show_type = <{if $setting.cart_show_type==1}>1<{else}>0<{/if}>;
+        new Request.HTML({
+            update:$('cart_goods_div'),
+            url:'<{link app="b2c" ctl="site_cart" act="mini_cart"}>',
+            onSuccess:function(){
+                <{if $setting.cart_show_type==1}>
+                    $('cart_num').innerHTML = (Cookie.read('S[CART_NUMBER]')?Cookie.read('S[CART_NUMBER]'):'0');
+                <{else}>
+                    $('cart_count').innerHTML = (Cookie.read('S[CART_COUNT]')?Cookie.read('S[CART_COUNT]'):'0');
+                <{/if}>
+            }
+        }).post();
+    });
+
+    $('head_menu_cart').addEvent('mouseleave',function(){
+        $('cart_goods_div').setStyle('display','none');
+    });
+</script>

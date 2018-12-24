@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:6:{s:5:"stime";i:1394640000;s:5:"etime";i:1396108800;s:10:"enrollment";i:2;s:6:"status";s:1:"1";s:9:"getcoupon";s:0:"";s:10:"getadvance";s:2:"50";}s:8:"dateline";s:10:"1394631434";s:3:"ttl";s:1:"0";}

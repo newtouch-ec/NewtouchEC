@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:2:{s:15:"company_timeend";s:3:"408";s:10:"store_cert";s:3:"284";}s:8:"dateline";s:10:"1439437337";s:3:"ttl";s:1:"0";}

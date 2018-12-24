@@ -1,0 +1,5 @@
+<?php exit(); ?>a:3:{s:5:"value";a:11:{s:2:"id";s:2:"29";s:10:"article_id";s:2:"46";s:9:"tmpl_path";s:17:"article-help.html";s:7:"content";s:763:"<div style="background-color: rgb(255, 255, 255); padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; cursor: text; width: 100%; height: 100%; overflow-x: auto; overflow-y: auto; font-family: Arial, Verdana, sans-serif; font-size: 12px; "><div class="pageWrap"><h2>非会员购物通道</h2><ol>
+	<li>我们提供非会员购物功能，在购物车下一步的时候，进入非会员购物通道即可使用此功能。</li>
+	<li>但是由于非会员无法享受购物积分、无法查询订单等，所以我们建议您花一分钟时间注册成为会员，这样就能享受整个网站强大的会员功能和多种优惠措施。</li>
+</ol>
+</div></div>";s:9:"seo_title";s:0:"";s:15:"seo_description";s:0:"";s:12:"seo_keywords";s:0:"";s:10:"goods_info";s:0:"";s:8:"hot_link";s:0:"";s:6:"length";s:3:"763";s:8:"image_id";N;}s:8:"dateline";s:10:"1408076675";s:3:"ttl";s:1:"0";}

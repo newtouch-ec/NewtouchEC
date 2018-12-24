@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:9:{s:6:"cat_id";s:2:"69";s:14:"column_control";s:3:"141";s:5:"score";s:2:"74";s:8:"downtime";s:3:"207";s:10:"marketable";s:2:"35";s:7:"d_order";s:2:"54";s:5:"store";s:2:"65";s:10:"column_tag";s:2:"86";s:11:"last_modify";s:3:"166";}s:8:"dateline";s:10:"1439879779";s:3:"ttl";s:1:"0";}

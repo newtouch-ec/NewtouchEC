@@ -1,0 +1,93 @@
+<div class="auction_block">
+	<div class="auction_title"><span class="title"><{t app='b2c'}>在拍卖<{/t}></span><span class="icon_hot"></span></div>
+	
+	<{foreach from=$data.goods item=linklist name=product}>
+	<div class="auction_top" id="div<{$smarty.foreach.product.iteration}>" <{if $smarty.foreach.product.iteration>1}>style="display:none"<{/if}>>
+		<div class="cp"><img src="<{$linklist.image|default:$data.defaultImageL|storager:'l'}>"></div>
+		<div class="buy">
+			<h2><{$linklist.g_name}></h2>
+			<ul>
+				<li><div class="icon icon1"><{t app='b2c'}>当前价格<{/t}></div><span class="price"><{$linklist.show_price|cur}></span></li>
+				<li><div class="icon icon2"><{t app='b2c'}>拍卖次数<{/t}></div><span><{$linklist.log_count}></span></li>
+				<li><div class="icon icon3">
+					<{if $data.now <= $linklist.delayed_time}>
+						<{if $linklist.start_time > $data.now }>
+						<{t app='b2c'}>距开始还有<{/t}>
+						<{else}>
+						<{t app='b2c'}>剩余时间<{/t}>
+						<{/if}>
+					<{else}>
+				 		<{t app='b2c'}>拍卖结束<{/t}>
+				 	<{/if}>
+					</div>
+				 	<span class="time">
+						<div class="group_time" starttime="<{$linklist.start_time}>" endtime="<{$linklist.delayed_time}>" gid="<{$linklist.gid}>">
+	                     <{if $data.now <= $linklist.delayed_time}>
+							  <span class="hour">0</span><span>:</span>
+							  <span class="minute">0</span><span>:</span>
+							  <span class="second">0</span><span></span>
+						 <{/if}>
+						 </div>
+					 </span>
+				</li>
+			</ul>
+			<{if $data.now >= $linklist.start_time && $data.now <= $linklist.delayed_time}>
+                <{if $linklist.remainnums != '' && $linklist.remainnums <= 0}>
+                  	<a target='_blank' href="<{link app=auction ctl=site_product act=index args=$linklist.args}>"><input type="button" class="bid2" value="<{t app='b2c'}>已售完<{/t}>" /></a>
+                <{else}>
+                  	<a target='_blank' href="<{link app=auction ctl=site_product act=index args=$linklist.args}>"><input type="button" class="bid" value="<{t app='b2c'}>提交出价<{/t}>" /></a>
+                <{/if}>
+            <{elseif $data.now < $linklist.start_time}>
+                	<a target='_blank' href="<{link app=auction ctl=site_product act=index args=$linklist.args}>"><input type="button" class="bid2" value="<{t app='b2c'}>未开始<{/t}>" /></a>
+            <{elseif $data.now > $linklist.delayed_time}>
+                	<a target='_blank' href="<{link app=auction ctl=site_product act=index args=$linklist.args}>"><input type="button" class="bid2" value="<{t app='b2c'}>拍卖结束<{/t}>" /></a>
+            <{/if}>
+			
+		</div>
+		<div class="history">
+			<div class="title"><{t app='b2c'}>拍卖历史<{/t}></div>
+			<ul>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+				<li class="time">03-06 13:06:11</li><li class="name">annbyababy</li><li class="price">RM11000.00</li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<{/foreach}>
+	<ul class="auction_bottom">
+	<{foreach from=$data.goods item=linklist name=product}>
+		<li id="a<{$smarty.foreach.product.iteration}>" class="<{if $smarty.foreach.product.iteration==1}>hover<{/if}> <{if $smarty.foreach.product.iteration==10}>border0<{/if}>"><a href="javascript:void(0)" onclick="changeDiv(<{$smarty.foreach.product.iteration}>)" ><img src="<{$linklist.image|default:$data.defaultImage|storager:'s'}>"></a></li>
+	<{/foreach}>
+	</ul>
+</div>
+<script type="text/javascript">
+	var preindex=1;
+	function changeDiv(id){
+		if(id == preindex) return;
+		//clear
+		if(preindex==10){
+			document.getElementById("a"+preindex).className = "border0";
+		}else{
+			document.getElementById("a"+preindex).className = "";
+		}
+		document.getElementById("div"+preindex).style.display = "none";
+		
+		//show
+		if(id==10){
+	    	document.getElementById("a"+id).className = "hover border0";
+	    }else{
+	    	document.getElementById("a"+id).className = "hover";
+	    }
+		document.getElementById("div"+id).style.display = "block";
+		
+		preindex = id;
+	}
+</script>

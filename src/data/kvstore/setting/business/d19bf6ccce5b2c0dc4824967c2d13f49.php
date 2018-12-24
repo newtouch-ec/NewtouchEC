@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:236:"column_control,create_time,batch_id,order_money,pre_settlement,score_use,refund,total_recut,order_recut,order_cut,re_cut,pre_refund_recut,p_pre_refund_recut,b_pre_refund_recut,pre_settlement_cut,score_give,store_id,settlement_no,account";s:8:"dateline";s:10:"1409711509";s:3:"ttl";s:1:"0";}

@@ -1,0 +1,291 @@
+<style>
+  #top_link_area .add-title,
+  #top_link_area .add-url,
+  #top_link_area .delete{float:left;_display:inline;margin-left:5px;}
+  #top_link_area .delete{height:20px;width:16px;cursor:pointer;}
+  #top_link_area .top-link-item{background-color:#E2E8EB;padding:5px 5px 3px;line-height:22px;margin:2px 0;}
+  #add_top_link{cursor:pointer;}
+</style>
+<div class="tableform widgetconfig">
+  <div class="division">
+    <h4>楼层基本信息</h4>
+    <div class="tableform">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <th><{t app='b2c'}>楼层标题:<{/t}></th>
+          <td>
+            <input type="text" name='title' value="<{$setting.title}>" class="inputstyle" >
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>楼层标题链接:<{/t}></th>
+          <td>
+            <input type="text" name='title_link' value="<{$setting.title_link}>" class="inputstyle" >
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>楼层小图标：<{/t}></th>
+          <td>
+            <input type=hidden name="floor_icon" value="<{$setting.floor_icon}>">
+            <input name="floor_icon" class="imgsrc x-input" value="<{$setting.floor_icon}>" >
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);" >
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>标题背景色：<{/t}></th>
+          <td>
+            <{input type="color" name="bg_color" class="inputstyle" value=$setting.bg_color|default:'#cccccc' size=7 maxlength=7 }>
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>副标题文字链接：<{/t}></th>
+          <td>
+            <input type="button" id="add_top_link" value="添加文字链接" />
+            <ul id="top_link_area">
+
+            </ul>
+         </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <h4>轮播广告部分</h4>
+        <div id="picAddress" class="tableform">
+            <div class="division widgetconfig">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th width="20%"><{t}>图片宽度：<{/t}></th>
+                        <td width="30%" ><{input name="ad[width]" style="width:50px" value=$setting.ad.width|default:'546' required="true" type="digits"}></td>
+                        <th width="20%" >图片高度：</th>
+                        <td width="30%" ><{input name="ad[height]" style="width:50px" value=$setting.ad.height|default:'280' required="true" type="digits"}></td>
+                    </tr>
+                    <tr>
+                        <th width="20%"><{t}>切换效果：<{/t}></th>
+                        <td width="30%" >
+                            <{input required=true type='radio' name="ad[switcheffect]" options=array('scrollx'=>横向滚动,'scrolly'=>竖向滚动,'fade'=>渐现渐隐) value=$setting.ad.switcheffect|default:scrollx}>
+                        </td>
+                        <th width="20%" >自动播放：</th>
+                        <td width="30%" >
+                            <{input required=true type='select' name="ad[autoplay]" options=array('true'=>是,'false'=>否) value=$setting.ad.autoplay|default:true}>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="piccontent">
+                <{foreach from=$setting.ad.pic item=data key=key}>
+                <table  width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th><{t app="b2c"}>图片地址:<{/t}></th>
+                        <td>
+                            <input type=hidden name=ad[pic][<{$data.id}>][id] value="<{$data.id}>">
+                            <input name='ad[pic][<{$data.id}>][link]'  autocomplete='off'  vtype="img_url" required='true'  class="imgsrc x-input" id="ad[pic][<{$data.id}>][link]"  value="<{$data.link}>">
+                            <input type=button value=上传图片 class="uploadbtn">
+                        </td>
+                        <th><{t app="b2c"}>链接地址:<{/t}></th>
+                        <td>
+                            <input name="ad[pic][<{$data.id}>][linktarget]"  vtype="purl"   class='x-input' autocomplete='off'   value="<{$data.linktarget}>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><{t app="b2c"}>描述:<{/t}></th>
+                        <td>
+                            <input name="ad[pic][<{$data.id}>][linkinfo]"  class='x-input' autocomplete='off'  value="<{$data.linkinfo}>">
+                        </td>
+                        <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>
+                        <td><span onclick="$(this).getParent('table').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>
+                    </tr>
+                </table>
+                <{/foreach}>
+            </div>
+            <{button label=$___b2c="添加图片"|t:'b2c' class="addimage" app="desktop" icon="btn_add.gif"}>
+        </div>
+    </div>
+
+    <h4>店铺轮播部分</h4>
+    <div class="tableform">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>选择要展示的店铺：</th>
+                <td>
+                   <{input type='object' multiple="true" filter='' rowselect="true" object="storemanger@business" textcol="store_name" name="store_id" cols="store_name,image"  value=$setting.store_id}>
+                </td>
+            </tr>
+            
+        </table>
+    </div>
+    <h4>广告图片部分</h4>
+    <div class="tableform">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>轮播左上侧图片（宽：200px 高：190px）：</th>
+                <td>
+                    <input type=hidden name="leftpic[0]" value="<{$setting.leftpic.0}>">
+                    <input name='leftpic[0]' class="imgsrc x-input" value="<{$setting.leftpic.0}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='leftlink[0]' class="x-input" value="<{$setting.leftlink.0}>">
+                </td>
+            </tr>
+            <tr>
+                <th>轮播左下侧图片（宽：200px 高：260px）：</th>
+                <td>
+                    <input type=hidden name="leftpic[1]" value="<{$setting.leftpic.1}>">
+                    <input name='leftpic[1]' class="imgsrc x-input" value="<{$setting.leftpic.1}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='leftlink[1]' class="x-input" value="<{$setting.leftlink.1}>">
+                </td>
+            </tr>
+            <tr>
+                <th>轮播下左侧图片（宽：364px 高：170px）：</th>
+                <td>
+                    <input type=hidden name="belowpic[0]" value="<{$setting.belowpic.0}>">
+                    <input name='belowpic[0]' class="imgsrc x-input" value="<{$setting.belowpic.0}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='belowlink[0]' class="x-input" value="<{$setting.belowlink.0}>">
+                </td>
+            </tr>
+            <tr>
+                <th>轮播下右侧图片（宽：182px 高：170px）：</th>
+                <td>
+                    <input type=hidden name="belowpic[1]" value="<{$setting.belowpic.1}>">
+                    <input name='belowpic[1]' class="imgsrc x-input" value="<{$setting.belowpic.1}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='belolink[1]' class="x-input" value="<{$setting.belolink.1}>">
+                </td>
+            </tr>
+            <tr>
+                <th>轮播右1(上)图片：（宽：254px 高：170px）</th>
+                <td>
+                    <input type=hidden name="rightpic[0]" value="<{$setting.rightpic.0}>">
+                    <input name='rightpic[0]' class="imgsrc x-input" value="<{$setting.rightpic.0}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='rightlink[0]' class="x-input" value="<{$setting.rightlink.0}>">
+                </td>
+            </tr>
+            <tr>
+                <th>轮播右1(下)图片：（宽：254px 高：280px）</th>
+                <td>
+                    <input type=hidden name="rightpic[1]" value="<{$setting.rightpic.1}>">
+                    <input name='rightpic[1]' class="imgsrc x-input" value="<{$setting.rightpic.1}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='rightlink[1]' class="x-input" value="<{$setting.rightlink.1}>">
+                </td>
+            </tr>
+            <tr>
+                <th>轮播右2(上)图片：（宽：200px 高：255px）</th>
+                <td>
+                    <input type=hidden name="rightpic[2]" value="<{$setting.rightpic.2}>">
+                    <input name='rightpic[2]' class="imgsrc x-input" value="<{$setting.rightpic.2}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='rightlink[2]' class="x-input" value="<{$setting.rightlink.2}>">
+                </td>
+            </tr>
+            <tr>
+                <th>轮播右2(下)图片：（宽：200px 高：194px）</th>
+                <td>
+                    <input type=hidden name="rightpic[3]" value="<{$setting.rightpic.3}>">
+                    <input name='rightpic[3]' class="imgsrc x-input" value="<{$setting.rightpic.3}>">
+                    <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+                </td>
+                <th>链接：</th>
+                <td>
+                    <input name='rightlink[3]' class="x-input" value="<{$setting.rightlink.3}>">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+ function addPic(target){
+            var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+            Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                     target.getPrevious('input').value=image_src;
+            }});
+            });
+        }
+ var TopLinkTitle = new Array(<{foreach from=$setting.top_link_title item=title_item}> "<{$title_item}>", <{/foreach}>"end");
+    TopLinkTitle.pop();
+    var TopLinkUrl = new Array(<{foreach from=$setting.top_link_url item=url_item}>"<{$url_item}>",<{/foreach}>"end");
+    TopLinkUrl.pop();
+    var TopLink = new Hash(TopLinkUrl.associate(TopLinkTitle));
+    function DelTopLink(item){
+        item.getParent(".top-link-item").destroy();
+    }
+    function CreateTopLinkDom(DomHash){
+      DomHash.each(function(v,k){
+        var ActiveLi = new Element('li',{'class':'top-link-item clearfix','html':'<div class="add-title"> 文字：<input type="text" name="top_link_title[]" class="x-input" value="'+k+'"/> </div> <div class="add-url"> 链接地址：<input type="text" class="x-input" name="top_link_url[]" value="'+v+'"/> </div> <span class="delete" title="删除"></span>'}).inject('top_link_area');
+        ActiveLi.getElement('.delete').addEvent('click',function(){
+          DelTopLink(this);
+        });
+      });
+    }
+    CreateTopLinkDom(TopLink);
+    var AddTopLink = $('add_top_link');
+    AddTopLink.addEvent('click',function(){
+      var ActiveLi = new Element('li',{'class':'top-link-item clearfix','html':'<div class="add-title"> 文字：<input type="text" class="x-input" name="top_link_title[]"/> </div> <div class="add-url"> 链接地址：<input type="text" name="top_link_url[]" class="x-input"/> </div> <span class="delete" title="删除"></span>'}).inject('top_link_area');
+      ActiveLi.getElement('.delete').addEvent('click',function(){
+        DelTopLink(this);
+      });
+    });
+
+    var tag_type='table',tag_class='pic_items';
+
+    document.getElement(".addimage").addEvent('click',function(){
+
+      var i=new Date().getTime();
+
+      var tpl='\
+      <tr><th><{t app="b2c"}>图片地址:<{/t}></th>\
+        <td><input type=hidden name=ad[pic]['+i+'][id] value="'+i+'"><input autocomplete="off" name="ad[pic]['+i+'][link]" vtype="img_url" required="true"  class="imgsrc x-input">\
+          <input type=button value=<{t app="b2c"}>上传图片<{/t}> class="uploadbtn" id="ad[pic]['+i+']"></td>\
+        <th><{t app="b2c"}>链接地址:<{/t}></th>\
+        <td><input name="ad[pic]['+i+'][linktarget]"  vtype="purl" class="x-input" autocomplete="off"></td></tr>\
+      <tr><th><{t app="b2c"}>描述:<{/t}></th>\
+        <td><input name="ad[pic]['+i+'][linkinfo]"  class="x-input" autocomplete="off" ></td>\
+        <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>\
+        <td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>\
+      </tr>';
+
+      $('picAddress').getElement('.piccontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+
+      $('ad[pic]['+i+']').addEvent('click',function(e){bindevent(this)});
+    });
+    $$(".piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+
+    function bindevent(el){
+      var target=$(el).getParent(tag_type).getElement('.imgsrc');
+      url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+      Ex_Loader('modedialog',function(){
+        return new imgDialog(url,{onCallback:function(image_id,image_src){
+            target.value=image_src;
+        }});
+      });
+    }
+
+</script>

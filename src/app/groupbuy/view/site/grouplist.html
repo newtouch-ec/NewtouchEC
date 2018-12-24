@@ -1,0 +1,224 @@
+
+<div class="group_top">
+	<div class="group_lallkind" id="gcatbar">
+    	<div class="group_lallkind_main" id='all'>
+        <h2 class="active"><a href="<{link app=groupbuy ctl=site_grouplist act=index }>"><b></b>团购导航</a></h2>
+        <i></i>
+         <ul id='catList'>
+              <{foreach from=$cat item=item key=key}>
+                <li>
+				<a href="<{link app=groupbuy ctl=site_grouplist act=index args=$args arg0=$key args2=1}>" title="<{$item.name}>">
+				<{$item.name|cut:18}></a>
+				</li>
+              <{/foreach}>
+        </ul>
+        <!--<span id="group" ></span>-->		
+		<input type='hidden' name='limit' value="<{$catNum}>"/>
+        </div>
+    </div>
+   <!-- <div class="group_radv fr"></div>-->
+</div>
+<div class="group_mall">
+        <div class="group_mall_cat fr">
+           <div class="group_mall_catfl"><span>团购列表区</span>品牌优选 品鉴生活</div>            
+            <ul id="group_price">
+            <!--	<li>价格：</li>-->
+                <li <{if $price=='all'}> class="active"<{/if}>><a href="<{link app=groupbuy ctl=site_grouplist act=index args=$args arg1='all' args2=1}>">全部<b></b></a></li>
+                <li <{if $price =='1'}> class="active"<{/if}>><a href="<{link app=groupbuy ctl=site_grouplist act=index args=$args
+				arg1='1' args2=1}>">0-99元<b></b></a></li>
+				<li <{if $price =='2'}> class="active"<{/if}>><a href="<{link app=groupbuy ctl=site_grouplist act=index args=$args
+				arg1='2' args2=1}>">100-199元<b></b></a></li>
+				<li <{if $price =='3'}> class="active"<{/if}>><a href="<{link app=groupbuy ctl=site_grouplist act=index args=$args arg1='3' args2=1}>">200-499元<b></b></a></li>
+				<li <{if $price =='4'}> class="active"<{/if}>><a href="<{link app=groupbuy ctl=site_grouplist act=index args=$args arg1='4' args2=1}>">500-999元<b></b></a></li>
+				<li <{if $price =='5'}> class="active"<{/if}>><a href="<{link app=groupbuy ctl=site_grouplist act=index args=$args 
+				arg1='5' args2=1}>">1000元以上<b></b></a></li>
+            </ul>
+        </div>
+        <div class="group_list fr">
+        	<div class="ground_box">
+            <ul id="group_products">
+			<{if $activity}>
+                <{foreach from=$activity item=item key=key}>
+                <li class="last" category="<{$item.cat_id}>">
+                	
+                    <div class="group_products_top">
+                    
+                    <a href="<{link app=groupbuy ctl=site_product act=index args=$item.args}>" class="group_a_img" target="_blank">
+                      <{assign var="cimage" value=$item.image_codeid|default:$item.image|storager:'m'}>
+                      <{assign var="gimage" value=$cimage|default:$defaultImage|storager:'m'}>
+                      <{img class="img-lazyload" src="images/transparent.gif" lazyload="{$gimage}" alt="{$item.g_name}" style="width=275px;height=185px"}>
+                  </a>
+                    <div class="group_time_people groud_time_bottomp">
+                       <div class="group_time_cmb"></div>
+                      <div class="fl group_time" starttime="<{$item.start_time}>" endtime="<{$item.end_time}>" gid="<{$item.gid}>" style=" position:relative; bottom:25px; left:25%;">
+                          <span class="day">0</span><span>天</span>
+                          <span class="hour">0</span><span>小时</span>
+                          <span class="minute">0</span><span>分</span>
+                          <span class="second">0</span><span>秒</span>
+                      </div>
+                    
+                     </div>
+                    </div>
+                    <div class="group_products_bottom">
+                    
+                    
+                    <a href="<{link app=groupbuy ctl=site_product act=index args=$item.args}>" class="group_a_name" target="_blank"><{$item.g_name}></a>
+                  <div class="group_pro_price_all">
+                      <div class="groupBtn 
+                      <{if $now >= $item.start_time && $now <= $item.end_time}>
+                          <{if $item.remainnums != '' && $item.remainnums <= 0}>
+                          group_pro_buy_01
+                          <{else}>
+                          group_pro_buy
+                          <{/if}>
+                      <{else}>
+                        group_pro_buy_01
+                      <{/if}>">
+                     </div>
+                      <div class="group_pro_price" style="border-top:1px solid #ebebeb;">
+                          <div class="group_price fl group_price2">
+                                  <b>￥</b>
+                                  <script>
+                                      var price = parseFloat("<{$item.last_price}>");
+                                      price = price.toFixed(2);
+                                      document.write(price);
+                                  </script>
+                              </div>
+                              <div class="group_namor fr group_namor2"><span><{$item.g_price|cur}><span></div>
+                              <!--<div class="group_sall fr">节省：<{$item.g_price-$item.last_price|cur}></div>-->
+                              
+                              <div class="crl"></div>
+                          </div>
+                      <div class="crl"></div>
+                  </div>
+                  
+                  
+                     <div class="fl group_people group_people2"><i><{$item.nums - $item.remainnums}></i>人已购买</div>
+                     <div class="pro_buy_wz fr">
+                              <{if $now >= $item.start_time && $now <= $item.end_time}>
+                                  <{if $item.remainnums != '' && $item.remainnums <= 0}>
+                                      <a class="btn_b">已售完</a>
+                                  <{else}>
+                                      <a href="<{link app=groupbuy ctl=site_product act=index args=$item.args}>" target="_blank" class="btn_a">我要团</a>
+                                  <{/if}>
+                              <{elseif $now < $item.start_time}>
+                                  <a class="btn_c">未开始</a>
+                              <{elseif $now > $item.end_time}>
+                                  <a class="btn_b">已结束</a>
+                              <{/if}>
+                          </div>
+                  
+                  
+                  
+                      
+                      <div class="crl"></div>
+                  </div>
+                </li>
+                <{/foreach}>
+				<{else}><div class="group_error">非常抱歉，没有找到相关商品</div><{/if}>
+            </ul>
+            <div class="crl"></div>
+        </div>
+        </div>
+        <div class="fr"><{pagers data=$pager}></div>
+</div>
+                    
+                    </div>
+                  
+                  
+<script>
+
+window.addEvent('domready',function(){
+
+    //Gallery bar 滚动定位
+    var gcatbar = $('gcatbar');
+    var gcatbarSize = {
+        x:gcatbar.outerSize().x - gcatbar.getPatch().x,
+        y:gcatbar.outerSize().y - gcatbar.getPatch().y
+    };
+    var gcatbarPos  = gcatbar.getPosition();
+    var fixedStart = gcatbarPos.y;
+
+    var fixGcatBar = function(){
+        if(fixedStart<this.getScrollTop()){
+            if(Browser.ie6) {
+                gcatbar.setStyles({'position':'absolute','top':this.getScrollTop()})}
+            else{
+                gcatbar.addClass('J_fixed');
+            }
+            }else{
+            if(Browser.ie6) {
+                gcatbar.setStyles({'position':'','top':''});
+            };
+            gcatbar.removeClass('J_fixed');
+        }
+    };
+
+    window.addEvents({
+        'resize':fixGcatBar,
+        'scroll':fixGcatBar
+    });
+
+//  var num= $('all').getElements('input[name=limit]')[0].value;
+//  if(num>16) {
+//  $('group').addClass('now');
+//  $('group').addEvent('mouseover',function(){
+//  $('catList').getElements('li').each(function(item,index){
+//  if(index>16){
+//  item.show();
+//  }else if(index<16){
+//  item.hide();
+//  } 
+//  });
+//});
+//  $('group').addEvent('mouseout',function(){
+//  $('catList').getElements('li').each(function(item,index){
+//  if(index>16){
+//  item.hide();
+//  }else if(index<16){
+//  item.show();
+//  } 
+//  });
+//});
+//   }else{
+//   $('group').hide();
+//   }
+});
+$('group_products').getElements('li').each(function(item,index){
+    item.addEvent('mouseenter',function(){
+        $('group_products').getElements('li').each(function(v,k){
+            if(k == index){
+                v.addClass('active');
+            }else{
+                v.removeClass('active');
+            }
+        });
+    });
+});
+
+/*$('groupCat').getElements('li').each(function(item,index){
+    item.addEvent('click',function(){
+        $('groupCat').getElements('li').each(function(i,x){
+            if(index == x){
+                i.addClass('active');
+            }else{
+                i.removeClass('active');
+            }
+        });
+        var category = item.get('category');
+        $('group_products').getElements('li').each(function(v,k){
+          if(category == 'all'){
+              v.setStyle('display','');
+          }else{
+              if(v.get('category') == category){
+                  v.setStyle('display','');
+              }else{
+                  v.setStyle('display','none');
+              }
+          }
+        });
+    });
+  
+});*/
+
+</script>

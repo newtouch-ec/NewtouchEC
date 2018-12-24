@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:34:"http://121.41.100.172/b2b2c/mobile";s:8:"dateline";s:10:"1415338836";s:3:"ttl";s:1:"0";}

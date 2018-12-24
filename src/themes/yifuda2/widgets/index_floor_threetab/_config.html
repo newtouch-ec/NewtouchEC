@@ -1,0 +1,252 @@
+<style>
+  #top_link_area .add-title,
+  #top_link_area .add-url,
+  #top_link_area .delete{float:left;_display:inline;margin-left:5px;}
+  #top_link_area .delete{height:20px;width:16px;cursor:pointer;}
+  #top_link_area .top-link-item{background-color:#E2E8EB;padding:5px 5px 3px;line-height:22px;margin:2px 0;}
+  #add_top_link{cursor:pointer;}
+</style>
+<div class="tableform widgetconfig">
+  <div class="division">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th>楼层小图标：</th>
+        <td>
+          <input type=hidden name="floor_icon" value="<{$setting.floor_icon}>">
+          <input name='floor_icon' class="imgsrc" value="<{$setting.floor_icon}>">
+          <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="tableform widgetconfig">
+  <div class="division">
+    <h4>楼层基本信息</h4>
+    <div class="tableform">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <th><{t app='b2c'}>楼层标题:<{/t}></th>
+          <td>
+            <input type="text" name='title' value="<{$setting.title}>" class="inputstyle" >
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>楼层标题链接:<{/t}></th>
+          <td>
+            <input type="text" name='title_link' value="<{$setting.title_link}>" class="inputstyle" >
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>楼层标题下图片展示：<{/t}></th>
+          <td>
+            <input type=hidden name="floor_pic" value="<{$setting.floor_pic}>">
+            <input name="floor_pic" class="imgsrc x-input" value="<{$setting.floor_pic}>" >
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);" >
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>楼层标题下图片链接：<{/t}></th>
+          <td>
+            <input type="text" name='floor_pic_link' value="<{$setting.floor_pic_link}>" class="inputstyle">
+          </td>
+        </tr>
+		    <tr>
+          <th><{t app='b2c'}>tab链接下小图展示：<{/t}></th>
+          <td>
+            <input name="tab_icon" class="imgsrc x-input" value="<{$setting.tab_icon}>" >
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);" >
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>tab链接下小图链接：<{/t}></th>
+          <td>
+            <input type="text" name='tab_icon_link' value="<{$setting.tab_icon_link}>" class="inputstyle">
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='b2c'}>标题背景色：<{/t}></th>
+          <td>
+            <{input type="color" name="bg_color" class="inputstyle" value=$setting.bg_color|default:'#cccccc' size=7 maxlength=7 }>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>tab项</h4>
+    <div id="picAddress" class="tableform widgetconfig">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableform">
+        <tr>
+          <td>
+            tab名称:<input type="text" name='tab[0][title]' value="<{$setting.tab.0.title}>" class="inputstyle" >
+          </td>
+          <td>
+            tab链接:<input type="text" name='tab[0][link]' value="<{$setting.tab.0.link}>" class="inputstyle" >
+          </td>
+          <td>
+            <{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[0][goods_id]" obj_name='tab[0][goods]' linkid=$setting.tab.0.goods_id value=$setting.tab.0.goods view="b2c:admin/goods/detail/rel_items.html"}>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input name='tab[0][ad][pic]' class="imgsrc"  value="<{$setting.tab.0.ad.pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+          </td>
+          <td colspan="2">
+            图片链接:<input type="text" name='tab[0][ad][pic_link]' value="<{$setting.tab.0.ad.pic_link}>" class="inputstyle" >
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableform">
+        <tr>
+          <td>
+            tab名称:<input type="text" name='tab[1][title]' value="<{$setting.tab.1.title}>" class="inputstyle" >
+          </td>
+          <td>
+            tab链接:<input type="text" name='tab[1][link]' value="<{$setting.tab.1.link}>" class="inputstyle" >
+          </td>
+          <td>
+            <{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[1][goods_id]" obj_name='tab[1][goods]' linkid=$setting.tab.1.goods_id value=$setting.tab.1.goods view="b2c:admin/goods/detail/rel_items.html"}>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input name='tab[1][ad][pic]' class="imgsrc"  value="<{$setting.tab.1.ad.pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+          </td>
+          <td colspan="2">
+            图片链接:<input type="text" name='tab[1][ad][pic_link]' value="<{$setting.tab.1.ad.pic_link}>" class="inputstyle" >
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableform">
+        <tr>
+          <td>
+            tab名称:<input type="text" name='tab[2][title]' value="<{$setting.tab.2.title}>" class="inputstyle" >
+          </td>
+          <td>
+            tab链接:<input type="text" name='tab[2][link]' value="<{$setting.tab.2.link}>" class="inputstyle" >
+          </td>
+          <td>
+            <{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[2][goods_id]" obj_name='tab[2][goods]' linkid=$setting.tab.2.goods_id value=$setting.tab.2.goods view="b2c:admin/goods/detail/rel_items.html"}>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input name='tab[2][ad][pic]' class="imgsrc"  value="<{$setting.tab.2.ad.pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+          </td>
+          <td colspan="2">
+            图片链接:<input type="text" name='tab[2][ad][pic_link]' value="<{$setting.tab.2.ad.pic_link}>" class="inputstyle" >
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableform">
+        <tr>
+          <td>
+            tab名称:<input type="text" name='tab[3][title]' value="<{$setting.tab.3.title}>" class="inputstyle" >
+          </td>
+          <td>
+            tab链接:<input type="text" name='tab[3][link]' value="<{$setting.tab.3.link}>" class="inputstyle" >
+          </td>
+          <td>
+            <{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[3][goods_id]" obj_name='tab[3][goods]' linkid=$setting.tab.3.goods_id value=$setting.tab.3.goods view="b2c:admin/goods/detail/rel_items.html"}>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input name='tab[3][ad][pic]' class="imgsrc"  value="<{$setting.tab.3.ad.pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+          </td>
+          <td colspan="2">
+            图片链接:<input type="text" name='tab[3][ad][pic_link]' value="<{$setting.tab.3.ad.pic_link}>" class="inputstyle" >
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableform">
+        <tr>
+          <td>
+            tab名称:<input type="text" name='tab[4][title]' value="<{$setting.tab.4.title}>" class="inputstyle" >
+          </td>
+          <td>
+            tab链接:<input type="text" name='tab[4][link]' value="<{$setting.tab.4.link}>" class="inputstyle" >
+          </td>
+          <td>
+            <{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[4][goods_id]" obj_name='tab[4][goods]' linkid=$setting.tab.4.goods_id value=$setting.tab.4.goods view="b2c:admin/goods/detail/rel_items.html"}>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input name='tab[4][ad][pic]' class="imgsrc"  value="<{$setting.tab.4.ad.pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+          </td>
+          <td colspan="2">
+            图片链接:<input type="text" name='tab[4][ad][pic_link]' value="<{$setting.tab.4.ad.pic_link}>" class="inputstyle" >
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableform">
+        <tr>
+          <td>
+            tab名称:<input type="text" name='tab[5][title]' value="<{$setting.tab.5.title}>" class="inputstyle" >
+          </td>
+          <td>
+            tab链接:<input type="text" name='tab[5][link]' value="<{$setting.tab.5.link}>" class="inputstyle" >
+          </td>
+          <td>
+            <{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[5][goods_id]" obj_name='tab[5][goods]' linkid=$setting.tab.5.goods_id value=$setting.tab.5.goods view="b2c:admin/goods/detail/rel_items.html"}>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input name='tab[5][ad][pic]' class="imgsrc"  value="<{$setting.tab.5.ad.pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+          </td>
+          <td colspan="2">
+            图片链接:<input type="text" name='tab[5][ad][pic_link]' value="<{$setting.tab.5.ad.pic_link}>" class="inputstyle" >
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableform">
+        <tr>
+          <td>
+            tab名称:<input type="text" name='tab[6][title]' value="<{$setting.tab.6.title}>" class="inputstyle" >
+          </td>
+          <td>
+            tab链接:<input type="text" name='tab[6][link]' value="<{$setting.tab.6.link}>" class="inputstyle" >
+          </td>
+          <td>
+            <{input type="goods_select" object="goods@b2c" multiple="true" return_url="{$related_return_url}" rowselect="true"  textcol="name" name="tab[6][goods_id]" obj_name='tab[6][goods]' linkid=$setting.tab.6.goods_id value=$setting.tab.6.goods view="b2c:admin/goods/detail/rel_items.html"}>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input name='tab[6][ad][pic]' class="imgsrc"  value="<{$setting.tab.6.ad.pic}>">
+            <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this);">
+          </td>
+          <td colspan="2">
+            图片链接:<input type="text" name='tab[6][ad][pic_link]' value="<{$setting.tab.6.ad.pic_link}>" class="inputstyle" >
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+    function addPic(target){
+        var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+        Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                target.getPrevious('input').value=image_src;
+            }});
+        });
+    }
+</script>

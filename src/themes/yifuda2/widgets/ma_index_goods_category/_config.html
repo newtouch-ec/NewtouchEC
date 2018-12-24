@@ -1,0 +1,196 @@
+﻿<div id="picAddress" class="tableform">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <th width="15%" ><{t app='b2c'}>商品大分类：<{/t}></th>
+            <td width="35%" >
+                <{input required=true type='select' id="main_cat" name="main_cat" options=$data.topCats value=$setting.main_cat|default:""}>
+            </td>
+            <th width="15%" ><{t app='b2c'}>背景色：<{/t}></th>
+            <td width="35%" >
+                <{input type='color' name="title_bg_color" value=$setting.title_bg_color }>
+            </td>
+        </tr>
+        <tr>
+            <th><{t app='b2c'}>商品中分类：<{/t}><br />最多选择8个二级分类</th>
+            <td colspan="3" id="tdSubCatsList">
+            </td>
+        </tr>
+        <tr>
+            <th><{t app='b2c'}>品牌：<{/t}><br />最多选择5个品牌</th>
+            <td colspan="3" id="tdSubBrandsList">
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <div class="division widgetconfig">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th width="20%"><{t app='b2c'}>图片宽度：<{/t}></th>
+                <td width="30%" ><{input name="width" style="width:50px" value=$setting.width|default:'390' required="true" type="digits"}></td>
+                <th width="20%" ><{t app='b2c'}>图片高度：<{/t}></th>
+                <td width="30%" ><{input name="height" style="width:50px" value=$setting.height|default:'210' required="true" type="digits"}></td>
+            </tr>
+            <tr>
+                <th width="20%"><{t app='b2c'}>切换效果：<{/t}></th>
+                <td width="30%" >
+                	<{input required=true type='radio' name="switcheffect" options=array('scrollx'=>app::get('b2c')->_('横向滚动'),'scrolly'=>app::get('b2c')->_('竖向滚动'),'fade'=>app::get('b2c')->_('渐现渐隐')) value=$setting.switcheffect|default:scrollx}>
+                </td>
+                <th width="20%" ><{t app='b2c'}>自动播放：<{/t}></th>
+                <td width="30%" >
+                	<{input required=true type='select' name="autoplay" options=array('true'=>app::get('b2c')->_('是'),'false'=>app::get('b2c')->_('否')) value=$setting.autoplay|default:true}>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="piccontent">
+        <!--商品分类JSON字符串-->
+        <div id="jsonCats" style="display:none;"><{$data.jsonCats}></div>
+        <div id="jsonBrands" style="display:none;"><{$data.jsonBrands}></div>
+        <{foreach from=$setting.pic item=data key=key}>
+        <table  width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <th><{t app="b2c"}>图片地址:<{/t}></th>
+                <td>
+                    <input type=hidden name=pic[<{$data.id}>][id] value="<{$data.id}>">
+                    <input name='pic[<{$data.id}>][link]' class="imgsrc" id="pic[<{$data.id}>][link]"  value="<{$data.link}>">
+                    <input type=button value=<{t app='b2c'}>上传图片<{/t}> class="uploadbtn">
+                </td>
+                <th><{t app="b2c"}>链接地址:<{/t}></th>
+                <td>
+                    <input name="pic[<{$data.id}>][linktarget]" value="<{$data.linktarget}>">
+                </td>
+            </tr>
+            <tr>
+                <th><{t app="b2c"}>描述<{/t}>:</th>
+                <td>
+                    <input name="pic[<{$data.id}>][linkinfo]" value="<{$data.linkinfo}>">
+                </td>
+                <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>
+                <td><span onclick="$(this).getParent('table').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>
+            </tr>
+        </table>
+        <{/foreach}>
+    </div>
+    <{button label=$___b2c="添加图片"|t:'b2c' class="addimage" app="desktop" icon="btn_add.gif"}>
+</div>
+<script>
+(function(){
+    //商品分类JSON对象[全体数据源]
+    var catsList = eval($("jsonCats").innerHTML);
+    //品牌JSON对象[全体数据源]
+    var brandsList = eval($("jsonBrands").innerHTML);
+    
+    //绑定大分类OnChange事件
+    $("main_cat").addEvent('change', initSubCats);
+    
+    //选中的中分类ID
+    var sub_cat = new Array();
+    <{foreach from=$setting.sub_cat item=cat key=key}>
+        sub_cat.push("<{$cat}>");
+    <{/foreach}>
+    //选中的品牌ID
+    var sub_brand = new Array();
+    <{foreach from=$setting.sub_brand item=brand key=key}>
+        sub_brand.push("<{$brand}>");
+    <{/foreach}>
+    //初期化中分类选项
+    function initSubCats(){
+        var main_cat = $("main_cat").value;
+        var html = "";
+        for(var i = 0; i < catsList.length; i ++){
+            var cat = catsList[i];
+            
+            //指定大类下的中分类的场合
+            if(cat.pid == main_cat){
+                var checked = "";
+                for(var j = 0; j < sub_cat.length; j ++){
+                    if(sub_cat[j].split("|")[0] == cat.cat_id){
+                    	
+                        checked = ' checked="checked" ';
+                        break;
+                    }
+                }
+                html += '<input id="sub_cat_' + i + '" type="checkbox" name="sub_cat[]"' + checked + ' value="' + cat.cat_id + '|' + cat.cat_name + '" /><label for="sub_cat_' + i + '" >' + cat.cat_name + "</label>&nbsp;&nbsp;";
+            }
+        }
+        
+        document.getElementById('tdSubCatsList').innerHTML = html;
+        
+        initSubBrands();
+    }
+    //初期化品牌选项
+    function initSubBrands(){
+        var main_cat = $("main_cat").value;
+        var brandhtml = "";
+        for(var i = 0; i < brandsList.length; i ++){
+            var brand = brandsList[i];
+            var checked = "";
+            for(var j = 0; j < sub_brand.length; j ++){
+                if(sub_brand[j].split("|")[0] == brand.brand_id){
+                    checked = ' checked="checked" ';
+                    break;
+                }
+            }
+            brandhtml += '<input id="sub_brand_' + i + '" type="checkbox" name="sub_brand[]"' + checked + ' value="' + brand.brand_id + '|' + brand.brand_name + '|' + brand.brand_logo + '" /><label for="sub_brand_' + i + '" >' + brand.brand_name + '</label>&nbsp;&nbsp;';
+        }
+       
+        document.getElementById('tdSubBrandsList').innerHTML = brandhtml;
+    }
+    
+    initSubCats();
+    initSubBrands();
+    
+    function getCfgForm(id){
+        var config = $$(id)[0];
+        while(config.tagName != 'FORM'){
+            config = config.getParent();
+        }
+        return config;
+    }
+    
+    function getWgtTpl(){
+        var sels = getCfgForm('.wgtconfig').getElements('select');
+        var wgtTpl = '';
+        sels.each(function(sel){
+            if(sel.getProperty('name') == '__wg[tpl]') wgtTpl = sel;
+        });
+        return wgtTpl;
+    }
+
+    var tag_type='table',tag_class='pic_items';
+
+    document.getElement(".addimage").addEvent('click',function()
+    {
+        var i=new Date().getTime();
+
+        var tpl='\
+            <tr><th><{t app="b2c"}>图片地址:<{/t}></th>\
+            <td><input type=hidden name=pic['+i+'][id] value="'+i+'"><input name="pic['+i+'][link]" class="imgsrc">\
+                <input type=button value=<{t app="b2c"}>上传图片<{/t}> class="uploadbtn" id="pic['+i+']"></td>\
+            <th><{t app="b2c"}>链接地址:<{/t}></th>\
+            <td><input name="pic['+i+'][linktarget]"></td></tr>\
+            <tr><th><{t app="b2c"}>描述<{/t}>:</th>\
+            <td><input name="pic['+i+'][linkinfo]"></td>\
+            <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>\
+            <td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="./images/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c'}></span></td>\
+            </tr>';
+
+        $('picAddress').getElement('.piccontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+
+        $('pic['+i+']').addEvent('click',function(e){bindevent(this)});
+    });
+
+    $$(".piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+
+    function bindevent(el){
+        var target=$(el).getParent(tag_type).getElement('.imgsrc');
+        var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+
+        Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                target.value=image_src;
+            }});
+        });
+    }
+})();
+</script>

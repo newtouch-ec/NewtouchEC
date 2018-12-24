@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:52:"<?php echo $this->_vars['setting']['usercustom']; ?>";s:8:"dateline";s:10:"1418629553";s:3:"ttl";s:1:"0";}

@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:7:{s:9:"shop_name";s:3:"224";s:12:"company_name";s:3:"196";s:10:"apply_time";s:3:"197";s:10:"store_cert";s:3:"286";s:12:"store_region";s:3:"130";s:10:"store_name";s:3:"114";s:13:"company_cname";s:3:"157";}s:8:"dateline";s:10:"1440140145";s:3:"ttl";s:1:"0";}

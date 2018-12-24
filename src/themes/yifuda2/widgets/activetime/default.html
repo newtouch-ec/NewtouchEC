@@ -1,0 +1,101 @@
+<div class="numeral" end_time="<{$data.end_time}>" now="<{$data.now}>" id="timenumeral">
+	<b class="js_day">00</b>
+	<b class="js_hour">00</b>
+	<b class="js_minute">00</b>
+	<b class="js_second">00</b>
+</div>
+<div class="name">
+	<b>天</b>
+	<b>时</b>
+	<b>分</b>
+	<b>秒</b>
+</div>
+
+<script>
+/************** 倒计时 begin *************/
+(function() {
+    var timestamp_statues = (new Date()).valueOf();
+    var timeCount=timestamp_statues;
+    var timeCount = this.timeCount = {
+        init:function(nowtime,endtime,dom,item){
+            var diff = Math.abs((nowtime - endtime)/1000);
+            var secondDiff = diff % 60;
+            var minuteDiff = ((diff - secondDiff)/60) % 60;
+            var hourDiff = ((diff - secondDiff  - minuteDiff*60)/3600) % 24;
+            var dayDiff = (diff - secondDiff  - minuteDiff*60 - hourDiff*3600) / 86400;
+            var timeDiff = [dayDiff,hourDiff,minuteDiff,secondDiff];
+            this.s = (function(){this.calcTime.periodical(1000,this,{
+                    time:timeDiff,
+                    dom:dom,
+                    item:item
+                })}).delay(100,this);
+        },
+        addZero:function(timeDiff){
+            for(var i=0;i<timeDiff.length;i++){
+                if(timeDiff[i].toString().length<2){
+                    timeDiff[i] = "0" + timeDiff[i].toString();
+                    return timeDiff;
+                }
+            }
+        },
+        formatToInt : function(timeDiff){
+            for(var i=0;i<timeDiff.length;i++){
+                parseInt(timeDiff[i]);
+            };
+            return timeDiff;
+        },
+        judgeTime : function(timeDiff,item){
+            if(timeDiff[3]< 0  && timeDiff[2]>0){
+                timeDiff[3] = 59;
+                timeDiff[2]--;
+                return timeDiff;
+            }else if(timeDiff[3] <0 && timeDiff[2]==0 && timeDiff[1]>0){
+                timeDiff[3] = 59
+                timeDiff[2] = 59;
+                timeDiff[1]--;
+                return timeDiff;
+            }else if(timeDiff[3] <0 && timeDiff[2]==0 && timeDiff[1]==0 && timeDiff[0]>0){
+                timeDiff[3] = 59
+                timeDiff[2] = 59;
+                timeDiff[1] = 23;
+                timeDiff[0]--;
+                return timeDiff;
+            }else if(timeDiff[3]==0 && timeDiff[2]==0 && timeDiff[1]==0 && timeDiff[0]==0){
+                item.empty();
+                reloadTime(item);
+                return;
+            }
+        },
+        calcTime : function (obj){
+            if(!obj.dom) return;
+            var _timeDiff = obj.time;
+            //this.addZero(_timeDiff);
+            this.formatToInt(_timeDiff);
+            _timeDiff[3]--;
+            this.judgeTime(_timeDiff,obj.item);
+            //this.addZero(_timeDiff);
+            var dom = obj.dom;
+            dom.second.innerHTML = _timeDiff[3];
+            dom.minute.innerHTML = _timeDiff[2];
+            dom.hour.innerHTML = _timeDiff[1];
+            dom.day.innerHTML = _timeDiff[0];
+        }
+    }
+})();
+
+    (function(){
+        item = $('timenumeral');
+		var timeEnd= item.get('end_time') * 1000;
+		var timeNow= item.get('now') * 1000;
+		var dom = {
+		   second: item.getElement('.js_second'),
+			minute:item.getElement('.js_minute'),
+			hour:item.getElement('.js_hour'),
+			day:item.getElement('.js_day')
+		};
+		if(timeEnd>timeNow){
+			timeCount.init(timeNow,timeEnd,dom,item);
+		}
+    })();
+    /************** 倒计时 end *************/
+</script>

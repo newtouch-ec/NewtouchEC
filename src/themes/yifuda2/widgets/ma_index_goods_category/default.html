@@ -1,0 +1,135 @@
+<style>
+    #ex_slide_<{$widgets_id}>{ 
+        width:<{$data.ad_slide.width}>px;
+        height:<{$data.ad_slide.height}>px;
+        overflow:hidden;
+        position:relative;
+    }
+    #ex_slide_<{$widgets_id}> ol li{
+        height:<{$data.ad_slide.height}>px;
+        width:<{$data.ad_slide.width}>px;
+        list-style:none; 
+        display:block;
+        overflow:hidden;
+        border:0;
+        margin:0;
+    }
+    #ex_slide_<{$widgets_id}> .slide-trigger{
+        position:absolute; 
+        z-index:555;
+		width:100%;
+		height:30px;
+		background:rgba(255,255,255,0.4)
+    }
+	.ex-slide11 .slide-trigger{bottom:0px;}
+	.ex-slide11 .slide-trigger li{float:left;width:15px;height:15px;line-height:15px;color:#000;background:#fff;opacity:1;text-align:center;cursor:pointer; border-radius:50% 50% 50% 50%;margin-top:7px;position:relative;left:40%;margin-right:8px }
+	.ex-slide11 .slide-trigger li.active{background:#000;color:#ffffff}
+</style>
+
+<div class="c-title" style="background-color:<{$setting.title_bg_color}>;"><{$data.main_cat_detail.cat_name}></div>
+<div class="category-content">
+    <!--商品分类-->
+    <div class="c-list c-list-2 fl">
+        <{foreach from=$data.sub_cat item=cat key=key}>
+            <a target='_blank' href="<{link app=b2c ctl=site_gallery act=index arg0=$cat.0}>"><{$cat.1}></a>
+        <{/foreach}>
+    </div>
+    <!--滚动广告-->
+    <div class="category-gg fr">
+        <div class="ex-slide1-box" style="width:<{$data.ad_slide.width}>px;height:<{$data.ad_slide.height}>px;">
+            <div id="ex_slide_<{$widgets_id}>" class="ex-slide11">
+                <ol class="switchable-content clearfix">
+                    <{foreach from=$data.ad_slide.pic item=item key=key}>
+                        <li class="switchable-panel">
+                            <a href="<{$item.linktarget}>">
+                                <img src="images/transparent.gif" lazyload="<{$item.link}>" class="img-lazyload"  width="<{$data.ad_slide.width}>px" height="<{$data.ad_slide.height}>px" title="<{$data.ad_slide.linkinfo}>">
+                            </a>
+                        </li>
+                    <{/foreach}>
+                </ol>
+                <ul class="switchable-triggerBox slide-trigger">
+                    <{assign var=countnum value="1"}>
+                    <{foreach from=$data.ad_slide.pic name=pictures item=item key=key}>
+                        <li><{$smarty.foreach.pictures.iteration}></li>
+                    <{/foreach}> 
+                </ul>
+            </div>
+        </div>
+	</div>
+    <div class="clr"></div>
+    <!--品牌列表-->
+	<div class="category-list">
+		<ul class="category-list-1" id="widgets_brand_list_<{$widgets_id}>">
+        <{foreach from=$data.brand_list item=item key=key name="branditem"}>
+            <li>
+                <a href="<{$data.url}>/gallery-index--b,<{$item[0]}>-0-0-1--grid-g.html" title="<{$item[1]}>">
+                    <img width="118px" height="52px"  src="<{$item[2]|storager}>" alt="<{$item[1]}>" />
+                </a>
+            </li>
+            <{if $smarty.foreach.branditem.iteration == 5}>
+                <{break}>
+            <{/if}>
+        <{/foreach}>
+		</ul>
+	</div>
+</div>
+<script>
+    new Switchable('ex_slide_<{$widgets_id}>',{
+        effect:'<{$setting.switcheffect}>',
+        autoplay:<{$setting.autoplay}>
+    });
+    
+    var recordCount_<{$widgets_id}> = <{$data.brand_list|count}>;
+    var dataList_<{$widgets_id}> = new Array();
+    var pageNo_<{$widgets_id}> = 1;
+    var pageSize_<{$widgets_id}> = 8;
+    
+    var totalPage_<{$widgets_id}> = Math.ceil(recordCount_<{$widgets_id}> / pageSize_<{$widgets_id}>);
+    <{foreach from=$data.brand_list item=item key=key name="branditem"}>
+        var data_<{$widgets_id}> = {};
+        data_<{$widgets_id}>.brand_id = "<{$item.brand_id}>";
+        data_<{$widgets_id}>.brand_name = "<{$item.brand_name}>";
+        data_<{$widgets_id}>.brand_logo = "<{$item.brand_logo|storager}>";
+        data_<{$widgets_id}>.link_url = "";        
+        dataList_<{$widgets_id}>.push(data_<{$widgets_id}>);
+    <{/foreach}>
+    
+    function go_brand_page_<{$widgets_id}>(flag){
+        if(flag == 1 && pageNo_<{$widgets_id}> == 1){
+            return false;
+        }
+        
+        if(flag == 2 && pageNo_<{$widgets_id}> == totalPage_<{$widgets_id}>){
+            return false;
+        }
+        
+        if(flag == 1){
+            pageNo_<{$widgets_id}> --;
+        }
+        if(flag == 2){
+            pageNo_<{$widgets_id}> ++;
+        }
+        var start = (pageNo_<{$widgets_id}> - 1) * pageSize_<{$widgets_id}>;
+        var end = pageNo_<{$widgets_id}> * pageSize_<{$widgets_id}>;
+        
+        var html = "";
+        for(var i = start ; i < end ; i ++){
+            if(i >= dataList_<{$widgets_id}>.length){
+                break;
+            }
+            if((i + 1) % 5 == 0){
+                html += '<li class="brn">';
+            }
+            else{
+                html += '<li>';
+            }
+            
+            html += '<a href="" title="' + dataList_<{$widgets_id}>[i].brand_name + '">';
+            html += '<img width="155px" height="59px" src="' + dataList_<{$widgets_id}>[i].brand_logo + '" alt="' + dataList_<{$widgets_id}>[i].brand_name + '" />';
+            html += '</a>';
+            html += '</li>';
+        }
+        document.getElementById('widgets_brand_list_<{$widgets_id}>').innerHTML = html;
+        return false;
+    }
+</script>

@@ -1,0 +1,127 @@
+<{require file="block/header.html"}>
+<script src="images/ScrollPic.js"></script>
+<div class="dis_bl clb"><{widgets id="head_ad"}><!--顶部广告--></div>
+<{require file="block/top.html"}>
+<{require file="block/nav.html"}>
+
+<div class="index_flash">
+    <div><{widgets id="index_ad_roll"}></div><!--全屏轮播-->
+    <div class="webwidth" style="position: relative; z-index: 7998; margin-top: -385px;*margin-top: -378px;">
+        <div class="index_flash_add"><!--全屏轮播中的悬浮广告-->
+           <div class="index_flash_addtop"><{widgets id="index_flash_addtop"}></div>
+           <div class="index_flash_addbt"><{widgets id="index_flash_addbt"}></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="index_pic_flows clb"><!--翻转广告下面6个挂件--> 
+  <div class="index_flows_main">
+    <ul>
+      <li><{widgets id="index_pic_bottom1"}></li>
+      <li><{widgets id="index_pic_bottom2"}></li>
+      <li><{widgets id="index_pic_bottom3"}></li>
+      <li><{widgets id="index_pic_bottom4"}></li>
+      <li><{widgets id="index_pic_bottom5"}></li>
+      <li><{widgets id="index_pic_bottom6"}></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div style="position:relative;">
+    <div class="index_news_go">
+       <{widgets id="index_news_go"}>
+    </div>
+<div class="webwidth clb" style="position:relative;">
+    <{widgets id="index_pic_spacing"}><!--推荐品牌上层广告-->
+    
+    
+    <div class="webtool">
+    <ul class="flooricon">
+    </ul>
+        <div class="gotop"><a href="#">去顶部</a></div>
+    </div>
+
+
+</div>
+
+<div class="index_hot"><!--推荐品牌-->
+    <div class="index_hot_title"><{widgets id="index_hot_titie"}></div>
+    <!--<div class="index_hot_main"><{widgets id="index_hot_main"}></div>-->
+</div>
+
+<div class="webwidth clb">
+        <!--楼层1-->
+         <{widgets id="index_floor_pic1"}>
+         
+         <!--楼层2-->
+         <{widgets id="index_floor_pic2"}>
+         
+         <!--楼层3-->
+         <{widgets id="index_floor_pic3"}>
+         
+         <!--楼层4-->
+         <{widgets id="index_floor_pic4"}>
+         
+         <!--楼层5-->
+         <{widgets id="index_floor_pic5"}>
+         
+         <!--楼层6-->
+         <{widgets id="index_floor_pic6"}>
+         
+         <!--楼层7-->
+         <{widgets id="index_floor_pic7"}>
+         
+         <!--楼层8-->
+         <{widgets id="index_floor_pic8"}>
+         
+         <!--楼层9-->
+         <{widgets id="index_floor_pic9"}>
+         
+         <!--楼层10-->
+         <{widgets id="index_floor_pic10"}>
+</div>
+
+<div class="f_service clb f_service2">
+    <{widgets id="index_special2"}>
+</div>
+
+<div class="f_service clb">
+    <{widgets id="index_special"}>
+</div>
+
+</div>
+
+<script>
+(function() {
+// 屏幕大于 1200 才显示楼层小图标
+if(window.screen.width >= 1200){
+      $$('.js_floor_icon').each(function(el){
+          var name = $(el).get('name');
+          var src = $(el).get('img_src');
+          var liElement = new Element('li');
+          var hrefElement = new Element('a', {href: '#'+name});
+          var ImgElement = new Element('img', {src: src});
+          hrefElement.adopt(ImgElement);
+          liElement.adopt(hrefElement);
+          document.getElement('ul.flooricon').adopt(liElement);
+      });
+
+
+  document.getElement('ul.flooricon').getElements('li').each(function(el,i){
+      if(i == 0){
+          document.getElement('ul.flooricon').getElements('li').removeClass('current');
+          el.addClass('current');
+      }
+
+      el.addEvent('mouseover',function(){
+          document.getElement('ul.flooricon').getElements('li').removeClass('current');
+          el.addClass('current');
+      });
+  });
+}
+})();
+</script>
+<{require file="block/footer.html"}>

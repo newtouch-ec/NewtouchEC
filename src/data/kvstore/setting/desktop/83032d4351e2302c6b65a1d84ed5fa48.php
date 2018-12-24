@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";a:2:{s:9:"cur_money";s:2:"94";s:7:"t_payed";s:3:"175";}s:8:"dateline";s:10:"1394628905";s:3:"ttl";s:1:"0";}

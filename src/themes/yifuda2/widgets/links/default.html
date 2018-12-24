@@ -1,0 +1,7 @@
+<{foreach from=$data item=toplink key=top_key}>
+<a 
+	<{if $toplink.top_link_url}>
+	href="<{$toplink.top_link_url}>" target="_blank"
+	<{/if}>
+>
+<{$toplink.top_link_title}></a><{/foreach}>

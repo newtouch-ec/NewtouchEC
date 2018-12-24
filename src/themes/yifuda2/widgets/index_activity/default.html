@@ -1,0 +1,29 @@
+<div class="movement webwidth clb">
+    <a name="floor_<{$widgets_id}>" class="js_floor_icon" img_src="<{$data.floor_icon}>"></a>
+    <h2><b><{t app='b2c'}>您可能感兴趣的活动<{/t}></b></h2>
+    <ul>
+    <{foreach from=$data.ad.pic item=item key=key}>
+        <li>
+            <a href="<{$item.linktarget}>">
+                <img src="images/transparent.gif" lazyload="<{$item.link|storager}>" alt="<{$item.linkinfo}>" class="img-lazyload" />
+            </a>
+        </li>
+    <{/foreach}>
+    </ul>
+    <input type="hidden" name="picnum" value="<{$data.num}>" id="piccount">
+</div>
+<script>
+    var count=$('piccount').value;
+    if(count==1){
+        $$('.movement').getElement('ul').addClass('movementlist-01');
+    }
+    if(count==2){
+        $$('.movement').getElement('ul').addClass('movementlist-02');
+    }
+    if(count==3){
+        $$('.movement').getElement('ul').addClass('movementlist-03');
+    }
+    if(count==4){
+        $$('.movement').getElement('ul').addClass('movementlist-04');
+    }
+</script>

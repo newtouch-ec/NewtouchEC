@@ -1,0 +1,12 @@
+<div class="webwidth">
+    <div class="btomlogo fl"><img src="<{$data.logo}>" /></div>
+    <div class="btombox fr">
+        <div class="btomboxleft fl"></div>
+            <ul class="btomboxcenter fl">
+            <{foreach from=$data.list item=item key=key}>
+                <li><i><img src="<{$item.icon}>" /></i><{$item.big_title}><span><{$item.small_title}></span></li>
+            <{/foreach}>
+            </ul>
+            <div class="btomboxright fl"></div>
+        </div>
+</div>

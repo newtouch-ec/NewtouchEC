@@ -1,0 +1,1 @@
+<?php exit(); ?>a:3:{s:5:"value";s:92:"finder,type_id,store_count,parent_id,p_order,cat_path,is_leaf,disabled,score,cat_id,cat_name";s:8:"dateline";s:10:"1432281984";s:3:"ttl";s:1:"0";}

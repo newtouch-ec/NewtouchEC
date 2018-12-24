@@ -1,0 +1,10 @@
+<?php exit(); ?>a:3:{s:5:"value";s:2028:"<?php $this->__view_helper_model['base_view_helper'] = kernel::single('base_view_helper'); ?><div class="sj_info mb_10">
+	<div class="info_title"><?php echo kernel::single('base_view_helper')->modifier_t(((isset($this->_vars['setting']['title']) && ''!==$this->_vars['setting']['title'])?$this->_vars['setting']['title']:$this->_vars['___b2c']="店内客服"),'b2c'); ?></div>
+    <?php if( $this->_vars['data']['type'] == 'qq' ){ ?>
+    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $this->_vars['data']['number']; ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $this->_vars['data']['number']; ?>:51" alt="<?php $this->_tag_stack[] = array('t', array('app' => 'b2c')); $this->__view_helper_model['base_view_helper']->block_t(array('app' => 'b2c'), null, $this); ob_start(); ?>点击这里给我发消息<?php $_block_content = ob_get_contents(); ob_end_clean(); $_block_content = $this->__view_helper_model['base_view_helper']->block_t($this->_tag_stack[count($this->_tag_stack) - 1][1], $_block_content, $this); echo $_block_content; array_pop($this->_tag_stack); $_block_content=''; ?>" title="<?php $this->_tag_stack[] = array('t', array('app' => 'b2c')); $this->__view_helper_model['base_view_helper']->block_t(array('app' => 'b2c'), null, $this); ob_start(); ?>点击这里给我发消息<?php $_block_content = ob_get_contents(); ob_end_clean(); $_block_content = $this->__view_helper_model['base_view_helper']->block_t($this->_tag_stack[count($this->_tag_stack) - 1][1], $_block_content, $this); echo $_block_content; array_pop($this->_tag_stack); $_block_content=''; ?>"/></a>
+
+<?php }elseif( $this->_vars['data']['type'] == 'ww' ){ ?> 
+    <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=<?php echo $this->_vars['data']['number']; ?>&site=cntaobao&s=1&charset=utf-8" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<?php echo $this->_vars['data']['number']; ?>&site=cntaobao&s=1&charset=utf-8"/></a>
+<?php } ?>
+</div>
+";s:8:"dateline";s:10:"1438939272";s:3:"ttl";s:1:"0";}

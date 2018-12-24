@@ -1,0 +1,42 @@
+<div class="tableform">
+    <div class="widgetconfig">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tbody id="navList">
+                <tr>
+                    <th>公告：</th>
+                    <td><input type="text" name="notice" value="<{$setting.notice}>"></td>
+                </tr>
+                <tr>
+                    <th>显示分享链接：</th>
+                    <td><{input required=true type='select' name="show_jiathis" options=array('true'=>是,'False'=>否) value=$setting.show_jiathis|default:true}></td>
+                </tr>
+                <tr>
+                    <th>logo:</th>
+                    <td>
+                        <input type=hidden name="logo" value="<{$setting.logo}>">
+                        <input name='logo' class="imgsrc x-input" value="<{$setting.logo}>">
+                        <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this)">
+                    </td>
+                </tr>
+                <tr>
+                    <th>背景图片：</th>
+                    <td>
+                        <input type=hidden name="bg_pic" value="<{$setting.bg_pic}>">
+                        <input name='bg_pic' class="imgsrc x-input" value="<{$setting.bg_pic}>">
+                        <input type=button value="<{t app='b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic(this)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function addPic(target){
+            var url='btools-alertpages.html?dd='+Date.now()+'&goto='+encodeURIComponent("btools-image_broswer.html?type=big");
+            Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                     $(target).getPrevious('input').value=image_src;
+            }}) ;
+            });
+        }
+</script>

@@ -1,0 +1,59 @@
+<div style="width:930px;" class="j_table-goods-list">
+    <{foreach from=$da_list item="dly" name=dly key="key"}>
+      <ul class="main-addresslist">
+          <li class="tr"><a href="<{link app=business ctl=site_member act=dlyaddress arg0=$orderBy arg2=$dly.da_id}>">编辑<a>
+        <a class="btn-quit" delete_url="<{link app=business ctl=site_member act=dlyaddress_delete arg=$dly.da_id}>" href="javascript:void(0)">删除</a></li>
+           <li>发货地址:
+           <input type="radio" name="consign" ahref="<{link app=business ctl=site_member act=dlyaddress_update_consign arg=$dly.da_id}>" <{if $dly.consign}> checked="checked"<{/if}> value="true" ><{t}>默认<{/t}></li>
+           <li>退货地址:
+           <input type="radio" name="refund" ahref="<{link app=business ctl=site_member act=dlyaddress_update_refund arg=$dly.da_id}>" <{if $dly.refund}> checked="checked"<{/if}> value="true" ><{t}>默认<{/t}></li>
+           <li>联系人:<{$dly.uname}></li>
+           <li>所在地区:<{$dly.region}></li>
+           <li>街道地址:<{$dly.address}></li>
+           <li>邮编:<{$dly.zip}></li>
+           <li>电话号码:<{$dly.phone}></li>
+           <li>手机号码:<{$dly.mobile}></li>
+           <li>公司名称:<{$dly.company}></li>
+           
+      </ul>
+      <{/foreach}>
+</div>
+<{pagers data=$pager}>
+<script>
+  var quit = $$('.j_table-goods-list .btn-quit')||'';
+  if(quit)
+  quit.removeEvents('click').addEvent('click',function(el){
+	 // console.log(el.target);
+	 var url = el.target.get('delete_url');
+     Ex_Dialog.confirm('<{t}>确认删除该地址吗？<{/t}>', function(e){
+		if(!e){
+			return false;
+		}else{
+			new Request.JSON({
+			url:url,
+			onSuccess:function(rs){
+			  if(rs.status=='success'){
+				Message.success(rs.msg);
+				window.location.reload();
+			  }else{
+				Message.error(rs.msg);
+			  }
+			}
+		  }).send();
+		}
+	});
+    
+  });
+  var consign = $$('.j_table-goods-list input[name^=consign]')||'';
+  if(consign)
+  consign.removeEvents('click').addEvent('click',function(e){
+    var url = this.get('ahref');
+    new Request({url:url,method:'get'}).send();
+  });
+  var refund = $$('.j_table-goods-list input[name^=refund]')||'';
+  if(refund)
+  refund.removeEvents('click').addEvent('click',function(e){
+    var url = this.get('ahref');
+    new Request({url:url,method:'get'}).send();
+  });
+</script>
